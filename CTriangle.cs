@@ -33,7 +33,10 @@
 
         public Colors Color
         {
-            get { return this.color; }
+            get
+            {
+                return this.color;
+            }
         }
 
         public double Length
@@ -55,7 +58,9 @@
         {
         }
 
-        public ColoredTriangle(Colors firstSideColor, double firstSideLength, Colors secondSideColor, double secondSideLength, Colors thirdSideColor, double thirdSideLength)
+        public ColoredTriangle(Colors firstSideColor, double firstSideLength, 
+                                Colors secondSideColor, double secondSideLength, 
+                                Colors thirdSideColor, double thirdSideLength)
         {
             this.firstSide = new ColoredSide(firstSideColor, firstSideLength);
             this.secondSide = new ColoredSide(secondSideColor, secondSideLength);
