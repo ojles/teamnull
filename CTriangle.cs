@@ -1,22 +1,23 @@
 ﻿namespace ColoredFigure
 {
     using System;
-    using System.IO;
     using System.Collections.Generic;
+    using System.IO;
+
+    public enum Colors
+    {
+        Green,
+        Red,
+        Blue,
+        Black,
+        Yellow,
+        Orange,
+        Purple
+    }
 
     public class CTriangle
     {
-        public enum Colors
-        {
-            green,
-            red,
-            blue,
-            black,
-            yellow,
-            orange,
-            purple
-        }
-
+        
         public interface IColor
         {
             Colors Color { get; }
