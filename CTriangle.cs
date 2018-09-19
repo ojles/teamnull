@@ -88,5 +88,39 @@
             sw.WriteLine(this.ToString());
             sw.Close();
         }
+
+        public double Perimeter()
+        {
+            return ( firstSide.Length + secondSide.Length + thirdSide.Length );
+        }
+
+        public class ColoredTriangleComparer : IComparer<ColoredTriangle>
+        {
+            int IComparer<ColoredTriangle>.Compare(ColoredTriangle first, ColoredTriangle second)
+            {
+                return (first.Perimeter().CompareTo(second.Perimeter()));
+            }
+        }
+
+        public void ReadAndSort(string input_path, string output_path)
+        {
+            SortedList<ColoredTriangle, double> sortedListOfTriangles =
+                new SortedList<ColoredTriangle, double>(new ColoredTriangleComparer());
+            var lines = File.ReadAllLines(input_path);
+            foreach (string str in lines)
+            {
+                ColoredTriangle ct = new ColoredTriangle();
+                ct.Input(str);
+                sortedListOfTriangles.Add(ct, ct.Perimeter());
+            }
+            StreamWriter sw = new StreamWriter(output_path);
+            for(int i = 0; i < sortedListOfTriangles.Count; i++)
+            {
+                foreach(ColoredTriangle ct in sortedListOfTriangles.Keys)
+                {
+                    sw.WriteLine(ct.ToString());
+                }
+            }
+        }
     }
 }
