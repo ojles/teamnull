@@ -1,4 +1,4 @@
-namespace teamnull
+namespace Triangle.Domain
 {
     public enum Color
     {

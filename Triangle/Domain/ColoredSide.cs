@@ -1,6 +1,6 @@
 using System;
 
-namespace teamnull
+namespace Triangle.Domain
 {
     public struct ColoredSide : IColor
     {

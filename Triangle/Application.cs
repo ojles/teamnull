@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace teamnull
+namespace Triangle
 {
     internal static class Application
     {

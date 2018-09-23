@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Triangle.Domain;
 
-namespace teamnull
+namespace Triangle
 {
     public static class Tasks
     {
