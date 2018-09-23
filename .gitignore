@@ -6,3 +6,7 @@ StyleCop.Cache
 *.csproj
 App.config
 Properties/
+*.sln
+
+# rider files
+.idea/
