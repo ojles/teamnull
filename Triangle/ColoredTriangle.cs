@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 
 namespace teamnull
@@ -14,48 +13,31 @@ namespace teamnull
 
     public class ColoredTriangle
     {
-        private ColoredSide firstSide;
-        private ColoredSide secondSide;
-        private ColoredSide thirdSide;
+        private const char FieldDelimiter = ':';
+        
+        public ColoredSide FirstSide { get; private set; }
+        public ColoredSide SecondSide { get; private set; }
+        public ColoredSide ThirdSide { get; private set; }
 
-        public ColoredTriangle()
+        public double Perimeter()
         {
-        }
-
-        public ColoredTriangle(Color firstSideColor, double firstSideLength,
-            Color secondSideColor, double secondSideLength,
-            Color thirdSideColor, double thirdSideLength)
-        {
-            firstSide = new ColoredSide(firstSideColor, firstSideLength);
-            secondSide = new ColoredSide(secondSideColor, secondSideLength);
-            thirdSide = new ColoredSide(thirdSideColor, thirdSideLength);
-        }
-
-        public void Input(string line)
-        {
-            var textLine = line.Split(' ');
-            firstSide = new ColoredSide((Color) Enum.Parse(typeof(Color), textLine[0]), double.Parse(textLine[1]));
-            secondSide = new ColoredSide((Color) Enum.Parse(typeof(Color), textLine[2]), double.Parse(textLine[3]));
-            thirdSide = new ColoredSide((Color) Enum.Parse(typeof(Color), textLine[4]), double.Parse(textLine[5]));
+            return FirstSide.Length + SecondSide.Length + ThirdSide.Length;
         }
 
         public override string ToString()
         {
-            return $"First side color: {firstSide.Color}, with length: {firstSide.Length}," +
-                   $" Second side color: {secondSide.Color}, with length: {secondSide.Length}," +
-                   $" Third side color: {thirdSide.Color}, with length: {thirdSide.Length}.";
+            return $"{FirstSide}{FieldDelimiter}{SecondSide}{FieldDelimiter}{ThirdSide}";
         }
 
-        public void Print(string path)
+        public static ColoredTriangle Parse(string triangle)
         {
-            StreamWriter sw = new StreamWriter(path, true);
-            sw.WriteLine(this.ToString());
-            sw.Close();
-        }
-
-        public double Perimeter()
-        {
-            return firstSide.Length + secondSide.Length + thirdSide.Length;
+            var fields = triangle.Split(FieldDelimiter);
+            return new ColoredTriangle
+            {
+                FirstSide = ColoredSide.Parse(fields[0]),
+                SecondSide = ColoredSide.Parse(fields[1]),
+                ThirdSide = ColoredSide.Parse(fields[2])
+            };
         }
 
         public void ReadAndSort(string input_path, string output_path)
@@ -64,8 +46,7 @@ namespace teamnull
             var lines = File.ReadAllLines(input_path);
             foreach (var str in lines)
             {
-                ColoredTriangle ct = new ColoredTriangle();
-                ct.Input(str);
+                ColoredTriangle ct = ColoredTriangle.Parse(str);
                 sortedListOfTriangles.Add(ct, ct.Perimeter());
             }
 
