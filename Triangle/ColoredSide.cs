@@ -2,10 +2,10 @@ namespace teamnull
 {
     public struct ColoredSide : IColor
     {
-        public Colors Color { get; }
+        public Color Color { get; }
         public double Length { get; }
 
-        public ColoredSide(Colors color, double length)
+        public ColoredSide(Color color, double length)
         {
             Color = color;
             Length = length;

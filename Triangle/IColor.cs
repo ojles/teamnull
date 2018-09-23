@@ -1,6 +1,6 @@
 namespace teamnull
 {
-    public enum Colors
+    public enum Color
     {
         Green,
         Red,
@@ -13,6 +13,6 @@ namespace teamnull
     
     public interface IColor
     {
-        Colors Color { get; }
+        Color Color { get; }
     }
 }

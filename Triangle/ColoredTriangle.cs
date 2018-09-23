@@ -22,9 +22,9 @@ namespace teamnull
         {
         }
 
-        public ColoredTriangle(Colors firstSideColor, double firstSideLength,
-            Colors secondSideColor, double secondSideLength,
-            Colors thirdSideColor, double thirdSideLength)
+        public ColoredTriangle(Color firstSideColor, double firstSideLength,
+            Color secondSideColor, double secondSideLength,
+            Color thirdSideColor, double thirdSideLength)
         {
             firstSide = new ColoredSide(firstSideColor, firstSideLength);
             secondSide = new ColoredSide(secondSideColor, secondSideLength);
@@ -34,9 +34,9 @@ namespace teamnull
         public void Input(string line)
         {
             var textLine = line.Split(' ');
-            firstSide = new ColoredSide((Colors) Enum.Parse(typeof(Colors), textLine[0]), double.Parse(textLine[1]));
-            secondSide = new ColoredSide((Colors) Enum.Parse(typeof(Colors), textLine[2]), double.Parse(textLine[3]));
-            thirdSide = new ColoredSide((Colors) Enum.Parse(typeof(Colors), textLine[4]), double.Parse(textLine[5]));
+            firstSide = new ColoredSide((Color) Enum.Parse(typeof(Color), textLine[0]), double.Parse(textLine[1]));
+            secondSide = new ColoredSide((Color) Enum.Parse(typeof(Color), textLine[2]), double.Parse(textLine[3]));
+            thirdSide = new ColoredSide((Color) Enum.Parse(typeof(Color), textLine[4]), double.Parse(textLine[5]));
         }
 
         public override string ToString()
@@ -60,10 +60,9 @@ namespace teamnull
 
         public void ReadAndSort(string input_path, string output_path)
         {
-            SortedList<ColoredTriangle, double> sortedListOfTriangles =
-                new SortedList<ColoredTriangle, double>((ColoredTriangle a, ColoredTriangle b) => { return 1; });
+            var sortedListOfTriangles = new SortedList<ColoredTriangle, double>(new ColoredTriangleComparer());
             var lines = File.ReadAllLines(input_path);
-            foreach (string str in lines)
+            foreach (var str in lines)
             {
                 ColoredTriangle ct = new ColoredTriangle();
                 ct.Input(str);
