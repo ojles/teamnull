@@ -1,16 +1,5 @@
-﻿using System.Collections.Generic;
-using System.IO;
-
-namespace teamnull
+﻿namespace teamnull
 {
-    public class ColoredTriangleComparer : IComparer<ColoredTriangle>
-    {
-        int IComparer<ColoredTriangle>.Compare(ColoredTriangle first, ColoredTriangle second)
-        {
-            return first.Perimeter().CompareTo(second.Perimeter());
-        }
-    }
-
     public class ColoredTriangle
     {
         private const char FieldDelimiter = ':';
@@ -38,26 +27,6 @@ namespace teamnull
                 SecondSide = ColoredSide.Parse(fields[1]),
                 ThirdSide = ColoredSide.Parse(fields[2])
             };
-        }
-
-        public void ReadAndSort(string input_path, string output_path)
-        {
-            var sortedListOfTriangles = new SortedList<ColoredTriangle, double>(new ColoredTriangleComparer());
-            var lines = File.ReadAllLines(input_path);
-            foreach (var str in lines)
-            {
-                ColoredTriangle ct = ColoredTriangle.Parse(str);
-                sortedListOfTriangles.Add(ct, ct.Perimeter());
-            }
-
-            StreamWriter sw = new StreamWriter(output_path);
-            for (int i = 0; i < sortedListOfTriangles.Count; i++)
-            {
-                foreach (ColoredTriangle ct in sortedListOfTriangles.Keys)
-                {
-                    sw.WriteLine(ct.ToString());
-                }
-            }
         }
     }
 }
