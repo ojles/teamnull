@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Triangle.Domain
 {
@@ -18,6 +19,25 @@ namespace Triangle.Domain
         public override string ToString()
         {
             return $"{Color}{FieldDelimiter}{Length}";
+        }
+
+        public bool Equals(ColoredSide other)
+        {
+            return Color == other.Color && Length.Equals(other.Length);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            return obj is ColoredSide && Equals((ColoredSide) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return ((int) Color * 397) ^ Length.GetHashCode();
+            }
         }
 
         public static ColoredSide Parse(string side)

@@ -7,6 +7,7 @@ StyleCop.Cache
 App.config
 Properties/
 *.sln
+packages/
 
 # rider files
 .idea/
