@@ -4,7 +4,7 @@ StyleCop.Cache
 [Bb]in
 [Oo]bj
 *.csproj
-App.config
+*.config
 Properties/
 *.sln
 packages/
