@@ -3,10 +3,8 @@ StyleCop.Cache
 *.[Cc]ache
 [Bb]in
 [Oo]bj
-*.csproj
-*.config
+App.config
 Properties/
-*.sln
 packages/
 
 # rider files
