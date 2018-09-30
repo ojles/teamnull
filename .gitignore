@@ -3,6 +3,9 @@ StyleCop.Cache
 *.[Cc]ache
 [Bb]in
 [Oo]bj
-*.csproj
 App.config
 Properties/
+packages/
+
+# rider files
+.idea/
