@@ -4,9 +4,9 @@
     {
         private const char FieldDelimiter = ':';
 
-        public ColoredSide FirstSide { get; private set; }
-        public ColoredSide SecondSide { get; private set; }
-        public ColoredSide ThirdSide { get; private set; }
+        public ColoredSide FirstSide { get; set; }
+        public ColoredSide SecondSide { get; set; }
+        public ColoredSide ThirdSide { get; set; }
 
         public double Perimeter()
         {
