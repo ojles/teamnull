@@ -16,27 +16,25 @@ namespace Triangle
                 .ToDictionary(group => group.Key, group => group.ToList());
         }
 
-        public static SortedList<ColoredTriangle, double> ReadTrianglesToSortedList(string fileName)
+        public static SortedList<double, ColoredTriangle> ReadTrianglesToSortedList(string fileName)
         {
-            var trianglePerimeterComparer = Comparer<ColoredTriangle>.Create(
-                (first, second) => first.Perimeter().CompareTo(second.Perimeter())
-            );
-            var coloredTriangles = new SortedList<ColoredTriangle, double>(trianglePerimeterComparer);
+            var coloredTriangles = new SortedList<double, ColoredTriangle>();
             foreach (var triangleString in File.ReadAllLines(fileName))
             {
                 var triangle = ColoredTriangle.Parse(triangleString);
-                coloredTriangles.Add(triangle, triangle.Perimeter());
+                coloredTriangles.Add(triangle.Perimeter(), triangle);
             }
+
             return coloredTriangles;
         }
 
-        public static void WriteTriangleListToFile(SortedList<ColoredTriangle, double> triangles, string outputFileName)
+        public static void WriteTriangleListToFile(SortedList<double, ColoredTriangle> triangles, string outputFileName)
         {
             using (var writer = new StreamWriter(outputFileName))
             {
                 foreach (var triangle in triangles)
                 {
-                    writer.WriteLine(triangle.Key);
+                    writer.WriteLine(triangle.Value);
                 }
             }
         }
