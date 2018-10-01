@@ -1,13 +1,22 @@
 using System;
-using System.Collections.Generic;
 
 namespace Triangle.Domain
 {
+    /// <summary>
+    /// Structure class that is used to store a colored side
+    /// </summary>
     public struct ColoredSide : IColor
     {
         private const char FieldDelimiter = '-';
 
+        /// <summary>
+        /// Color property
+        /// </summary>
         public Color Color { get; private set; }
+        
+        /// <summary>
+        /// Side length
+        /// </summary>
         public double Length { get; private set; }
 
         public override string ToString()
@@ -34,6 +43,12 @@ namespace Triangle.Domain
             }
         }
 
+        /// <summary>
+        /// This method is creating a side from a string in a specific format
+        /// </summary>
+        /// <param name="side">The actual string</param>
+        /// <returns>New instance of ColoredSide</returns>
+        /// <exception cref="DomainException">Is thrown usually when the color value is invalid</exception>
         public static ColoredSide Parse(string side)
         {
             var fields = side.Split(FieldDelimiter);
