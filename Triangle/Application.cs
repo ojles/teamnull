@@ -24,6 +24,7 @@ namespace Triangle
                     Console.WriteLine($"   > {triangle}");
                 }
             }
+
             // run task4
             Console.WriteLine(" >>> task4");
             var oneColorTriangles = Tasks.ColoringSide(triangles.Select(pair => pair.Key).ToList());

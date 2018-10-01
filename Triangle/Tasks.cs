@@ -46,20 +46,35 @@ namespace Triangle
         /// <param name="triangles">list of triangles</param>
         /// <returns>list of triangles with repainted side</returns>
         public static List<ColoredTriangle> ColoringSide(List<ColoredTriangle> triangles)
-        {
-            var condition1 = triangles
-                .Where(triangle => triangle.FirstSide.Color.Equals(triangle.SecondSide.Color))
-                .Select(triangle => { triangle.ThirdSide = new ColoredSide(triangle.FirstSide.Color,triangle.ThirdSide.Length); return triangle; }).ToList();
+        {         
+            List<ColoredTriangle> result = new List<ColoredTriangle>();
 
-            var condition2 = triangles
-                .Where(triangle => triangle.FirstSide.Color.Equals(triangle.ThirdSide.Color))
-                .Select(triangle => { triangle.SecondSide = new ColoredSide(triangle.FirstSide.Color, triangle.SecondSide.Length); return triangle; }).ToList();
+            foreach (var item in triangles)
+            {
+                if (item.FirstSide.Color.Equals(item.SecondSide.Color) &&item.FirstSide.Color.Equals(item.ThirdSide.Color))
+                {
+                    continue;
+                }
 
-            var condition3 = triangles
-                .Where(triangle => triangle.SecondSide.Color.Equals(triangle.ThirdSide.Color))
-                .Select(triangle => { triangle.FirstSide = new ColoredSide(triangle.SecondSide.Color, triangle.FirstSide.Length); return triangle; }).ToList();
+                if (item.FirstSide.Color.Equals(item.SecondSide.Color))
+                {
+                    item.ThirdSide = new ColoredSide(item.FirstSide.Color, item.ThirdSide.Length);
+                    result.Add(item);
+                }
 
-            List<ColoredTriangle> result = condition2.Union(condition3).Union(condition1).ToList();
+                else if (item.FirstSide.Color.Equals(item.ThirdSide.Color))
+                {
+                    item.SecondSide = new ColoredSide(item.FirstSide.Color, item.SecondSide.Length);
+                    result.Add(item);
+                }
+
+                else if (item.SecondSide.Color.Equals(item.ThirdSide.Color))
+                {
+                    item.FirstSide = new ColoredSide(item.SecondSide.Color, item.FirstSide.Length);
+                    result.Add(item);
+                }
+
+            }
             
             return result;
         }
