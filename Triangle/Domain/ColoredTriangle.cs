@@ -47,11 +47,29 @@
         public static ColoredTriangle Parse(string triangle)
         {
             var fields = triangle.Split(FieldDelimiter);
+            if (fields.Length < 3)
+            {
+                throw new DomainException($"Not enough sides for triangle ({fields.Length})");
+            }
+            return Create(
+                ColoredSide.Parse(fields[0]),
+                ColoredSide.Parse(fields[1]),
+                ColoredSide.Parse(fields[2])
+            );
+        }
+
+        public static ColoredTriangle Create(ColoredSide a, ColoredSide b, ColoredSide c)
+        {
+            if (a.Length + b.Length <= c.Length || a.Length + c.Length <= b.Length || b.Length + c.Length <= a.Length)
+            {
+                throw new DomainException($"Invalid side length for triangle ({a.Length}, {b.Length}, {c.Length})");
+            }
+
             return new ColoredTriangle
             {
-                FirstSide = ColoredSide.Parse(fields[0]),
-                SecondSide = ColoredSide.Parse(fields[1]),
-                ThirdSide = ColoredSide.Parse(fields[2])
+                FirstSide = a,
+                SecondSide = b,
+                ThirdSide = c
             };
         }
     }

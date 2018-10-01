@@ -45,6 +45,7 @@
     <Compile Include="Application.cs" />
     <Compile Include="Domain\ColoredSide.cs" />
     <Compile Include="Domain\ColoredTriangle.cs" />
+    <Compile Include="Domain\DomainException.cs" />
     <Compile Include="Domain\IColor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tasks.cs" />

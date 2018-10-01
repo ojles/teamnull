@@ -10,12 +10,6 @@ namespace Triangle.Domain
         public Color Color { get; private set; }
         public double Length { get; private set; }
 
-        public ColoredSide(Color color, double length)
-        {
-            Color = color;
-            Length = length;
-        }
-
         public override string ToString()
         {
             return $"{Color}{FieldDelimiter}{Length}";
@@ -43,11 +37,18 @@ namespace Triangle.Domain
         public static ColoredSide Parse(string side)
         {
             var fields = side.Split(FieldDelimiter);
-            return new ColoredSide
+            try
             {
-                Color = (Color) Enum.Parse(typeof(Color), fields[0]),
-                Length = double.Parse(fields[1])
-            };
+                return new ColoredSide
+                {
+                    Color = (Color) Enum.Parse(typeof(Color), fields[0]),
+                    Length = double.Parse(fields[1])
+                };
+            }
+            catch (ArgumentException e)
+            {
+                throw new DomainException($"Failed to parse ColoredSide from  string \"{side}\"", e);
+            }
         }
     }
 }
