@@ -40,5 +40,28 @@ namespace Triangle
                 }
             }
         }
+        /// <summary>
+        /// This function finds triangles in which two sides of the same color and repaint the third side
+        /// </summary>
+        /// <param name="triangles">list of triangles</param>
+        /// <returns>list of triangles with repainted side</returns>
+        public static List<ColoredTriangle> ColoringSide(List<ColoredTriangle> triangles)
+        {
+            var condition1 = triangles
+                .Where(triangle => triangle.FirstSide.Color.Equals(triangle.SecondSide.Color))
+                .Select(triangle => { triangle.ThirdSide = new ColoredSide(triangle.FirstSide.Color,triangle.ThirdSide.Length); return triangle; }).ToList();
+
+            var condition2 = triangles
+                .Where(triangle => triangle.FirstSide.Color.Equals(triangle.ThirdSide.Color))
+                .Select(triangle => { triangle.SecondSide = new ColoredSide(triangle.FirstSide.Color, triangle.SecondSide.Length); return triangle; }).ToList();
+
+            var condition3 = triangles
+                .Where(triangle => triangle.SecondSide.Color.Equals(triangle.ThirdSide.Color))
+                .Select(triangle => { triangle.FirstSide = new ColoredSide(triangle.SecondSide.Color, triangle.FirstSide.Length); return triangle; }).ToList();
+
+            List<ColoredTriangle> result = condition2.Union(condition3).Union(condition1).ToList();
+            
+            return result;
+        }
     }
 }

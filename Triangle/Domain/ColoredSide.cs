@@ -7,7 +7,7 @@ namespace Triangle.Domain
     {
         private const char FieldDelimiter = '-';
 
-        public Color Color { get; private set; }
+        public Color Color { get; set; }
         public double Length { get; private set; }
 
         public ColoredSide(Color color, double length)
