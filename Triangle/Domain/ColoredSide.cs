@@ -12,12 +12,18 @@ namespace Triangle.Domain
         /// <summary>
         /// Color property
         /// </summary>
-        public Color Color { get; private set; }
-        
+        public Color Color { get; set; }
+
         /// <summary>
         /// Side length
         /// </summary>
         public double Length { get; private set; }
+        
+        public ColoredSide(Color color, double length)
+        {
+            Color = color;
+            Length = length;
+        }
 
         public override string ToString()
         {

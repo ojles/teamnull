@@ -38,5 +38,44 @@ namespace Triangle
                 }
             }
         }
+
+        /// <summary>
+        /// This function finds triangles in which two sides of the same color and repaint the third side
+        /// </summary>
+        /// <param name="triangles">list of triangles</param>
+        /// <returns>list of triangles with repainted side</returns>
+        public static List<ColoredTriangle> ColoringSide(List<ColoredTriangle> triangles)
+        {
+            List<ColoredTriangle> result = new List<ColoredTriangle>();
+
+            foreach (var item in triangles)
+            {
+                if (item.FirstSide.Color.Equals(item.SecondSide.Color) &&
+                    item.FirstSide.Color.Equals(item.ThirdSide.Color))
+                {
+                    continue;
+                }
+
+                if (item.FirstSide.Color.Equals(item.SecondSide.Color))
+                {
+                    item.ThirdSide = new ColoredSide(item.FirstSide.Color, item.ThirdSide.Length);
+                    result.Add(item);
+                }
+
+                else if (item.FirstSide.Color.Equals(item.ThirdSide.Color))
+                {
+                    item.SecondSide = new ColoredSide(item.FirstSide.Color, item.SecondSide.Length);
+                    result.Add(item);
+                }
+
+                else if (item.SecondSide.Color.Equals(item.ThirdSide.Color))
+                {
+                    item.FirstSide = new ColoredSide(item.SecondSide.Color, item.FirstSide.Length);
+                    result.Add(item);
+                }
+            }
+
+            return result;
+        }
     }
 }

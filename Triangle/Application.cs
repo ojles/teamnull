@@ -24,6 +24,15 @@ namespace Triangle
                     Console.WriteLine($"   > {triangle}");
                 }
             }
+
+            // run task4
+            Console.WriteLine(" >>> task4");
+            var oneColorTriangles = Tasks.ColoringSide(triangles.Select(pair => pair.Value).ToList());
+            foreach (var tr in oneColorTriangles)
+            {
+                Console.WriteLine(tr);
+            }
+            Console.ReadKey();
         }
     }
 }
