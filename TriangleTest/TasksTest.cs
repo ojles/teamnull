@@ -14,7 +14,7 @@ namespace TriangleTest
         public void TestReadTrianglesToSortedList()
         {
             var triangles = ProvideTriangles();
-            const string trianglesFileName = "triangles.txt";
+            const string trianglesFileName = "Triangles.txt";
             using (var fileStream = new FileStream(trianglesFileName, FileMode.Create, FileAccess.ReadWrite))
             {
                 using (var streamWriter = new StreamWriter(fileStream))
@@ -26,7 +26,7 @@ namespace TriangleTest
                 }
             }
             
-            CollectionAssert.AreEquivalent(triangles, Tasks.ReadTrianglesToSortedList(trianglesFileName).Keys.ToList());
+            CollectionAssert.AreEquivalent(triangles, Tasks.ReadTrianglesToSortedList(trianglesFileName).Values.ToList());
         }
         
         [Test]
@@ -55,14 +55,14 @@ namespace TriangleTest
         {
             return new List<ColoredTriangle>
             {
-                ColoredTriangle.Parse("Red-1:Blue-2:Red-3"),
-                ColoredTriangle.Parse("Black-4:Green-5:Purple-13"),
+                ColoredTriangle.Parse("Red-2:Blue-2:Red-3"),
+                ColoredTriangle.Parse("Black-8:Green-6:Purple-13"),
                 ColoredTriangle.Parse("Yellow-4:Yellow-6:Red-3"),
-                ColoredTriangle.Parse("Green-3:Green-1:Green-15"),
-                ColoredTriangle.Parse("Orange-6:Yellow-9:Green-3"),
-                ColoredTriangle.Parse("Orange-1:Orange-2:Orange-20"),
-                ColoredTriangle.Parse("Red-5:Green-8:Blue-2"),
-                ColoredTriangle.Parse("Green-14:Green-20:Green-3")
+                ColoredTriangle.Parse("Green-6:Green-10:Green-15"),
+                ColoredTriangle.Parse("Orange-6:Yellow-9:Green-4"),
+                ColoredTriangle.Parse("Orange-10:Orange-25:Orange-20"),
+                ColoredTriangle.Parse("Red-6:Green-8:Blue-3"),
+                ColoredTriangle.Parse("Green-14:Green-20:Green-7")
             };
         }
     }
