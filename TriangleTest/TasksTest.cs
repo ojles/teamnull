@@ -43,7 +43,7 @@ namespace TriangleTest
             var greenTrianglesExpectedList = new List<ColoredTriangle>
             {
                 triangles[3],
-                triangles[7]
+                triangles[8]
             };
 
             Assert.AreEqual(triangleMap.Count, 2);
@@ -62,8 +62,28 @@ namespace TriangleTest
                 ColoredTriangle.Parse("Orange-6:Yellow-9:Green-4"),
                 ColoredTriangle.Parse("Orange-10:Orange-25:Orange-20"),
                 ColoredTriangle.Parse("Red-6:Green-8:Blue-3"),
+                ColoredTriangle.Parse("Red-4:Blue-4:Blue-4"),
                 ColoredTriangle.Parse("Green-14:Green-20:Green-7")
             };
+        }
+
+        [Test]
+        public void ColoringSideTest()
+        {
+            var triangles = ProvideTriangles();
+            var coloredTriangles = Tasks.ColoringSide(triangles);
+            
+            Assert.AreEqual(coloredTriangles.Count, 3);
+        }
+
+        [Test]
+        public void TestWriteTriangleListToFile()
+        {
+            //var triangles = ProvideTriangles();
+            const string DataDir = "../../Data";
+            var triangle = Tasks.ReadTrianglesToSortedList($"{DataDir}/Triangles.txt");
+            Tasks.WriteTriangleListToFile(triangle, $"{DataDir}/TrianglesSorted.txt");
+            FileAssert.AreEqual(new FileInfo($"{DataDir}/TrianglesSorted.txt"), new FileInfo($"{DataDir}/ExpectedTriangles.txt"));
         }
     }
 }

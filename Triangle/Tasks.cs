@@ -72,13 +72,11 @@ namespace Triangle
                     item.ThirdSide = new ColoredSide(item.FirstSide.Color, item.ThirdSide.Length);
                     result.Add(item);
                 }
-
                 else if (item.FirstSide.Color.Equals(item.ThirdSide.Color))
                 {
                     item.SecondSide = new ColoredSide(item.FirstSide.Color, item.SecondSide.Length);
                     result.Add(item);
                 }
-
                 else if (item.SecondSide.Color.Equals(item.ThirdSide.Color))
                 {
                     item.FirstSide = new ColoredSide(item.SecondSide.Color, item.FirstSide.Length);
