@@ -17,10 +17,11 @@ namespace Triangle
         }
 
         /// <summary>
-        /// This function reads objects of ColoredTriangle class from file and sorts them into SortedList by perimeter
+        /// This function reads ColoredTriangle objects and puts them into a sorted list.
+        /// The key of the sorted list is the perimeter of the corresponding triangle
         /// </summary>
         /// <param name="fileName">The name of the file</param>
-        /// <returns>Returnsds the sorted list of objects of ColoredTriangle class</returns>
+        /// <returns>Returns the sorted list of objects of ColoredTriangle class</returns>
         public static SortedList<double, ColoredTriangle> ReadTrianglesToSortedList(string fileName)
         {
             var coloredTriangles = new SortedList<double, ColoredTriangle>();
@@ -36,8 +37,8 @@ namespace Triangle
         /// <summary>
         /// This function writes all objects from list of ColoredTriangle class into file
         /// </summary>
-        /// <param name="triangles">The name of the SortedList of objects of ColoredTriangle class</param>
-        /// <param name="outputFileName">The name of the file</param>
+        /// <param name="triangles">A list of ColoredTriangle objects</param>
+        /// <param name="outputFileName">The name of the output file</param>
         public static void WriteTriangleListToFile(SortedList<double, ColoredTriangle> triangles, string outputFileName)
         {
             using (var writer = new StreamWriter(outputFileName))
