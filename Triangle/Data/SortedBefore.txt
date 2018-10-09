@@ -1,8 +1,0 @@
-﻿Red-2:Blue-2:Red-3
-Yellow-4:Yellow-6:Red-3
-Red-6:Green-8:Blue-3
-Orange-6:Yellow-9:Green-4
-Black-8:Green-6:Purple-13
-Green-6:Green-10:Green-15
-Green-14:Green-20:Green-7
-Orange-10:Orange-25:Orange-20
