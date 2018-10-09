@@ -51,6 +51,7 @@
     <Compile Include="Tasks.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Data\SortedBefore.txt" />
     <Content Include="Data\Triangles.txt" />
     <Content Include="Data\TrianglesSorted.txt" />
   </ItemGroup>

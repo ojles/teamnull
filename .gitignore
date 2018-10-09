@@ -6,6 +6,7 @@ StyleCop.Cache
 App.config
 Properties/
 packages/
+.axoCover/
 
 # rider files
 .idea/
