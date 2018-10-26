@@ -24,14 +24,14 @@ namespace Task2TeamNull
         public double Y { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Point"/> class 
+        /// Initializes a new instance of the <see cref="Point"/>
         /// </summary>
         public Point()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Point"/> class  
+        /// Initializes a new instance of the <see cref="Point"/>
         /// </summary>
         /// <param name="x">X coordinate of a point</param>
         /// <param name="y">Y coordinate of a point</param>

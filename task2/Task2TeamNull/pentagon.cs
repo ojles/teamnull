@@ -20,14 +20,14 @@ namespace Task2TeamNull
         public Point E { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Pentagon"/> class.  
+        /// Initializes a new instance of the <see cref="Pentagon"/>
         /// </summary>
         public Pentagon()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Pentagon"/> class. 
+        /// Initializes a new instance of the <see cref="Pentagon"/> 
         /// </summary>
         /// <param name="color">Color of pentagon</param>
         /// <param name="a">Point A</param>
