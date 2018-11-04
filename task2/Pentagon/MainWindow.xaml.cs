@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Task2TeamNull
+namespace Pentagon
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

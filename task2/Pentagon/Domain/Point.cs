@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace Task2TeamNull
+namespace Pentagon
 {
     /// <summary>
     /// Class to represent a point in two-dimensional space

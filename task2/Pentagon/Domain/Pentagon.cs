@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Task2TeamNull
+namespace Pentagon
 {
     /// <summary>
     /// Class to represent a pentagon in two-dimensional space
@@ -27,7 +27,7 @@ namespace Task2TeamNull
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Pentagon"/> 
+        /// Initializes a new instance of the <see cref="Pentagon"/>
         /// </summary>
         /// <param name="color">Color of pentagon</param>
         /// <param name="a">Point A</param>
