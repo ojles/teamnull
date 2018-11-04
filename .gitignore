@@ -3,8 +3,6 @@ StyleCop.Cache
 *.[Cc]ache
 [Bb]in
 [Oo]bj
-App.config
-Properties/
 packages/
 .axoCover/
 
