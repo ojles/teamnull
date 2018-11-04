@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Pentagon
+namespace task2
 {
     /// <summary>
     /// Class to represent a pentagon in two-dimensional space

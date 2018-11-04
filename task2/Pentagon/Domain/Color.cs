@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace Pentagon
+namespace task2
 {
     public class Color
     {
