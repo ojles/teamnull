@@ -7,5 +7,22 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_New" Command=""/>
+                    <MenuItem Header="_Open" Command=""/>
+                    <MenuItem Header="_Save" Command=""/>
+                </MenuItem>
+                <MenuItem Header="_Shapes" Command="">
+                </MenuItem>
+                <MenuItem Header="_Save" Command="">
+                </MenuItem>
+            </Menu>
+        </DockPanel>
     </Grid>
 </Window>
