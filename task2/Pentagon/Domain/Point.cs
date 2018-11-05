@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace task2
+namespace Task2.Domain
 {
     /// <summary>
     /// Class to represent a point in two-dimensional space

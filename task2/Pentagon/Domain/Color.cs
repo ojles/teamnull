@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace task2
+namespace Task2.Domain
 {
     public class Color
     {

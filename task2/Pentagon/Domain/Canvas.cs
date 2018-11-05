@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace Pentagon.Domain
+namespace Task2.Domain
 {
     /// <summary>
     /// Class to represent a Canvas with pentagons
@@ -12,13 +8,24 @@ namespace Pentagon.Domain
     public class Canvas
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Canvas"/>
+        /// List of the <see cref="Task2.Pentagon"/>
         /// </summary>
-        public Canvas() { pentagonList = new List<task2.Pentagon>(); }
+        public List<Pentagon> Pentagons { get; set; }
 
         /// <summary>
-        /// List of the <see cref="task2.Pentagon"/>
+        /// Initializes a new instance of the <see cref="Canvas"/>
         /// </summary>
-        public List<task2.Pentagon> pentagonList { get; set; }
+        public Canvas()
+        {
+            Pentagons = new List<Pentagon>();
+        }
+
+        /// <summary>
+        /// Adds a <see cref="Pentagon"/> to current canvas
+        /// </summary>
+        public void AddPentagon(Pentagon pentagon)
+        {
+            Pentagons.Add(pentagon);
+        }
     }
 }
