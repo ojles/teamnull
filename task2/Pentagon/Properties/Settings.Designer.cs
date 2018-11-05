@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Pentagon.Properties
+namespace Task2.Properties
 {
 
 

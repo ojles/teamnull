@@ -1,7 +1,7 @@
-﻿<Application x:Class="Pentagon.App"
+﻿<Application x:Class="Task2.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Pentagon"
+             xmlns:local="clr-namespace:Task2"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
     </Application.Resources>
