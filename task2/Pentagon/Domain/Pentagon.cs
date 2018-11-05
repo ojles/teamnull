@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 
-namespace task2
+namespace Task2.Domain
 {
     /// <summary>
     /// Class to represent a pentagon in two-dimensional space
@@ -8,16 +9,13 @@ namespace task2
     [Serializable]
     public class Pentagon
     {
+        private const int PointAmount = 5;
         public Color Color { get; set; }
 
         /// <summary>
         /// Points of pentagon vertices
         /// </summary>
-        public Point A { get; set; }
-        public Point B { get; set; }
-        public Point C { get; set; }
-        public Point D { get; set; }
-        public Point E { get; set; }
+        public List<Point> Points = new List<Point>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Pentagon"/>
@@ -26,23 +24,18 @@ namespace task2
         {
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Pentagon"/>
-        /// </summary>
-        /// <param name="color">Color of pentagon</param>
-        /// <param name="a">Point A</param>
-        /// <param name="b">Point B</param>
-        /// <param name="c">Point C</param>
-        /// <param name="d">Point D</param>
-        /// <param name="e">Point E</param>
-        public Pentagon(Point a, Point b, Point c, Point d, Point e, Color color)
+        public void AddPoint(Point point)
         {
-            Color = color;
-            A = a;
-            B = b;
-            C = c;
-            D = d;
-            E = e;
+            if (IsCompleted())
+            {
+                throw new IndexOutOfRangeException("The pentagon has already all points set");
+            }
+            Points.Add(point);
+        }
+
+        public bool IsCompleted()
+        {
+            return Points.Count == PointAmount;
         }
     }
 }
