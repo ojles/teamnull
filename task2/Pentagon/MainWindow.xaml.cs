@@ -123,8 +123,22 @@ namespace Task2
 
         private Polygon ConvertPentagonToPolygon(Pentagon pentagon)
         {
-            Polygon polygon = new Polygon();
-            foreach (Domain.Point PentatonPoint in Pentagon.Points)
+            Polygon polygon = new Polygon
+            {
+                StrokeThickness = 2,
+                Stroke = new SolidColorBrush(Colors.Black),
+                Fill = new SolidColorBrush()
+                {
+                    Color = new System.Windows.Media.Color
+                    {
+                        R = pentagon.Color.R,
+                        G = pentagon.Color.G,
+                        B = pentagon.Color.B,
+                        A = 255
+                    }
+                }
+            };
+            foreach (Domain.Point PentatonPoint in pentagon.Points)
             {
                 polygon.Points.Add(new System.Windows.Point
                 {
@@ -132,16 +146,6 @@ namespace Task2
                     Y = PentatonPoint.Y
                 });
             }
-            System.Windows.Media.Color polygonColor = new System.Windows.Media.Color
-            {
-                R = pentagon.Color.R,
-                G = pentagon.Color.G,
-                B = pentagon.Color.B,
-                A = 255
-            };
-            polygon.Fill = new SolidColorBrush(polygonColor);
-            polygon.StrokeThickness = 2;
-            polygon.Stroke = new SolidColorBrush(Colors.Black);
             return polygon;
         }
 
