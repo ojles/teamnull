@@ -1,10 +1,10 @@
 ﻿using System.Windows;
-using System.Collections.Generic;
 using System.Windows.Shapes;
 using Task2.Service;
 using Task2.Domain;
 using System.Windows.Media;
 using System.Windows.Forms;
+using System;
 
 namespace Task2
 {
@@ -15,7 +15,7 @@ namespace Task2
     {
         private readonly CanvasService CanvasService = new CanvasService();
         private Canvas Canvas = new Canvas();
-        private Pentagon Pentagon = new Pentagon();
+        private Pentagon CurrentPentagon = new Pentagon();
         private Domain.Point LastPoint;
         private Line FollowLine;
 
@@ -26,27 +26,33 @@ namespace Task2
 
         private void NewCanvas(object sender, RoutedEventArgs e)
         {
-            DrawCanvas.Visibility = Visibility.Visible;
-            Canvas = new Canvas();
+            ResetCanvas();
         }
 
         private void OpenSavedCanvas(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = "Text file (*.xml)|*.xml";
-            dialog.ShowDialog();
-            if (dialog.FileName != string.Empty)
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                string fullPath = System.IO.Path.GetFullPath(dialog.FileName);
-                Canvas = CanvasService.Get(fullPath);
-                DrawCanvas.Children.Clear();
-                Background = Brushes.White;
-                DrawCanvas.Visibility = Visibility.Visible;
+                ResetCanvas();
+                string filePath = System.IO.Path.GetFullPath(dialog.FileName);
+                Canvas = CanvasService.Get(filePath);
                 foreach (Pentagon pentagon in Canvas.Pentagons)
                 {
                     DrawPentagon(pentagon);
                 }
             }
+        }
+
+        private void ResetCanvas()
+        {
+            DrawCanvas.Children.Clear();
+            DrawCanvas.Visibility = Visibility.Visible;
+            Canvas = new Canvas();
+            CurrentPentagon = new Pentagon();
+            LastPoint = null;
+            FollowLine = null;
         }
 
         private void SaveCanvas(object sender, RoutedEventArgs e)
@@ -57,15 +63,12 @@ namespace Task2
                 return;
             }
 
-            SaveFileDialog dialog = new SaveFileDialog
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = "Text file (*.xml)|*.xml";
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                Filter = "Text file (*.xml)|*.xml"
-            };
-            dialog.ShowDialog();
-            if (dialog.FileName != string.Empty)
-            {
-                string path = System.IO.Path.GetFullPath(dialog.FileName);
-                CanvasService.Save(Canvas, path);
+                string filePath = System.IO.Path.GetFullPath(dialog.FileName);
+                CanvasService.Save(Canvas, filePath);
             }
         }
 
@@ -77,13 +80,13 @@ namespace Task2
                 Y = e.GetPosition(DrawCanvas).Y
             };
 
-            int i = Pentagon.Points.Count;
+            int i = CurrentPentagon.Points.Count;
             if (i > 0)
             {
                 Line line = new Line
                 {
-                    X1 = Pentagon.Points[i - 1].X,
-                    Y1 = Pentagon.Points[i - 1].Y,
+                    X1 = CurrentPentagon.Points[i - 1].X,
+                    Y1 = CurrentPentagon.Points[i - 1].Y,
                     X2 = LastPoint.X,
                     Y2 = LastPoint.Y,
                     Stroke = new SolidColorBrush(Colors.Gray)
@@ -92,27 +95,39 @@ namespace Task2
                 DrawCanvas.Children.Add(line);
             }
 
-            Pentagon.AddPoint(LastPoint);
+            CurrentPentagon.AddPoint(LastPoint);
 
-            if (Pentagon.IsCompleted())
+            if (CurrentPentagon.IsCompleted())
             {
-                Pentagon.Color = AskPentagonColor();
-                DrawPentagon(Pentagon);
-                Canvas.AddPentagon(Pentagon);
-                Pentagon = new Pentagon();
+                CurrentPentagon.Color = AskPentagonColor();
+                DrawPentagon(CurrentPentagon);
+                Canvas.AddPentagon(CurrentPentagon);
+                CurrentPentagon = new Pentagon();
             }
         }
 
         private Domain.Color AskPentagonColor()
         {
             ColorDialog dialog = new ColorDialog();
-            dialog.ShowDialog();
-            return new Domain.Color
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                R = dialog.Color.R,
-                G = dialog.Color.G,
-                B = dialog.Color.B
-            };
+                return new Domain.Color
+                {
+                    R = dialog.Color.R,
+                    G = dialog.Color.G,
+                    B = dialog.Color.B
+                };
+            }
+            else
+            {
+                Random random = new Random();
+                return new Domain.Color
+                {
+                    R = (byte)random.Next(0, 255),
+                    G = (byte)random.Next(0, 255),
+                    B = (byte)random.Next(0, 255)
+                };
+            }
         }
 
         private void DrawPentagon(Pentagon pentagon)
@@ -151,7 +166,7 @@ namespace Task2
 
         private void CanvasMouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            if (Pentagon.Points.Count != 0)
+            if (CurrentPentagon.Points.Count != 0)
             {
                 DrawCanvas.Children.Remove(FollowLine);
                 FollowLine = new Line
