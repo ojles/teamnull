@@ -180,6 +180,8 @@ namespace Task2
                 FollowLine.MouseUp += CanvasClick;
                 DrawCanvas.Children.Add(FollowLine);
             }
+
+            CursorPositionLabel.Text = $"X: {e.GetPosition(DrawCanvas).X}; y: {e.GetPosition(DrawCanvas).Y}";
         }
     }
 }
