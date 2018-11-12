@@ -5,6 +5,9 @@ using Task2.Service;
 using Task2.Domain;
 using System.Windows.Media;
 using System.Windows.Forms;
+using System.Collections.ObjectModel;
+using System;
+using System.Windows.Input;
 
 namespace Task2
 {
@@ -18,10 +21,15 @@ namespace Task2
         private Pentagon Pentagon = new Pentagon();
         private Domain.Point LastPoint;
         private Line FollowLine;
+        private ObservableCollection<Polygon> polygons = new ObservableCollection<Polygon>();
+        private Polygon selectedPolygon = null;
+        private bool dragging = false;
+        private System.Windows.Point clickV;
 
         public MainWindow()
         {
             InitializeComponent();
+            this.polygonesList.ItemsSource = this.polygons;
         }
 
         private void NewCanvas(object sender, RoutedEventArgs e)
@@ -119,6 +127,7 @@ namespace Task2
         {
             Polygon polygon = ConvertPentagonToPolygon(pentagon);
             DrawCanvas.Children.Add(polygon);
+            polygons.Add(polygon);
         }
 
         private Polygon ConvertPentagonToPolygon(Pentagon pentagon)
@@ -161,6 +170,30 @@ namespace Task2
                 FollowLine.MouseUp += CanvasClick;
                 DrawCanvas.Children.Add(FollowLine);
             }
+        }
+
+        private void SelectPolygon(object sender, RoutedEventArgs e)
+        {
+            if (this.selectedPolygon != null)
+            {
+                this.selectedPolygon.Stroke = new SolidColorBrush(Colors.Black);
+            }
+
+            if (this.polygons.Count == 0)
+            {
+                throw new InvalidOperationException("There is no shapes in the canvas");
+            }
+
+            var item = (System.Windows.Controls.MenuItem)e.OriginalSource;
+            this.selectedPolygon = (Polygon)item.DataContext;
+            this.selectedPolygon.Stroke = new SolidColorBrush(Colors.Red);
+            this.selectedPolygon.MouseDown += new MouseButtonEventHandler(this.PolygonMouseDown);
+        }
+
+        private void PolygonMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.dragging = true;
+            this.clickV = e.GetPosition(this.selectedPolygon);
         }
     }
 }

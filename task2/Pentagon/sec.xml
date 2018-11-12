@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<Canvas xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Pentagons>
+    <Pentagon>
+      <Points>
+        <Point X="210" Y="97.039999999999992" />
+        <Point X="214" Y="98.039999999999992" />
+        <Point X="344" Y="179.04" />
+        <Point X="424" Y="62.04" />
+        <Point X="342" Y="44.04" />
+      </Points>
+      <Color R="0" G="64" B="128" />
+    </Pentagon>
+    <Pentagon>
+      <Points>
+        <Point X="363" Y="82.039999999999992" />
+        <Point X="425" Y="167.04" />
+        <Point X="296" Y="195.04" />
+        <Point X="268" Y="114.03999999999999" />
+        <Point X="315" Y="56.04" />
+      </Points>
+      <Color R="0" G="0" B="0" />
+    </Pentagon>
+    <Pentagon>
+      <Points>
+        <Point X="555" Y="185.04" />
+        <Point X="553" Y="230.04" />
+        <Point X="569" Y="216.04" />
+        <Point X="578" Y="234.04" />
+        <Point X="527" Y="246.04" />
+      </Points>
+      <Color R="0" G="0" B="0" />
+    </Pentagon>
+    <Pentagon>
+      <Points>
+        <Point X="293" Y="258.04" />
+        <Point X="297" Y="331.04" />
+        <Point X="297" Y="331.04" />
+        <Point X="413" Y="359.04" />
+        <Point X="394" Y="218.04" />
+      </Points>
+      <Color R="0" G="0" B="0" />
+    </Pentagon>
+    <Pentagon>
+      <Points>
+        <Point X="117" Y="167.04" />
+        <Point X="85" Y="247.04" />
+        <Point X="85" Y="247.04" />
+        <Point X="143" Y="262.04" />
+        <Point X="204" Y="223.04" />
+      </Points>
+      <Color R="0" G="0" B="0" />
+    </Pentagon>
+    <Pentagon>
+      <Points>
+        <Point X="528" Y="72.039999999999992" />
+        <Point X="647" Y="175.04" />
+        <Point X="655" Y="55.04" />
+        <Point X="575" Y="194.04" />
+        <Point X="488" Y="72.039999999999992" />
+      </Points>
+      <Color R="0" G="0" B="0" />
+    </Pentagon>
+  </Pentagons>
+</Canvas>

@@ -4,5 +4,17 @@
              xmlns:local="clr-namespace:Task2"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <DataTemplate x:Key="showShapes" >
+            <StackPanel Height="450" Width="800" >
+                <Polygon Points="{Binding Path=Points, Mode=TwoWay}" 
+                     Fill="{Binding Path=Fill, Mode=TwoWay}"
+                     StrokeThickness="{Binding Path=StrokeThickness, Mode=TwoWay}"
+                     Stroke="{Binding Path=Stroke, Mode=TwoWay}">
+                </Polygon>
+                <StackPanel.LayoutTransform>
+                    <ScaleTransform ScaleX="0.2" ScaleY="0.2" />
+                </StackPanel.LayoutTransform>
+            </StackPanel>
+        </DataTemplate>
     </Application.Resources>
 </Application>
