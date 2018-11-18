@@ -19,13 +19,17 @@ namespace Task3
             set { price = value; }
         }
 
-        public string PathToImage
+        public string ImagePath
         {
             get { return pathToImage; }
             set { pathToImage = value; }
         }
 
-        Meal() { }
+        Meal(string name, double price)
+        {
+            this.name = name;
+            this.price = price;
+        }
 
         Meal(string name, double price, string pathToImage)
         {

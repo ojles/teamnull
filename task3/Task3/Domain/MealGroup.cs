@@ -19,8 +19,6 @@ namespace Task3
             set { meals = value; }
         }
 
-        MealGroup() { }
-
         MealGroup(string name, List<Meal> meals)
         {
             this.name = name;

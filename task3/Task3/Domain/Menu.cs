@@ -12,8 +12,6 @@ namespace Task3
             set { mealGroups = value; }
         }
 
-        Menu() { }
-
         Menu(List<MealGroup>mealGroups)
         {
             this.mealGroups = mealGroups;
