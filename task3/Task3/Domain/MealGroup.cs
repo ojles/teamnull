@@ -7,7 +7,7 @@ namespace Task3
         public string Name { get; set; }
         public List<Meal> Meals { get; set; } = new List<Meal>();
 
-        private MealGroup(string name, List<Meal> meals)
+        public MealGroup(string name, List<Meal> meals)
         {
             if (name == null)
             {

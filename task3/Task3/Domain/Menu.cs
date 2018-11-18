@@ -6,7 +6,7 @@ namespace Task3
     {
         public List<MealGroup> MealGroups { get; set; } = new List<MealGroup>();
 
-        private Menu(List<MealGroup> mealGroups)
+        public Menu(List<MealGroup> mealGroups)
         {
             MealGroups = mealGroups;
         }

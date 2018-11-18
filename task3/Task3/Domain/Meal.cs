@@ -7,7 +7,7 @@ namespace Task3
         public double Price { get; set; }
         public string ImagePath { get; set; }
 
-        private Meal(string name, double price)
+        public Meal(string name, double price)
         {
             if (name == null)
             {
@@ -23,7 +23,7 @@ namespace Task3
             Price = price;
         }
 
-        private Meal(string name, double price, string imagePath)
+        public Meal(string name, double price, string imagePath)
         {
             if (name == null)
             {
