@@ -7,10 +7,15 @@ namespace Task3
         public string Name { get; set; }
         public List<Meal> Meals { get; set; } = new List<Meal>();
 
-        MealGroup(string name, List<Meal> meals)
+        private MealGroup(string name, List<Meal> meals)
         {
-            Name = name;
-            Meals = meals;
+            if (name == null)
+            {
+                throw new System.ArgumentNullException("Parameter cannot be null", "name");
+            }
+
+            Name = name;           
+            Meals = meals;           
         }
     }
 }

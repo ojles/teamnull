@@ -7,14 +7,34 @@ namespace Task3
         public double Price { get; set; }
         public string ImagePath { get; set; }
 
-        Meal(string name, double price)
+        private Meal(string name, double price)
         {
+            if (name == null)
+            {
+                throw new System.ArgumentNullException("Parameter cannot be null", "name");
+            }
+
+            if (price < 0)
+            {
+                throw new System.ArgumentOutOfRangeException("Price can not be less zero");
+            }
+
             Name = name;
             Price = price;
         }
 
-        Meal(string name, double price, string imagePath)
+        private Meal(string name, double price, string imagePath)
         {
+            if (name == null)
+            {
+                throw new System.ArgumentNullException("Parameter cannot be null", "name");
+            }
+
+            if (price < 0)
+            {
+                throw new System.ArgumentOutOfRangeException("Price can not be less zero");
+            }
+
             Name = name;
             Price = price;
             ImagePath = imagePath;
