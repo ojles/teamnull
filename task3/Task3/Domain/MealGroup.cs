@@ -13,7 +13,7 @@ namespace Task3
                 {
                     throw new System.ArgumentNullException("name", "Parameter cannot be null");
                 }
-                
+
                 Name = value;
             }
         }
@@ -22,13 +22,8 @@ namespace Task3
 
         public MealGroup(string name, List<Meal> meals)
         {
-            if (name == null)
-            {
-                throw new System.ArgumentNullException("name", "Parameter cannot be null");
-            }
-
-            Name = name;           
-            Meals = meals;           
+            Name = name;
+            Meals = meals;
         }
     }
 }

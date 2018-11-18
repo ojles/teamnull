@@ -30,37 +30,35 @@ namespace Task3
         }
         public string ImagePath { get; set; }
 
-        public Meal(string name, double price)
+        public Meal()
         {
-            if (name == null)
-            {
-                throw new System.ArgumentNullException("name", "Parameter cannot be null");
-            }
+        }
 
-            if (price < 0)
-            {
-                throw new System.ArgumentOutOfRangeException("Meal price cannot be less then zero");
-            }
-
+        public Meal(string name, double price)
+        {     
             Name = name;
             Price = price;
         }
 
         public Meal(string name, double price, string imagePath)
-        {
-            if (name == null)
-            {
-                throw new System.ArgumentNullException("name", "Parameter cannot be null");
-            }
-
-            if (price < 0)
-            {
-                throw new System.ArgumentOutOfRangeException("Meal price cannot be less then zero");
-            }
-
+        {        
             Name = name;
             Price = price;
             ImagePath = imagePath;
+        }      
+
+        public static Meal Create(string name, double price, string imagePath)
+        {
+            Meal meal = new Meal();
+            meal.Name = name;
+            meal.Price = price;
+            meal.ImagePath = imagePath;
+            return meal;
+        }
+
+        public static Meal Create(string name, double price)
+        {
+            return Create(name, price, null);
         }
     }
 }
