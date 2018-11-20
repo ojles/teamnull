@@ -22,6 +22,7 @@ namespace Task2
         private Pentagon Pentagon = new Pentagon();
         private Domain.Point LastPoint;
         private Line FollowLine;
+        private List<Line> DrawLines = new List<Line>();
         private ObservableCollection<Polygon> polygons = new ObservableCollection<Polygon>();
         private Polygon dragPolygon = null;
         private bool dragging = false;
@@ -103,6 +104,7 @@ namespace Task2
                     Stroke = new SolidColorBrush(Colors.Gray)
                 };
                 line.MouseUp += CanvasClick;
+                DrawLines.Add(line);
                 DrawCanvas.Children.Add(line);
             }
 
@@ -117,7 +119,7 @@ namespace Task2
             }
         }
 
-        private void CanvasMouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void CanvasMouseUp(object sender, MouseButtonEventArgs e)
         {
             dragging = false;
         }
@@ -139,6 +141,12 @@ namespace Task2
             Polygon polygon = ConvertPentagonToPolygon(pentagon);
             DrawCanvas.Children.Add(polygon);
             polygons.Add(polygon);
+            foreach(Line line in DrawLines)
+            {
+                DrawCanvas.Children.Remove(line);
+            }
+            DrawCanvas.Children.Remove(FollowLine);
+            DrawLines.Clear();
         }
 
         private Polygon ConvertPentagonToPolygon(Pentagon pentagon)
@@ -220,6 +228,7 @@ namespace Task2
         {
             int index = polygons.IndexOf(dragPolygon);
             Pentagon pentagon = Canvas.Pentagons[index];
+            pentagon.Points.Clear();
             foreach (System.Windows.Point PolygonPoint in dragPolygon.Points)
             {
                 pentagon.AddPoint(new Domain.Point
@@ -229,6 +238,8 @@ namespace Task2
                 });
             }
             dragPolygon.Stroke = null;
+            dragPolygon.MouseDown -= PolygonMouseDown;
+            dragPolygon.MouseRightButtonDown -= PolygonStopDrag;
             dragPolygon = null;
             dragging = false;
         }
