@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:Task2"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <DataTemplate x:Key="showShapes" >
+        <DataTemplate x:Key="PentagonPreview" >
             <StackPanel Height="450" Width="800" >
                 <Polygon Points="{Binding Path=Points, Mode=TwoWay}" 
                      Fill="{Binding Path=Fill, Mode=TwoWay}"

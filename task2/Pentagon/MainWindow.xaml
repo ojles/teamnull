@@ -23,7 +23,7 @@
                     <MenuItem Header="_Open" Command="Open"/>
                     <MenuItem Header="_Save" Command="Save"/>
                 </MenuItem>
-                <MenuItem Header="_Shapes" x:Name="polygonesList" Grid.Row="1" ItemTemplate="{StaticResource showShapes}" Click="SelectPolygon"/>
+                <MenuItem Header="_Shapes" x:Name="previewPolygones" Grid.Row="1" ItemTemplate="{StaticResource PentagonPreview}" Click="SelectPolygon"/>
                 <MenuItem Header="_Save" Command="Save"/>
             </Menu>
         </DockPanel>

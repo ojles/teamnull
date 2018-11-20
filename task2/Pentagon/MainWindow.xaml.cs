@@ -22,14 +22,14 @@ namespace Task2
         private Domain.Point LastPoint;
         private Line FollowLine;
         private ObservableCollection<Polygon> polygons = new ObservableCollection<Polygon>();
-        private Polygon selectedPolygon = null;
+        private Polygon dragPolygon = null;
         private bool dragging = false;
         private System.Windows.Point clickV;
 
         public MainWindow()
         {
             InitializeComponent();
-            this.polygonesList.ItemsSource = this.polygons;
+            this.previewPolygones.ItemsSource = this.polygons;
         }
 
         private void NewCanvas(object sender, RoutedEventArgs e)
@@ -174,26 +174,27 @@ namespace Task2
 
         private void SelectPolygon(object sender, RoutedEventArgs e)
         {
-            if (this.selectedPolygon != null)
+            if (this.dragPolygon != null)
             {
-                this.selectedPolygon.Stroke = new SolidColorBrush(Colors.Black);
+                this.dragPolygon.Stroke = new SolidColorBrush(Colors.Black);
             }
 
             if (this.polygons.Count == 0)
             {
-                throw new InvalidOperationException("There is no shapes in the canvas");
+                // just ignore if no polygones present
+                return;
             }
 
             var item = (System.Windows.Controls.MenuItem)e.OriginalSource;
-            this.selectedPolygon = (Polygon)item.DataContext;
-            this.selectedPolygon.Stroke = new SolidColorBrush(Colors.Red);
-            this.selectedPolygon.MouseDown += new MouseButtonEventHandler(this.PolygonMouseDown);
+            this.dragPolygon = (Polygon)item.DataContext;
+            this.dragPolygon.Stroke = new SolidColorBrush(Colors.Red);
+            this.dragPolygon.MouseDown += new MouseButtonEventHandler(this.PolygonMouseDown);
         }
 
         private void PolygonMouseDown(object sender, MouseButtonEventArgs e)
         {
             this.dragging = true;
-            this.clickV = e.GetPosition(this.selectedPolygon);
+            this.clickV = e.GetPosition(this.dragPolygon);
         }
     }
 }
