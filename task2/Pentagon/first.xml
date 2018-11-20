@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<Canvas xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Pentagons>
+    <Pentagon>
+      <Points>
+        <Point X="210" Y="97.039999999999992" />
+        <Point X="214" Y="98.039999999999992" />
+        <Point X="344" Y="179.04" />
+        <Point X="424" Y="62.04" />
+        <Point X="342" Y="44.04" />
+      </Points>
+      <Color R="0" G="64" B="128" />
+    </Pentagon>
+  </Pentagons>
+</Canvas>
