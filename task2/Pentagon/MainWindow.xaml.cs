@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Windows.Shapes;
 using Task2.Service;
 using Task2.Domain;
-using System.Windows.Media;
-using System.Windows.Forms;
 using System.Collections.ObjectModel;
-using System;
+using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Media;
+using System;
 
 namespace Task2
 {
@@ -17,6 +17,7 @@ namespace Task2
     public partial class MainWindow : Window
     {
         private readonly CanvasService CanvasService = new CanvasService();
+
         private Canvas Canvas = new Canvas();
         private Pentagon Pentagon = new Pentagon();
         private Domain.Point LastPoint;
@@ -79,6 +80,11 @@ namespace Task2
 
         private void CanvasClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            if (dragging)
+            {
+                return;
+            }
+
             LastPoint = new Domain.Point
             {
                 X = e.GetPosition(DrawCanvas).X,
@@ -109,6 +115,11 @@ namespace Task2
                 Canvas.AddPentagon(Pentagon);
                 Pentagon = new Pentagon();
             }
+        }
+
+        private void CanvasMouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            dragging = false;
         }
 
         private Domain.Color AskPentagonColor()
@@ -156,6 +167,13 @@ namespace Task2
 
         private void CanvasMouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
+            if (dragging && dragPolygon != null)
+            {
+                System.Windows.Controls.Canvas.SetLeft(this.dragPolygon, e.GetPosition(this.DrawCanvas).X - this.clickV.X);
+                System.Windows.Controls.Canvas.SetTop(this.dragPolygon, e.GetPosition(this.DrawCanvas).Y - this.clickV.Y);
+                return;
+            }
+
             if (Pentagon.Points.Count != 0)
             {
                 DrawCanvas.Children.Remove(FollowLine);
@@ -189,12 +207,30 @@ namespace Task2
             this.dragPolygon = (Polygon)item.DataContext;
             this.dragPolygon.Stroke = new SolidColorBrush(Colors.Red);
             this.dragPolygon.MouseDown += new MouseButtonEventHandler(this.PolygonMouseDown);
+            this.dragPolygon.MouseRightButtonDown += new MouseButtonEventHandler(this.PolygonStopDrag);
         }
 
         private void PolygonMouseDown(object sender, MouseButtonEventArgs e)
         {
             this.dragging = true;
             this.clickV = e.GetPosition(this.dragPolygon);
+        }
+
+        private void PolygonStopDrag(object sender, MouseButtonEventArgs e)
+        {
+            int index = polygons.IndexOf(dragPolygon);
+            Pentagon pentagon = Canvas.Pentagons[index];
+            foreach (System.Windows.Point PolygonPoint in dragPolygon.Points)
+            {
+                pentagon.AddPoint(new Domain.Point
+                {
+                    X = PolygonPoint.X,
+                    Y = PolygonPoint.Y
+                });
+            }
+            dragPolygon.Stroke = null;
+            dragPolygon = null;
+            dragging = false;
         }
     }
 }

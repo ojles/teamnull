@@ -29,7 +29,8 @@
         </DockPanel>
         <Canvas Visibility="Collapsed"
                 Grid.Row="1" Name="DrawCanvas"
-                MouseLeftButtonDown="CanvasClick" 
+                MouseLeftButtonDown="CanvasClick"
+                MouseLeftButtonUp="CanvasMouseUp"
                 MouseMove="CanvasMouseMove"
                 Background="White"
                 Focusable="true"/>
