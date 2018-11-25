@@ -285,12 +285,5 @@ namespace Task2
             dragPolygon = null;
             dragging = false;
         }
-
-        
-        //private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        //{
-        //    System.Windows.MessageBox.Show("Save changes?", "Warning!", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
-        //    e.Cancel = true;
-        //}
     }
 }
