@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System;
+using System.Collections.Generic;
 
 namespace Task2
 {
@@ -31,6 +32,22 @@ namespace Task2
         {
             InitializeComponent();
             this.previewPolygones.ItemsSource = this.polygons;
+            Closing += new System.ComponentModel.CancelEventHandler((object sender, System.ComponentModel.CancelEventArgs e) =>
+            {
+                MessageBoxResult result = System.Windows.MessageBox.Show("Save changes?", "Warning!", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        SaveAll();
+                        break;
+                    case MessageBoxResult.No:
+                        System.Windows.Application.Current.Shutdown();
+                        break;
+                    case MessageBoxResult.Cancel:
+                        e.Cancel = true;
+                        break;
+                }
+            });
         }
 
         private void NewCanvas(object sender, RoutedEventArgs e)
@@ -64,7 +81,12 @@ namespace Task2
             FollowLine = null;
         }
 
-        private void SaveCanvas(object sender, RoutedEventArgs e)
+        private void SaveCanvas(object sender, ExecutedRoutedEventArgs e)
+        {
+            SaveAll();
+        }
+
+        public void SaveAll()
         {
             if (Canvas.Pentagons.Count == 0)
             {
