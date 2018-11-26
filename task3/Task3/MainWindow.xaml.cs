@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,18 @@ namespace Task3
         public MainWindow()
         {
             InitializeComponent();
+
+            List<Meal> meals = new List<Meal>
+            {
+                Meal.Create("first name", 123),
+                Meal.Create("second name", 1),
+                Meal.Create("third name", 13),
+            };
+
+            menu.ItemsSource = meals;
+
+            ICollectionView dataView = CollectionViewSource.GetDefaultView(menu.ItemsSource);
+            dataView.GroupDescriptions.Add(new PropertyGroupDescription("Name"));
         }
     }
 }
