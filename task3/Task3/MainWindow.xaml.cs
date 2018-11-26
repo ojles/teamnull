@@ -25,17 +25,20 @@ namespace Task3
         {
             InitializeComponent();
 
-            List<Meal> meals = new List<Meal>
-            {
-                Meal.Create("first name", 123),
-                Meal.Create("second name", 1),
-                Meal.Create("third name", 13),
-            };
+            MealGroup group = MealGroup.Create("First Dish");
+            group.AddMeal(Meal.Create("first name", 123));
+            group.AddMeal(Meal.Create("second name", 23));
+            group.AddMeal(Meal.Create("third name", 12));
 
-            menu.ItemsSource = meals;
+            MealGroup group2 = MealGroup.Create("Second Dish");
+            group2.AddMeal(Meal.Create("fourth name", 710));
+            group2.AddMeal(Meal.Create("fifth name", 576));
+            group2.AddMeal(Meal.Create("sixth name", 321));
+
+            menu.ItemsSource = group.Meals;
 
             ICollectionView dataView = CollectionViewSource.GetDefaultView(menu.ItemsSource);
-            dataView.GroupDescriptions.Add(new PropertyGroupDescription("Name"));
+            dataView.GroupDescriptions.Add(new PropertyGroupDescription("Group.Name"));
         }
     }
 }

@@ -4,14 +4,21 @@ namespace Task3
 {
     class MealGroup
     {
-        public string Name { get; set; }
+        public string Name { get; private set; }
         public List<Meal> Meals { get; set; } = new List<Meal>();
 
         private MealGroup()
         {
         }
 
-        public static MealGroup Create(string name, List<Meal> meals)
+        public MealGroup AddMeal(Meal meal)
+        {
+            Meals.Add(meal);
+            meal.Group = this;
+            return this;
+        }
+
+        public static MealGroup Create(string name)
         {
             if (name == null)
             {
@@ -20,8 +27,7 @@ namespace Task3
 
             return new MealGroup
             {
-                Name = name,
-                Meals = meals
+                Name = name
             };
         }
     }

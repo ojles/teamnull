@@ -37,7 +37,7 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="{x:Type GroupItem}">
-                                        <Expander IsExpanded="False" BorderBrush="#FFA4B97F" BorderThickness="0,0,0,1">
+                                        <Expander IsExpanded="True" BorderBrush="#FFA4B97F" BorderThickness="0,0,0,1">
                                             <Expander.Header>
                                                 <DockPanel>
                                                     <TextBlock FontWeight="Bold" Text="{Binding Path=Name}"
