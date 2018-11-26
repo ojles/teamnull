@@ -7,16 +7,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ListBox Name="Menu">
+        <ListBox Name="Menu" HorizontalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Expander Header="{Binding Name}">
-                        <ListBox ItemsSource="{Binding Meals}">
+                    <Expander Header="{Binding Name}" IsExpanded="True" >
+                        <ListBox ItemsSource="{Binding Meals}" HorizontalContentAlignment="Stretch">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Name}"/>
+                                    <StackPanel Margin="30" Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                        <TextBlock Text="{Binding Name}" />
                                         <TextBlock Text="{Binding Price}"/>
+                                        <Image Source="/Images/heh.jpg" Height="50" Width="50"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
