@@ -24,7 +24,7 @@ namespace Task3
         public MainWindow()
         {
             InitializeComponent();
-
+            
             MealGroup group = MealGroup.Create("First Dish");
             group.AddMeal(Meal.Create("first name", 123));
             group.AddMeal(Meal.Create("second name", 23));
@@ -35,10 +35,12 @@ namespace Task3
             group2.AddMeal(Meal.Create("fifth name", 576));
             group2.AddMeal(Meal.Create("sixth name", 321));
 
-            menu.ItemsSource = group.Meals;
-
-            ICollectionView dataView = CollectionViewSource.GetDefaultView(menu.ItemsSource);
-            dataView.GroupDescriptions.Add(new PropertyGroupDescription("Group.Name"));
+            List<MealGroup> menu = new List<MealGroup>
+            {
+                group,
+                group2
+            };
+            Menu.ItemsSource = menu;
         }
     }
 }
