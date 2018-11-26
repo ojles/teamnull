@@ -18,20 +18,25 @@ namespace Task2
     {
         private readonly CanvasService CanvasService = new CanvasService();
 
-        private Canvas Canvas = new Canvas();
         private Pentagon CurrentPentagon = new Pentagon();
+        private Canvas Canvas = new Canvas();
+
+        private List<Line> DrawLines = new List<Line>();
         private Domain.Point LastPoint;
         private Line FollowLine;
-        private List<Line> DrawLines = new List<Line>();
-        private ObservableCollection<Polygon> polygons = new ObservableCollection<Polygon>();
-        private Polygon dragPolygon = null;
-        private bool dragging = false;
-        private System.Windows.Point clickV;
+
+        private ObservableCollection<Polygon> Polygons = new ObservableCollection<Polygon>();
+
+        private System.Windows.Point StartDrag;
+        private Polygon DragPolygon;
+        private bool IsDragging = false;
+
+        private string CanvasFilePath;
 
         public MainWindow()
         {
             InitializeComponent();
-            this.previewPolygones.ItemsSource = this.polygons;
+            this.previewPolygones.ItemsSource = this.Polygons;
             Closing += new System.ComponentModel.CancelEventHandler((object sender, System.ComponentModel.CancelEventArgs e) =>
             {
                 MessageBoxResult result = System.Windows.MessageBox.Show("Save changes?", "Warning!", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
@@ -62,12 +67,13 @@ namespace Task2
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 ResetCanvas();
-                string filePath = System.IO.Path.GetFullPath(dialog.FileName);
-                Canvas = CanvasService.Get(filePath);
+                CanvasFilePath = System.IO.Path.GetFullPath(dialog.FileName);
+                Canvas = CanvasService.Get(CanvasFilePath);
                 foreach (Pentagon pentagon in Canvas.Pentagons)
                 {
                     DrawPentagon(pentagon);
                 }
+                UpdateShapesList();
             }
         }
 
@@ -79,11 +85,30 @@ namespace Task2
             CurrentPentagon = new Pentagon();
             LastPoint = null;
             FollowLine = null;
+            Polygons.Clear();
+            UpdateShapesList();
         }
 
         private void SaveCanvas(object sender, ExecutedRoutedEventArgs e)
         {
             SaveAll();
+        }
+
+        private void SaveCanvasAs(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (Canvas.Pentagons.Count == 0)
+            {
+                System.Windows.MessageBox.Show("Nothing to save", "Warning!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = "Text file (*.xml)|*.xml";
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string filePath = System.IO.Path.GetFullPath(dialog.FileName);
+                CanvasService.Save(Canvas, filePath);
+            }
         }
 
         public void SaveAll()
@@ -94,18 +119,25 @@ namespace Task2
                 return;
             }
 
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Filter = "Text file (*.xml)|*.xml";
-            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (CanvasFilePath == null)
             {
-                string filePath = System.IO.Path.GetFullPath(dialog.FileName);
-                CanvasService.Save(Canvas, filePath);
+                SaveFileDialog dialog = new SaveFileDialog();
+                dialog.Filter = "Text file (*.xml)|*.xml";
+                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    CanvasFilePath = System.IO.Path.GetFullPath(dialog.FileName);
+                }
+                else
+                {
+                    return;
+                }
             }
+            CanvasService.Save(Canvas, CanvasFilePath);
         }
 
         private void CanvasClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if (dragging)
+            if (IsDragging)
             {
                 return;
             }
@@ -141,11 +173,12 @@ namespace Task2
                 Canvas.AddPentagon(CurrentPentagon);
                 CurrentPentagon = new Pentagon();
             }
+            UpdateShapesList();
         }
 
         private void CanvasMouseUp(object sender, MouseButtonEventArgs e)
         {
-            dragging = false;
+            IsDragging = false;
         }
 
         private Domain.Color AskPentagonColor()
@@ -176,7 +209,7 @@ namespace Task2
         {
             Polygon polygon = ConvertPentagonToPolygon(pentagon);
             DrawCanvas.Children.Add(polygon);
-            polygons.Add(polygon);
+            Polygons.Add(polygon);
             foreach(Line line in DrawLines)
             {
                 DrawCanvas.Children.Remove(line);
@@ -215,10 +248,18 @@ namespace Task2
 
         private void CanvasMouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            if (dragging && dragPolygon != null)
+            if (IsDragging && DragPolygon != null)
             {
-                System.Windows.Controls.Canvas.SetLeft(this.dragPolygon, e.GetPosition(this.DrawCanvas).X - this.clickV.X);
-                System.Windows.Controls.Canvas.SetTop(this.dragPolygon, e.GetPosition(this.DrawCanvas).Y - this.clickV.Y);
+                double diffX = e.GetPosition(this.DrawCanvas).X - this.StartDrag.X;
+                double diffY = e.GetPosition(this.DrawCanvas).Y - this.StartDrag.Y;
+                for (int i = 0; i < DragPolygon.Points.Count; i++)
+                {
+                    System.Windows.Point point = DragPolygon.Points[i];
+                    point.X += diffX;
+                    point.Y += diffY;
+                    DragPolygon.Points[i] = point;
+                }
+                StartDrag = e.GetPosition(DrawCanvas);
                 return;
             }
 
@@ -242,36 +283,36 @@ namespace Task2
 
         private void SelectPolygon(object sender, RoutedEventArgs e)
         {
-            if (this.dragPolygon != null)
+            if (this.DragPolygon != null)
             {
-                this.dragPolygon.Stroke = new SolidColorBrush(Colors.Black);
+                this.DragPolygon.Stroke = new SolidColorBrush(Colors.Black);
             }
 
-            if (this.polygons.Count == 0)
+            if (this.Polygons.Count == 0)
             {
                 // just ignore if no polygones present
                 return;
             }
 
             var item = (System.Windows.Controls.MenuItem)e.OriginalSource;
-            this.dragPolygon = (Polygon)item.DataContext;
-            this.dragPolygon.Stroke = new SolidColorBrush(Colors.Red);
-            this.dragPolygon.MouseDown += new MouseButtonEventHandler(this.PolygonMouseDown);
-            this.dragPolygon.MouseRightButtonDown += new MouseButtonEventHandler(this.PolygonStopDrag);
+            this.DragPolygon = (Polygon)item.DataContext;
+            this.DragPolygon.Stroke = new SolidColorBrush(Colors.Red);
+            this.DragPolygon.MouseDown += new MouseButtonEventHandler(this.PolygonMouseDown);
+            this.DragPolygon.MouseRightButtonDown += new MouseButtonEventHandler(this.PolygonStopDrag);
         }
 
         private void PolygonMouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.dragging = true;
-            this.clickV = e.GetPosition(this.dragPolygon);
+            this.IsDragging = true;
+            this.StartDrag = e.GetPosition(this.DragPolygon);
         }
 
         private void PolygonStopDrag(object sender, MouseButtonEventArgs e)
         {
-            int index = polygons.IndexOf(dragPolygon);
+            int index = Polygons.IndexOf(DragPolygon);
             Pentagon pentagon = Canvas.Pentagons[index];
             pentagon.Points.Clear();
-            foreach (System.Windows.Point PolygonPoint in dragPolygon.Points)
+            foreach (System.Windows.Point PolygonPoint in DragPolygon.Points)
             {
                 pentagon.AddPoint(new Domain.Point
                 {
@@ -279,11 +320,16 @@ namespace Task2
                     Y = PolygonPoint.Y
                 });
             }
-            dragPolygon.Stroke = null;
-            dragPolygon.MouseDown -= PolygonMouseDown;
-            dragPolygon.MouseRightButtonDown -= PolygonStopDrag;
-            dragPolygon = null;
-            dragging = false;
+            DragPolygon.Stroke = new SolidColorBrush(Colors.Black);
+            DragPolygon.MouseDown -= PolygonMouseDown;
+            DragPolygon.MouseRightButtonDown -= PolygonStopDrag;
+            DragPolygon = null;
+            IsDragging = false;
+        }
+
+        private void UpdateShapesList()
+        {
+            previewPolygones.IsEnabled = Canvas.Pentagons.Count != 0;
         }
     }
 }
