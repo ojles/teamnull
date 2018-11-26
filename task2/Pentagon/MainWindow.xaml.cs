@@ -18,15 +18,18 @@ namespace Task2
     {
         private readonly CanvasService CanvasService = new CanvasService();
 
-        private Canvas Canvas = new Canvas();
         private Pentagon CurrentPentagon = new Pentagon();
+        private Canvas Canvas = new Canvas();
+
+        private List<Line> DrawLines = new List<Line>();
         private Domain.Point LastPoint;
         private Line FollowLine;
-        private List<Line> DrawLines = new List<Line>();
+
         private ObservableCollection<Polygon> polygons = new ObservableCollection<Polygon>();
-        private Polygon dragPolygon = null;
-        private bool dragging = false;
-        private System.Windows.Point clickV;
+
+        private System.Windows.Point StartDrag;
+        private Polygon DragPolygon;
+        private bool IsDragging = false;
 
         public MainWindow()
         {
