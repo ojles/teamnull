@@ -25,7 +25,7 @@ namespace Task2
         private Domain.Point LastPoint;
         private Line FollowLine;
 
-        private ObservableCollection<Polygon> polygons = new ObservableCollection<Polygon>();
+        private ObservableCollection<Polygon> Polygons = new ObservableCollection<Polygon>();
 
         private System.Windows.Point StartDrag;
         private Polygon DragPolygon;
@@ -36,7 +36,7 @@ namespace Task2
         public MainWindow()
         {
             InitializeComponent();
-            this.previewPolygones.ItemsSource = this.polygons;
+            this.previewPolygones.ItemsSource = this.Polygons;
             Closing += new System.ComponentModel.CancelEventHandler((object sender, System.ComponentModel.CancelEventArgs e) =>
             {
                 MessageBoxResult result = System.Windows.MessageBox.Show("Save changes?", "Warning!", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
@@ -73,6 +73,7 @@ namespace Task2
                 {
                     DrawPentagon(pentagon);
                 }
+                UpdateShapesList();
             }
         }
 
@@ -84,13 +85,30 @@ namespace Task2
             CurrentPentagon = new Pentagon();
             LastPoint = null;
             FollowLine = null;
-            Polygones.Clear();
+            Polygons.Clear();
             UpdateShapesList();
         }
 
         private void SaveCanvas(object sender, ExecutedRoutedEventArgs e)
         {
             SaveAll();
+        }
+
+        private void SaveCanvasAs(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (Canvas.Pentagons.Count == 0)
+            {
+                System.Windows.MessageBox.Show("Nothing to save", "Warning!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = "Text file (*.xml)|*.xml";
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string filePath = System.IO.Path.GetFullPath(dialog.FileName);
+                CanvasService.Save(Canvas, filePath);
+            }
         }
 
         public void SaveAll()
@@ -191,7 +209,7 @@ namespace Task2
         {
             Polygon polygon = ConvertPentagonToPolygon(pentagon);
             DrawCanvas.Children.Add(polygon);
-            polygons.Add(polygon);
+            Polygons.Add(polygon);
             foreach(Line line in DrawLines)
             {
                 DrawCanvas.Children.Remove(line);
@@ -270,7 +288,7 @@ namespace Task2
                 this.DragPolygon.Stroke = new SolidColorBrush(Colors.Black);
             }
 
-            if (this.polygons.Count == 0)
+            if (this.Polygons.Count == 0)
             {
                 // just ignore if no polygones present
                 return;
@@ -291,7 +309,7 @@ namespace Task2
 
         private void PolygonStopDrag(object sender, MouseButtonEventArgs e)
         {
-            int index = polygons.IndexOf(DragPolygon);
+            int index = Polygons.IndexOf(DragPolygon);
             Pentagon pentagon = Canvas.Pentagons[index];
             pentagon.Points.Clear();
             foreach (System.Windows.Point PolygonPoint in DragPolygon.Points)
@@ -302,7 +320,7 @@ namespace Task2
                     Y = PolygonPoint.Y
                 });
             }
-            DragPolygon.Stroke = null;
+            DragPolygon.Stroke = new SolidColorBrush(Colors.Black);
             DragPolygon.MouseDown -= PolygonMouseDown;
             DragPolygon.MouseRightButtonDown -= PolygonStopDrag;
             DragPolygon = null;

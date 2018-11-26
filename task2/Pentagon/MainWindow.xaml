@@ -10,6 +10,7 @@
         <CommandBinding Command="New" Executed="NewCanvas" />
         <CommandBinding Command="Open" Executed="OpenSavedCanvas" />
         <CommandBinding Command="Save" Executed="SaveCanvas" />
+        <CommandBinding Command="SaveAs" Executed="SaveCanvasAs" />
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -21,11 +22,11 @@
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
                     <MenuItem Header="_New" Command="New"/>
-                    <MenuItem Header="_Open" Command="Open"/>
+                    <MenuItem Header="_Open..." Command="Open"/>
                     <MenuItem Header="_Save" Command="Save"/>
+                    <MenuItem Header="_Save as..." Command="SaveAs"/>
                 </MenuItem>
                 <MenuItem Header="_Shapes" x:Name="previewPolygones" Grid.Row="1" ItemTemplate="{StaticResource PentagonPreview}" Click="SelectPolygon"/>
-                <MenuItem Header="_Save" Command="Save"/>
             </Menu>
         </DockPanel>
         <Canvas Visibility="Collapsed"
