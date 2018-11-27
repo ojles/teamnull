@@ -8,55 +8,53 @@
             <local:Menu.MealGroups>
                 <local:MealGroup Name="NIGIRI">
                     <local:MealGroup.Meals>
-                        <local:Meal Name="Hamachi" Price="3.00"/>
-                        <local:Meal Name="Maguro" Price="2.75"/>
-                        <local:Meal Name="Sake" Price="2.50"/>
-                        <local:Meal Name="Uni" Price="4.50"/>
-                        <local:Meal Name="Saba" Price="2.00"/>
-                        <local:Meal Name="Tamago" Price="1.50"/>
-                        <local:Meal Name="Amaebi" Price="3.50"/>
-                        <local:Meal Name="Ikura" Price="4.00"/>
-                        <local:Meal Name="Ika" Price="2.25"/>
+                        <local:Meal Name="Hamachi" Price="3.00" ImagePath="/Assets/Meals/hamachi.jpg"/>
+                        <local:Meal Name="Maguro" Price="2.75" ImagePath="/Assets/Meals/maguro.jpg"/>
+                        <local:Meal Name="Sake" Price="2.50" ImagePath="/Assets/Meals/sake.jpg"/>
+                        <local:Meal Name="Uni" Price="4.50" ImagePath="/Assets/Meals/uni.jpg"/>
+                        <local:Meal Name="Saba" Price="2.00" ImagePath="/Assets/Meals/saba.jpg"/>
+                        <local:Meal Name="Tamago" Price="1.50" ImagePath="/Assets/Meals/tamago.jpg"/>
+                        <local:Meal Name="Amaebi" Price="3.50" ImagePath="/Assets/Meals/amaebi.jpg"/>
+                        <local:Meal Name="Ikura" Price="4.00" ImagePath="/Assets/Meals/ikura.jpg"/>
+                        <local:Meal Name="Ika" Price="2.25" ImagePath="/Assets/Meals/ika.jpg"/>
                     </local:MealGroup.Meals>
                 </local:MealGroup>
                 <local:MealGroup Name="Frech Rolls">
                     <local:MealGroup.Meals>
-                        <local:Meal Name="Vegetable" Price="6.95"/>
-                        <local:Meal Name="Hawain" Price="12.95"/>
-                        <local:Meal Name="Ninja" Price="12.00"/>
-                        <local:Meal Name="Fire" Price="11.95"/>
-                        <local:Meal Name="Lobster" Price="10.95"/>
-                        <local:Meal Name="Hurricane" Price="10.95"/>
+                        <local:Meal Name="Vegetable" Price="6.95" ImagePath="/Assets/Meals/vegetable.jpg"/>
+                        <local:Meal Name="Hawain" Price="12.95" ImagePath="/Assets/Meals/hawain.jpg"/>
+                        <local:Meal Name="Fire" Price="11.95" ImagePath="/Assets/Meals/fire.jpg"/>
+                        <local:Meal Name="Lobster" Price="10.95" ImagePath="/Assets/Meals/lobster.jpg"/>
+                        <local:Meal Name="Hurricane" Price="10.95" ImagePath="/Assets/Meals/hurricane.jpg"/>
                     </local:MealGroup.Meals>
                 </local:MealGroup>
                 <local:MealGroup Name="Tempura Rolls">
                     <local:MealGroup.Meals>
-                        <local:Meal Name="Cazy" Price="7.95"/>
-                        <local:Meal Name="Tiger" Price="9.95"/>
-                        <local:Meal Name="Rosell" Price="9.50"/>
-                        <local:Meal Name="Spider" Price="11.95"/>
-                        <local:Meal Name="Paradise" Price="9.95"/>
-                        <local:Meal Name="Chicago" Price="13.95"/>
+                        <local:Meal Name="Cazy" Price="7.95" ImagePath="/Assets/Meals/cazy.jpg"/>
+                        <local:Meal Name="Tiger" Price="9.95" ImagePath="/Assets/Meals/tiger.jpg"/>
+                        <local:Meal Name="Rosell" Price="9.50" ImagePath="/Assets/Meals/rosell.jpg"/>
+                        <local:Meal Name="Spider" Price="11.95" ImagePath="/Assets/Meals/spider.jpg"/>
+                        <local:Meal Name="Paradise" Price="9.95" ImagePath="/Assets/Meals/paradise.jpg"/>
+                        <local:Meal Name="Chicago" Price="13.95" ImagePath="/Assets/Meals/chicago.jpg"/>
                     </local:MealGroup.Meals>
                 </local:MealGroup>
                 <local:MealGroup Name="Cooked Rolls">
                     <local:MealGroup.Meals>
-                        <local:Meal Name="Caterpillar" Price="11.95"/>
-                        <local:Meal Name="Vocano" Price="12.95"/>
-                        <local:Meal Name="Baked Salmon" Price="9.95"/>
-                        <local:Meal Name="Dragon" Price="12.50"/>
-                        <local:Meal Name="Dynamite" Price="12.95"/>
-                        <local:Meal Name="New York Steak" Price="12.00"/>
+                        <local:Meal Name="Caterpillar" Price="11.95" ImagePath="/Assets/Meals/caterpillar.jpg"/>
+                        <local:Meal Name="Vocano" Price="12.95" ImagePath="/Assets/Meals/vocano.jpg"/>
+                        <local:Meal Name="Baked Salmon" Price="9.95" ImagePath="/Assets/Meals/baked_salmon.jpg"/>
+                        <local:Meal Name="Dragon" Price="12.50" ImagePath="/Assets/Meals/dragon.jpg"/>
+                        <local:Meal Name="Dynamite" Price="12.95" ImagePath="/Assets/Meals/dynamite.jpg"/>
                     </local:MealGroup.Meals>
                 </local:MealGroup>
                 <local:MealGroup Name="Regular Rolls">
                     <local:MealGroup.Meals>
-                        <local:Meal Name="California" Price="4.00"/>
-                        <local:Meal Name="Spicy Tuna"  Price="5.50"/>
-                        <local:Meal Name="Yellowtail" Price="5.50"/>
-                        <local:Meal Name="Cucumber" Price="3.50"/>
-                        <local:Meal Name="Tuna" Price="5.00"/>
-                        <local:Meal Name="Salmon" Price="5.00"/>
+                        <local:Meal Name="California" Price="4.00" ImagePath="/Assets/Meals/california.jpg"/>
+                        <local:Meal Name="Spicy Tuna"  Price="5.50" ImagePath="/Assets/Meals/spicy_tuna.jpg"/>
+                        <local:Meal Name="Yellowtail" Price="5.50" ImagePath="/Assets/Meals/yellowtail.jpg"/>
+                        <local:Meal Name="Cucumber" Price="3.50" ImagePath="/Assets/Meals/cucumber.jpg"/>
+                        <local:Meal Name="Tuna" Price="5.00" ImagePath="/Assets/Meals/tuna.jpg"/>
+                        <local:Meal Name="Salmon" Price="5.00" ImagePath="/Assets/Meals/salmon.jpg"/>
                     </local:MealGroup.Meals>
                 </local:MealGroup>
             </local:Menu.MealGroups>
