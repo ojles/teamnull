@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Task3.Pages;
 
 namespace Task3
 {
@@ -23,6 +11,16 @@ namespace Task3
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void MenuPageClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            MainFrame.Navigate(new MenuPage());
+        }
+
+        private void ReceiptPageClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            MainFrame.Navigate(new ReceiptPage());
         }
     }
 }

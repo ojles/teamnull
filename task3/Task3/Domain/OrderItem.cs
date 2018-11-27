@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Task3
+﻿namespace Task3
 {
     /// <summary>
     /// Class to represent an OrderItem
     /// </summary>
-    class OrderItem
+    internal class OrderItem
     {
         /// <summary>
         /// Gets/Sets Meal
@@ -22,6 +16,16 @@ namespace Task3
         public int Amount { get; set; }
 
         /// <summary>
+        /// Calculates a price of the <see cref="OrderItem"/>
+        /// </summary>
+        public double Price
+        {
+            get
+            {
+                return Meal.Price * Amount;
+            }
+        }
+        /// <summary>
         /// Initializes a new instance of the <see cref="OrderItem"/>
         /// </summary>
         /// <param name="someMeal">Meal</param>
@@ -30,14 +34,6 @@ namespace Task3
         {
             Meal = someMeal;
             Amount = amount;
-        }
-
-        /// <summary>
-        /// Calculates a price of the <see cref="OrderItem"/>
-        /// </summary>
-        public double Price()
-        {
-            return Meal.Price * Amount;
         }
     }
 }

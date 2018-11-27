@@ -37,8 +37,14 @@ namespace Task2
         {
             InitializeComponent();
             this.previewPolygones.ItemsSource = this.Polygons;
+            ResetCanvas();
             Closing += new System.ComponentModel.CancelEventHandler((object sender, System.ComponentModel.CancelEventArgs e) =>
             {
+                if (Canvas.Pentagons.Count == 0)
+                {
+                    return;
+                }
+
                 MessageBoxResult result = System.Windows.MessageBox.Show("Save changes?", "Warning!", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
                 switch (result)
                 {
@@ -67,7 +73,7 @@ namespace Task2
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 ResetCanvas();
-                CanvasFilePath = System.IO.Path.GetFullPath(dialog.FileName);
+                SetCanvasFilePath(System.IO.Path.GetFullPath(dialog.FileName));
                 Canvas = CanvasService.Get(CanvasFilePath);
                 foreach (Pentagon pentagon in Canvas.Pentagons)
                 {
@@ -125,7 +131,7 @@ namespace Task2
                 dialog.Filter = "Text file (*.xml)|*.xml";
                 if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    CanvasFilePath = System.IO.Path.GetFullPath(dialog.FileName);
+                    SetCanvasFilePath(System.IO.Path.GetFullPath(dialog.FileName));
                 }
                 else
                 {
@@ -139,6 +145,12 @@ namespace Task2
         {
             if (IsDragging)
             {
+                return;
+            }
+
+            if (DragPolygon != null)
+            {
+                _PolygonStopDraggin();
                 return;
             }
 
@@ -309,6 +321,11 @@ namespace Task2
 
         private void PolygonStopDrag(object sender, MouseButtonEventArgs e)
         {
+            _PolygonStopDraggin();
+        }
+
+        private void _PolygonStopDraggin()
+        {
             int index = Polygons.IndexOf(DragPolygon);
             Pentagon pentagon = Canvas.Pentagons[index];
             pentagon.Points.Clear();
@@ -330,6 +347,12 @@ namespace Task2
         private void UpdateShapesList()
         {
             previewPolygones.IsEnabled = Canvas.Pentagons.Count != 0;
+        }
+
+        private void SetCanvasFilePath(string filePath)
+        {
+            CanvasFilePath = filePath;
+            this.Title = "Pentagon Drawer - " + filePath;
         }
     }
 }
