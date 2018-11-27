@@ -7,6 +7,20 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <ListBox  Name="Items" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox VerticalContentAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="10"  Text = "{Binding Name}"></TextBlock>
+                            <TextBlock Margin="10" Text = "{Binding Qty}"></TextBlock>
+                            <TextBlock Margin="10" Text = "{Binding Price}"></TextBlock>
+                            <TextBlock Margin="10" Text = "{Binding Sum}"></TextBlock>
+                            <Image Source="{Binding ImgPath}" Height="50" Width="50"/>
+                        </StackPanel>
+                    </CheckBox>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>
