@@ -4,6 +4,61 @@
              xmlns:local="clr-namespace:Task3"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <local:Menu x:Key="SushiMenu">
+            <local:Menu.MealGroups>
+                <local:MealGroup Name="NIGIRI">
+                    <local:MealGroup.Meals>
+                        <local:Meal Name="Hamachi" Price="3.00"/>
+                        <local:Meal Name="Maguro" Price="2.75"/>
+                        <local:Meal Name="Sake" Price="2.50"/>
+                        <local:Meal Name="Uni" Price="4.50"/>
+                        <local:Meal Name="Saba" Price="2.00"/>
+                        <local:Meal Name="Tamago" Price="1.50"/>
+                        <local:Meal Name="Amaebi" Price="3.50"/>
+                        <local:Meal Name="Ikura" Price="4.00"/>
+                        <local:Meal Name="Ika" Price="2.25"/>
+                    </local:MealGroup.Meals>
+                </local:MealGroup>
+                <local:MealGroup Name="Frech Rolls">
+                    <local:MealGroup.Meals>
+                        <local:Meal Name="Vegetable" Price="6.95"/>
+                        <local:Meal Name="Hawain" Price="12.95"/>
+                        <local:Meal Name="Ninja" Price="12.00"/>
+                        <local:Meal Name="Fire" Price="11.95"/>
+                        <local:Meal Name="Lobster" Price="10.95"/>
+                        <local:Meal Name="Hurricane" Price="10.95"/>
+                    </local:MealGroup.Meals>
+                </local:MealGroup>
+                <local:MealGroup Name="Tempura Rolls">
+                    <local:MealGroup.Meals>
+                        <local:Meal Name="Cazy" Price="7.95"/>
+                        <local:Meal Name="Tiger" Price="9.95"/>
+                        <local:Meal Name="Rosell" Price="9.50"/>
+                        <local:Meal Name="Spider" Price="11.95"/>
+                        <local:Meal Name="Paradise" Price="9.95"/>
+                        <local:Meal Name="Chicago" Price="13.95"/>
+                    </local:MealGroup.Meals>
+                </local:MealGroup>
+                <local:MealGroup Name="Cooked Rolls">
+                    <local:MealGroup.Meals>
+                        <local:Meal Name="Caterpillar" Price="11.95"/>
+                        <local:Meal Name="Vocano" Price="12.95"/>
+                        <local:Meal Name="Baked Salmon" Price="9.95"/>
+                        <local:Meal Name="Dragon" Price="12.50"/>
+                        <local:Meal Name="Dynamite" Price="12.95"/>
+                        <local:Meal Name="New York Steak" Price="12.00"/>
+                    </local:MealGroup.Meals>
+                </local:MealGroup>
+                <local:MealGroup Name="Regular Rolls">
+                    <local:MealGroup.Meals>
+                        <local:Meal Name="California" Price="4.00"/>
+                        <local:Meal Name="Spicy Tuna"  Price="5.50"/>
+                        <local:Meal Name="Yellowtail" Price="5.50"/>
+                        <local:Meal Name="Cucumber" Price="3.50"/>
+                        <local:Meal Name="Tuna" Price="5.00"/>
+                        <local:Meal Name="Salmon" Price="5.00"/>
+                    </local:MealGroup.Meals>
+                </local:MealGroup>
+            </local:Menu.MealGroups>
     </Application.Resources>
 </Application>
