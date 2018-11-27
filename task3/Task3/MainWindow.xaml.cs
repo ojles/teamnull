@@ -1,18 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Task3.Pages;
 
 namespace Task3
 {
@@ -24,23 +11,16 @@ namespace Task3
         public MainWindow()
         {
             InitializeComponent();
-            
-            MealGroup group = MealGroup.Create("First Dish");
-            group.AddMeal(Meal.Create("first name", 123));
-            group.AddMeal(Meal.Create("second name", 23));
-            group.AddMeal(Meal.Create("third name", 12));
+        }
 
-            MealGroup group2 = MealGroup.Create("Second Dish");
-            group2.AddMeal(Meal.Create("fourth name", 710));
-            group2.AddMeal(Meal.Create("fifth name", 576));
-            group2.AddMeal(Meal.Create("sixth name", 321));
+        private void MenuPageClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            MainFrame.Navigate(new MenuPage());
+        }
 
-            List<MealGroup> menu = new List<MealGroup>
-            {
-                group,
-                group2
-            };
-            Menu.ItemsSource = menu;
+        private void ReceiptPageClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            MainFrame.Navigate(new ReceiptPage());
         }
     }
 }

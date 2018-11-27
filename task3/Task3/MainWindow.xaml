@@ -3,28 +3,24 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:HamburgerMenu="clr-namespace:HamburgerMenu;assembly=HamburgerMenu"
         xmlns:local="clr-namespace:Task3"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ListBox Name="Menu" HorizontalContentAlignment="Stretch">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Expander Header="{Binding Name}" IsExpanded="True" >
-                        <ListBox ItemsSource="{Binding Meals}" HorizontalContentAlignment="Stretch">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Margin="30" Orientation="Horizontal" HorizontalAlignment="Stretch">
-                                        <TextBlock Text="{Binding Name}" />
-                                        <TextBlock Text="{Binding Price}"/>
-                                        <Image Source="/Images/heh.jpg" Height="50" Width="50"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-                    </Expander>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <HamburgerMenu:HamburgerMenu Background="LightGray" MenuIconColor="White" SelectionIndicatorColor="White"
+                                     MenuItemForeground="Black" HorizontalAlignment="Left">
+            <HamburgerMenu:HamburgerMenu.Content>
+                <HamburgerMenu:HamburgerMenuItem Icon="/Assets/Icons/menu.png" Text="Menu" MouseDoubleClick="MenuPageClick"/>
+                <HamburgerMenu:HamburgerMenuItem Icon="/Assets/Icons/receipt.png" Text="My Orders" MouseDoubleClick="ReceiptPageClick"/>
+            </HamburgerMenu:HamburgerMenu.Content>
+        </HamburgerMenu:HamburgerMenu>
+
+        <Frame Grid.Column="1" Name="MainFrame" NavigationUIVisibility="Hidden" Source="/Pages/MenuPage.xaml"/>
     </Grid>
 </Window>
