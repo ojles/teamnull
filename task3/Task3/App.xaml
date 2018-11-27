@@ -40,7 +40,6 @@
                 </local:MealGroup>
                 <local:MealGroup Name="Cooked Rolls">
                     <local:MealGroup.Meals>
-                        <local:Meal Name="Caterpillar" Price="11.95" ImagePath="/Assets/Meals/caterpillar.jpg"/>
                         <local:Meal Name="Vocano" Price="12.95" ImagePath="/Assets/Meals/vocano.jpg"/>
                         <local:Meal Name="Baked Salmon" Price="9.95" ImagePath="/Assets/Meals/baked_salmon.jpg"/>
                         <local:Meal Name="Dragon" Price="12.50" ImagePath="/Assets/Meals/dragon.jpg"/>
