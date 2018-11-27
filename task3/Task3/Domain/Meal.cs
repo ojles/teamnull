@@ -1,14 +1,14 @@
 ﻿
 namespace Task3
 {
-    class Meal
+    internal class Meal
     {
         public string Name { get; set; }
         public double Price { get; set; }
         public string ImagePath { get; set; }
         public MealGroup Group { get; set; }
 
-        private Meal()
+        public Meal()
         {
         }
 

@@ -8,18 +8,27 @@
       Title="My Orders">
 
     <Grid>
+        
         <ListBox  Name="Orders" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <CheckBox VerticalContentAlignment="Center">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Margin="10" Text="{Binding Name}"/>
-                            <TextBlock Margin="10" Text="{Binding Qty}"/>
-                            <TextBlock Margin="10" Text="{Binding Price}"/>
-                            <TextBlock Margin="10" Text="{Binding Sum}"/>
-                            <Image Source="{Binding ImgPath}" Height="50" Width="50"/>
-                        </StackPanel>
-                    </CheckBox>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="200"/>
+                        </Grid.ColumnDefinitions>
+                        <Image HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Source="{Binding Meal.ImagePath}" Height="70" Width="70"/>
+
+                        <TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Text="{Binding Meal.Name}"/>
+                        <TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Text="{Binding Amount}"/>
+                        <TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Text="{Binding Meal.Price}"/>
+                        <TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" Text="{Binding Price}"/>
+                        <CheckBox Grid.Column="5" VerticalContentAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

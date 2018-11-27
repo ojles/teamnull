@@ -2,12 +2,12 @@
 
 namespace Task3
 {
-    class MealGroup
+    internal class MealGroup
     {
-        public string Name { get; private set; }
+        public string Name { get; set; }
         public List<Meal> Meals { get; set; } = new List<Meal>();
 
-        private MealGroup()
+        public MealGroup()
         {
         }
 

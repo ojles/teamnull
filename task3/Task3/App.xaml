@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:Task3"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <local:MealGroup x:Key="mg1" Name="MEAL GROUP 1">
+            <local:MealGroup.Meals>
+                <local:Meal Name="hi"/>
+            </local:MealGroup.Meals>
+        </local:MealGroup>
     </Application.Resources>
 </Application>

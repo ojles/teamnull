@@ -5,7 +5,7 @@ namespace Task3
     /// <summary>
     /// Class to represent an Order with order items
     /// </summary>
-    class Order
+    internal class Order
     {
         /// <summary>
         /// List of the <see cref="OrderItem"/>
@@ -27,9 +27,9 @@ namespace Task3
         {
             double price = 0;
 
-            foreach(var item in ListOfOrders)
+            foreach (var item in ListOfOrders)
             {
-                price += item.Price();
+                price += item.Price;
             }
 
             return price;
