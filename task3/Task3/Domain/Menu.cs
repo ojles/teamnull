@@ -2,7 +2,7 @@
 
 namespace Task3
 {
-    class Menu
+    internal class Menu
     {
         public List<MealGroup> MealGroups { get; set; } = new List<MealGroup>();
 

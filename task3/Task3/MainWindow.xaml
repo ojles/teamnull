@@ -16,8 +16,8 @@
         <HamburgerMenu:HamburgerMenu Background="LightGray" MenuIconColor="White" SelectionIndicatorColor="White"
                                      MenuItemForeground="Black" HorizontalAlignment="Left">
             <HamburgerMenu:HamburgerMenu.Content>
-                <HamburgerMenu:HamburgerMenuItem Icon="/Assets/Icons/menu.png" Text="Menu" MouseDoubleClick="MenuPageClick"/>
-                <HamburgerMenu:HamburgerMenuItem Icon="/Assets/Icons/receipt.png" Text="My Orders" MouseDoubleClick="ReceiptPageClick"/>
+                <HamburgerMenu:HamburgerMenuItem Icon="/Assets/Icons/menu.png" Text="Menu" PreviewMouseDown="MenuPageClick"/>
+                <HamburgerMenu:HamburgerMenuItem Icon="/Assets/Icons/receipt.png" Text="My Orders" PreviewMouseDown="ReceiptPageClick"/>
             </HamburgerMenu:HamburgerMenu.Content>
         </HamburgerMenu:HamburgerMenu>
 
