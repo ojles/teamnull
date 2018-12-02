@@ -61,25 +61,30 @@ namespace Task2
             });
         }
 
+        private void SaveCanvasWarning(Action action)
+        {
+            MessageBoxResult result = System.Windows.MessageBox.Show("Save changes?",
+                    "Warning!", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
+
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    SaveAll();
+                    action();
+                    break;
+                case MessageBoxResult.No:
+                    action();
+                    break;
+                case MessageBoxResult.Cancel:
+                    break;
+            }
+        }
+
         private void NewCanvas(object sender, RoutedEventArgs e)
         {
             if (DrawCanvas.Children.Count > 0)
             {
-                MessageBoxResult result = System.Windows.MessageBox.Show("Save changes?",
-                    "Warning!", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
-
-                switch (result)
-                {
-                    case MessageBoxResult.Yes:
-                        SaveAll();
-                        ResetCanvas();
-                        break;
-                    case MessageBoxResult.No:
-                        ResetCanvas();
-                        break;
-                    case MessageBoxResult.Cancel:
-                        break;
-                }
+                SaveCanvasWarning(ResetCanvas);
             }
             else
             {
@@ -91,21 +96,7 @@ namespace Task2
         {
             if (DrawCanvas.Children.Count > 0)
             {
-                MessageBoxResult result = System.Windows.MessageBox.Show("Save changes?",
-                    "Warning!", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
-
-                switch (result)
-                {
-                    case MessageBoxResult.Yes:
-                        SaveAll();
-                        OpenCanvas();
-                        break;
-                    case MessageBoxResult.No:
-                        OpenCanvas();
-                        break;
-                    case MessageBoxResult.Cancel:
-                        break;
-                }
+                SaveCanvasWarning(OpenCanvas);
             }
             else
             {
