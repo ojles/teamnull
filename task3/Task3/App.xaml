@@ -57,5 +57,6 @@
                     </local:MealGroup.Meals>
                 </local:MealGroup>
             </local:Menu.MealGroups>
+        </local:Menu>
     </Application.Resources>
 </Application>
