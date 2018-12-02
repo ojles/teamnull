@@ -61,12 +61,43 @@ namespace Task2
             });
         }
 
+        private void SaveCanvasWarning(Action action)
+        {
+            if (DrawCanvas.Children.Count > 0)
+            {
+                MessageBoxResult result = System.Windows.MessageBox.Show("Save changes?",
+                    "Warning!", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
+
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        SaveAll();
+                        action();
+                        break;
+                    case MessageBoxResult.No:
+                        action();
+                        break;
+                    case MessageBoxResult.Cancel:
+                        break;
+                }
+            }
+            else
+            {
+                action();
+            }
+        }
+
         private void NewCanvas(object sender, RoutedEventArgs e)
         {
-            ResetCanvas();
+            SaveCanvasWarning(ResetCanvas);
         }
 
         private void OpenSavedCanvas(object sender, RoutedEventArgs e)
+        {
+            SaveCanvasWarning(OpenCanvas);
+        }
+
+        private void OpenCanvas()
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = "Text file (*.xml)|*.xml";
