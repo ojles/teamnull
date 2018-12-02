@@ -99,18 +99,25 @@ namespace Task2
 
         private void OpenCanvas()
         {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "Text file (*.xml)|*.xml";
-            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            try
             {
-                ResetCanvas();
-                SetCanvasFilePath(System.IO.Path.GetFullPath(dialog.FileName));
-                Canvas = CanvasService.Get(CanvasFilePath);
-                foreach (Pentagon pentagon in Canvas.Pentagons)
+                OpenFileDialog dialog = new OpenFileDialog();
+                dialog.Filter = "Text file (*.xml)|*.xml";
+                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    DrawPentagon(pentagon);
+                    ResetCanvas();
+                    SetCanvasFilePath(System.IO.Path.GetFullPath(dialog.FileName));
+                    Canvas = CanvasService.Get(CanvasFilePath);
+                    foreach (Pentagon pentagon in Canvas.Pentagons)
+                    {
+                        DrawPentagon(pentagon);
+                    }
+                    UpdateShapesList();
                 }
-                UpdateShapesList();
+            }
+            catch(ServiceException e)
+            {
+                System.Windows.MessageBox.Show("Failed to read canvas from file.");
             }
         }
 
