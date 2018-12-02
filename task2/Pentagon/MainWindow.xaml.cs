@@ -63,45 +63,38 @@ namespace Task2
 
         private void SaveCanvasWarning(Action action)
         {
-            MessageBoxResult result = System.Windows.MessageBox.Show("Save changes?",
+            if (DrawCanvas.Children.Count > 0)
+            {
+                MessageBoxResult result = System.Windows.MessageBox.Show("Save changes?",
                     "Warning!", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
 
-            switch (result)
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        SaveAll();
+                        action();
+                        break;
+                    case MessageBoxResult.No:
+                        action();
+                        break;
+                    case MessageBoxResult.Cancel:
+                        break;
+                }
+            }
+            else
             {
-                case MessageBoxResult.Yes:
-                    SaveAll();
-                    action();
-                    break;
-                case MessageBoxResult.No:
-                    action();
-                    break;
-                case MessageBoxResult.Cancel:
-                    break;
+                action();
             }
         }
 
         private void NewCanvas(object sender, RoutedEventArgs e)
         {
-            if (DrawCanvas.Children.Count > 0)
-            {
-                SaveCanvasWarning(ResetCanvas);
-            }
-            else
-            {
-                ResetCanvas();
-            }
+            SaveCanvasWarning(ResetCanvas);
         }
 
         private void OpenSavedCanvas(object sender, RoutedEventArgs e)
         {
-            if (DrawCanvas.Children.Count > 0)
-            {
-                SaveCanvasWarning(OpenCanvas);
-            }
-            else
-            {
-                OpenCanvas();
-            }
+            SaveCanvasWarning(OpenCanvas);
         }
 
         private void OpenCanvas()
