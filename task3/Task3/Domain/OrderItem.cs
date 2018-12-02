@@ -3,7 +3,7 @@
     /// <summary>
     /// Class to represent an OrderItem
     /// </summary>
-    internal class OrderItem
+    public class OrderItem
     {
         /// <summary>
         /// Gets/Sets Meal

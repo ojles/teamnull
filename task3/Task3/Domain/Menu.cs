@@ -2,9 +2,13 @@
 
 namespace Task3
 {
-    internal class Menu
+    public class Menu
     {
         public List<MealGroup> MealGroups { get; set; } = new List<MealGroup>();
+
+        public Menu()
+        {
+        }
 
         public Menu(List<MealGroup> mealGroups)
         {

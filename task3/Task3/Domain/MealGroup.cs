@@ -2,7 +2,7 @@
 
 namespace Task3
 {
-    internal class MealGroup
+    public class MealGroup
     {
         public string Name { get; set; }
         public List<Meal> Meals { get; set; } = new List<Meal>();

@@ -5,7 +5,7 @@ namespace Task3
     /// <summary>
     /// Class to represent an Order with order items
     /// </summary>
-    internal class Order
+    public class Order
     {
         /// <summary>
         /// List of the <see cref="OrderItem"/>
