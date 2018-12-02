@@ -1,4 +1,5 @@
-﻿using System.Xml.Serialization;
+﻿using System;
+using System.Xml.Serialization;
 using System.IO;
 using Task2.Domain;
 
@@ -30,9 +31,17 @@ namespace Task2.Service
         public Canvas Get(string fileName)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Canvas));
-            using (var reader = new StreamReader(fileName))
+
+            try
             {
-                return (Canvas)serializer.Deserialize(reader);
+                using (var reader = new StreamReader(fileName))
+                {
+                    return (Canvas)serializer.Deserialize(reader);
+                }
+            }
+            catch(InvalidOperationException e)
+            {
+                throw new ServiceException("Invalid file format.", e);
             }
         }
     }
