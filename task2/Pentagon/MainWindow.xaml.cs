@@ -117,7 +117,8 @@ namespace Task2
             }
             catch(ServiceException e)
             {
-                System.Windows.MessageBox.Show("Failed to read canvas from file.");
+                System.Windows.MessageBox.Show("Failed to read canvas from file.", "Error!",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
