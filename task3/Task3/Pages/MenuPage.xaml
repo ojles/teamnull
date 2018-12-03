@@ -16,11 +16,17 @@
                         <ListBox ItemsSource="{Binding Meals}" HorizontalContentAlignment="Stretch">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <StackPanel Margin="30" Orientation="Horizontal" HorizontalAlignment="Stretch">
-                                        <TextBlock Text="{Binding Name}" />
-                                        <TextBlock Text="{Binding Price}"/>
+                                    <Grid Margin="7" HorizontalAlignment="Stretch">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
                                         <Image Source="{Binding ImagePath}" Height="50" Width="50"/>
-                                    </StackPanel>
+                                        <TextBlock Grid.Column="1" Margin="18,0,0,0" Text="{Binding Name}"
+                                                   FontSize="18" FontWeight="Medium" VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Column="2" Margin="15,0,0,0" Text="{Binding Price}"/>
+                                    </Grid>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
