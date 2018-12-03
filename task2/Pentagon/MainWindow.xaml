@@ -29,8 +29,7 @@
                 <MenuItem Header="_Shapes" x:Name="previewPolygones" Grid.Row="1" Click="SelectPolygon">
                     <MenuItem.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Height="{Binding Path=CurrentWindowHeight, Mode=TwoWay}"
-                                        Width="{Binding Path=CurrentWindowWidth, Mode=TwoWay}">
+                            <StackPanel>
                                 <Polygon Points="{Binding Path=Points, Mode=TwoWay}"
                                          Fill="{Binding Path=Fill, Mode=TwoWay}"
                                          StrokeThickness="{Binding Path=StrokeThickness, Mode=TwoWay}"
