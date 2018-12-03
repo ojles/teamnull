@@ -124,5 +124,34 @@
     <Resource Include="Assets\Icons\receipt.png" />
     <Resource Include="Assets\tea.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Meals\amaebi.jpg" />
+    <Resource Include="Assets\Meals\baked_salmon.jpg" />
+    <Resource Include="Assets\Meals\california.jpg" />
+    <Resource Include="Assets\Meals\cazy.jpg" />
+    <Resource Include="Assets\Meals\chicago.jpg" />
+    <Resource Include="Assets\Meals\cucumber.jpg" />
+    <Resource Include="Assets\Meals\dynamite.jpg" />
+    <Resource Include="Assets\Meals\fire.jpg" />
+    <Resource Include="Assets\Meals\hamachi.jpg" />
+    <Resource Include="Assets\Meals\hawain.jpeg" />
+    <Resource Include="Assets\Meals\hurricane.jpg" />
+    <Resource Include="Assets\Meals\ika.jpg" />
+    <Resource Include="Assets\Meals\ikura.jpg" />
+    <Resource Include="Assets\Meals\lobster.jpg" />
+    <Resource Include="Assets\Meals\maguro.jpg" />
+    <Resource Include="Assets\Meals\paradise.jpg" />
+    <Resource Include="Assets\Meals\rosell.jpg" />
+    <Resource Include="Assets\Meals\saba.jpg" />
+    <Resource Include="Assets\Meals\sake.jpg" />
+    <Resource Include="Assets\Meals\salmon.jpg" />
+    <Resource Include="Assets\Meals\spicy_tuna.jpg" />
+    <Resource Include="Assets\Meals\spider.jpg" />
+    <Resource Include="Assets\Meals\tamago.jpg" />
+    <Resource Include="Assets\Meals\tiger.jpg" />
+    <Resource Include="Assets\Meals\uni.jpg" />
+    <Resource Include="Assets\Meals\vegetable.jpg" />
+    <Resource Include="Assets\Meals\vocano.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
