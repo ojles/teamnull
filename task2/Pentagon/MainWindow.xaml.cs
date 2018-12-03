@@ -220,8 +220,12 @@ namespace Task2
             if (CurrentPentagon.IsCompleted())
             {
                 CurrentPentagon.Color = AskPentagonColor();
-                DrawPentagon(CurrentPentagon);
-                Canvas.AddPentagon(CurrentPentagon);
+                if (CurrentPentagon.Color != null)
+                {
+                    DrawPentagon(CurrentPentagon);
+                    Canvas.AddPentagon(CurrentPentagon);
+                }
+                RemoveFollowLines();
                 CurrentPentagon = new Pentagon();
             }
             UpdateShapesList();
@@ -246,13 +250,7 @@ namespace Task2
             }
             else
             {
-                Random random = new Random();
-                return new Domain.Color
-                {
-                    R = (byte)random.Next(0, 255),
-                    G = (byte)random.Next(0, 255),
-                    B = (byte)random.Next(0, 255)
-                };
+                return null;
             }
         }
 
@@ -261,7 +259,11 @@ namespace Task2
             Polygon polygon = ConvertPentagonToPolygon(pentagon);
             DrawCanvas.Children.Add(polygon);
             Polygons.Add(polygon);
-            foreach(Line line in DrawLines)
+        }
+
+        private void RemoveFollowLines()
+        {
+            foreach (Line line in DrawLines)
             {
                 DrawCanvas.Children.Remove(line);
             }
