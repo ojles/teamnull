@@ -26,16 +26,27 @@
                     <MenuItem Header="_Save" Command="Save"/>
                     <MenuItem Header="_Save as..." Command="SaveAs"/>
                 </MenuItem>
-                <MenuItem Header="_Shapes" x:Name="previewPolygones" Grid.Row="1" ItemTemplate="{StaticResource PentagonPreview}" Click="SelectPolygon"/>
+                <MenuItem Header="_Shapes" x:Name="previewPolygones" Grid.Row="1" Click="SelectPolygon">
+                    <MenuItem.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Polygon Points="{Binding Path=Points, Mode=TwoWay}"
+                                         Fill="{Binding Path=Fill, Mode=TwoWay}"
+                                         StrokeThickness="{Binding Path=StrokeThickness, Mode=TwoWay}"
+                                         Stroke="{Binding Path=Stroke, Mode=TwoWay}">
+                                </Polygon>
+                                <StackPanel.LayoutTransform>
+                                    <ScaleTransform ScaleX="0.2" ScaleY="0.2" />
+                                </StackPanel.LayoutTransform>
+                            </StackPanel>
+                        </DataTemplate>
+                    </MenuItem.ItemTemplate>
+                </MenuItem>
             </Menu>
         </DockPanel>
-        <Canvas Visibility="Collapsed"
+        <Canvas Visibility="Collapsed" Background="White" Focusable="true"
                 Grid.Row="1" Name="DrawCanvas"
-                MouseLeftButtonDown="CanvasClick"
-                MouseLeftButtonUp="CanvasMouseUp"
-                MouseMove="CanvasMouseMove"
-                Background="White"
-                Focusable="true"/>
+                MouseLeftButtonDown="CanvasClick" MouseLeftButtonUp="CanvasMouseUp" MouseMove="CanvasMouseMove"/>
         <StatusBar Grid.Row="2">
             <StatusBarItem>
                 <TextBlock Text="0,0" Name="CursorPositionLabel" />
