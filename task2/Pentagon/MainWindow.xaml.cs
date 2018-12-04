@@ -127,6 +127,7 @@ namespace Task2
             DrawCanvas.Children.Clear();
             DrawCanvas.Visibility = Visibility.Visible;
             Canvas = new Canvas();
+            Title = "Pentagon Drawer";
             CurrentPentagon = new Pentagon();
             LastPoint = null;
             FollowLine = null;
@@ -213,10 +214,10 @@ namespace Task2
                 line.MouseUp += CanvasClick;
                 DrawLines.Add(line);
                 DrawCanvas.Children.Add(line);
-            }
+            }           
 
             CurrentPentagon.AddPoint(LastPoint);
-
+            
             if (CurrentPentagon.IsCompleted())
             {
                 CurrentPentagon.Color = AskPentagonColor();
