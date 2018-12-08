@@ -47,7 +47,9 @@
         </DockPanel>
         <Canvas Visibility="Collapsed" Background="White" Focusable="true"
                 Grid.Row="1" Name="DrawCanvas"
-                MouseLeftButtonDown="CanvasClick" MouseLeftButtonUp="CanvasMouseUp" MouseMove="CanvasMouseMove"/>
+                MouseLeftButtonDown="CanvasClick" MouseLeftButtonUp="CanvasMouseUp"
+                MouseRightButtonDown="CanvasRightClick"
+                MouseMove="CanvasMouseMove"/>
         <StatusBar Grid.Row="2">
             <StatusBarItem>
                 <TextBlock Text="0,0" Name="CursorPositionLabel" />

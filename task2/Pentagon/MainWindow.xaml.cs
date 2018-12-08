@@ -118,7 +118,6 @@ namespace Task2
                     Y2 = LastPoint.Y,
                     Stroke = new SolidColorBrush(Colors.Gray)
                 };
-                line.MouseLeftButtonDown += CanvasClick;
                 DrawLines.Add(line);
                 DrawCanvas.Children.Add(line);
             }           
@@ -136,6 +135,11 @@ namespace Task2
                 ResetFollowLines();
             }
             UpdateShapesList();
+        }
+
+        private void CanvasRightClick(object sender, MouseButtonEventArgs e)
+        {
+            ResetFollowLines();
         }
 
         private void CanvasMouseUp(object sender, MouseButtonEventArgs e)
@@ -236,6 +240,7 @@ namespace Task2
                     Stroke = new SolidColorBrush(Colors.Gray)
                 };
                 FollowLine.MouseLeftButtonDown += CanvasClick;
+                FollowLine.MouseRightButtonDown += CanvasRightClick;
                 DrawCanvas.Children.Add(FollowLine);
             }
 
