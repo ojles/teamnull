@@ -33,35 +33,8 @@ namespace Task2
         public MainWindow()
         {
             InitializeComponent();
-
             previewPolygones.ItemsSource = Polygons;
             ResetCanvas();
-            Closing += new System.ComponentModel.CancelEventHandler((object sender, System.ComponentModel.CancelEventArgs e) =>
-            {
-                if (Canvas.Pentagons.Count == 0)
-                {
-                    return;
-                }
-
-                MessageBoxResult result = System.Windows.MessageBox.Show
-                (
-                    "Save changes?", "Warning!",
-                    MessageBoxButton.YesNoCancel, MessageBoxImage.Warning
-                );
-
-                switch (result)
-                {
-                    case MessageBoxResult.Yes:
-                        SaveCanvas();
-                        break;
-                    case MessageBoxResult.No:
-                        System.Windows.Application.Current.Shutdown();
-                        break;
-                    case MessageBoxResult.Cancel:
-                        e.Cancel = true;
-                        break;
-                }
-            });
         }
 
         private void NewCanvas(object sender, RoutedEventArgs e)
@@ -346,6 +319,33 @@ namespace Task2
             else
             {
                 action();
+            }
+        }
+
+        private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (Canvas.Pentagons.Count == 0)
+            {
+                return;
+            }
+
+            MessageBoxResult result = System.Windows.MessageBox.Show
+            (
+                "Save changes?", "Warning!",
+                MessageBoxButton.YesNoCancel, MessageBoxImage.Warning
+            );
+
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    SaveCanvas();
+                    break;
+                case MessageBoxResult.No:
+                    System.Windows.Application.Current.Shutdown();
+                    break;
+                case MessageBoxResult.Cancel:
+                    e.Cancel = true;
+                    break;
             }
         }
     }

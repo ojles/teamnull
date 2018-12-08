@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Background="LightGray"
         xmlns:local="clr-namespace:Task2" mc:Ignorable="d"
-        Title="Pentagon Drawer" Height="450" Width="800">
+        Title="Pentagon Drawer" Height="450" Width="800"
+        Closing="WindowClosing">
     <Window.CommandBindings>
         <CommandBinding Command="New" Executed="NewCanvas" />
         <CommandBinding Command="Open" Executed="OpenSavedCanvas" />
