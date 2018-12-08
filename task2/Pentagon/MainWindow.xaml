@@ -13,6 +13,20 @@
         <CommandBinding Command="Save" Executed="Save" />
         <CommandBinding Command="SaveAs" Executed="SaveAs" />
     </Window.CommandBindings>
+    <Window.Resources>
+        <DataTemplate x:Key="PentagonPreviewTemplate">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Polygon Points="{Binding Path=Points, Mode=TwoWay}"
+                         Fill="{Binding Path=Fill, Mode=TwoWay}"
+                         StrokeThickness="{Binding Path=StrokeThickness, Mode=TwoWay}"
+                         Stroke="{Binding Path=Stroke, Mode=TwoWay}" Stretch="Uniform">
+                </Polygon>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -27,29 +41,22 @@
                     <MenuItem Header="_Save" Command="Save"/>
                     <MenuItem Header="_Save as..." Command="SaveAs"/>
                 </MenuItem>
-                <MenuItem Header="_Shapes" x:Name="previewPolygones" Grid.Row="1" Click="SelectPolygon">
-                    <MenuItem.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <Polygon Points="{Binding Path=Points, Mode=TwoWay}"
-                                         Fill="{Binding Path=Fill, Mode=TwoWay}"
-                                         StrokeThickness="{Binding Path=StrokeThickness, Mode=TwoWay}"
-                                         Stroke="{Binding Path=Stroke, Mode=TwoWay}">
-                                </Polygon>
-                                <StackPanel.LayoutTransform>
-                                    <ScaleTransform ScaleX="0.2" ScaleY="0.2" />
-                                </StackPanel.LayoutTransform>
-                            </StackPanel>
-                        </DataTemplate>
-                    </MenuItem.ItemTemplate>
-                </MenuItem>
+                <MenuItem Header="_Shapes" x:Name="previewPolygones" Grid.Row="1" Click="SelectPolygon" ItemTemplate="{StaticResource PentagonPreviewTemplate}"/>
             </Menu>
         </DockPanel>
         <Canvas Visibility="Collapsed" Background="White" Focusable="true"
                 Grid.Row="1" Name="DrawCanvas"
                 MouseLeftButtonDown="CanvasClick" MouseLeftButtonUp="CanvasMouseUp"
                 MouseRightButtonDown="CanvasRightClick"
-                MouseMove="CanvasMouseMove"/>
+                MouseMove="CanvasMouseMove">
+            <Canvas.ContextMenu>
+                <ContextMenu x:Name="previewPolygones2"
+                             MaxHeight="230" Visibility="Hidden"
+                             MouseLeave="previewPolygones2_MouseLeave" MenuItem.Click="SelectPolygon"
+                             ItemTemplate="{StaticResource PentagonPreviewTemplate}">
+                </ContextMenu>
+            </Canvas.ContextMenu>
+        </Canvas>
         <StatusBar Grid.Row="2">
             <StatusBarItem>
                 <TextBlock Text="0,0" Name="CursorPositionLabel" />

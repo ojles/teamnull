@@ -33,6 +33,7 @@ namespace Task2
         {
             InitializeComponent();
             previewPolygones.ItemsSource = Polygons;
+            previewPolygones2.ItemsSource = Polygons;
             ResetCanvas();
         }
 
@@ -139,7 +140,16 @@ namespace Task2
 
         private void CanvasRightClick(object sender, MouseButtonEventArgs e)
         {
-            ResetFollowLines();
+            e.Handled = true;
+
+            if (CurrentPentagon.Points.Count == 0)
+            {
+                previewPolygones2.IsOpen = true;
+            }
+            else
+            {
+                ResetFollowLines();
+            }
         }
 
         private void CanvasMouseUp(object sender, MouseButtonEventArgs e)
@@ -294,6 +304,15 @@ namespace Task2
         private void UpdateShapesList()
         {
             previewPolygones.IsEnabled = Canvas.Pentagons.Count != 0;
+            if (Canvas.Pentagons.Count != 0)
+            {
+                previewPolygones2.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                previewPolygones2.Visibility = Visibility.Hidden;
+            }
+            previewPolygones2.IsOpen = false;
         }
 
         private void SaveCanvasWarning(Action action)
@@ -347,6 +366,11 @@ namespace Task2
                     e.Cancel = true;
                     break;
             }
+        }
+
+        private void previewPolygones2_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            previewPolygones2.IsOpen = false;
         }
     }
 }
