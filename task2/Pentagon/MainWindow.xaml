@@ -9,8 +9,8 @@
     <Window.CommandBindings>
         <CommandBinding Command="New" Executed="NewCanvas" />
         <CommandBinding Command="Open" Executed="OpenSavedCanvas" />
-        <CommandBinding Command="Save" Executed="SaveCanvas" />
-        <CommandBinding Command="SaveAs" Executed="SaveCanvasAs" />
+        <CommandBinding Command="Save" Executed="Save" />
+        <CommandBinding Command="SaveAs" Executed="SaveAs" />
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>

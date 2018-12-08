@@ -16,8 +16,6 @@ namespace Task2
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly CanvasService CanvasService = new CanvasService();
-
         private Pentagon CurrentPentagon = new Pentagon();
         private Canvas Canvas = new Canvas();
 
@@ -31,11 +29,11 @@ namespace Task2
         private Polygon DragPolygon;
         private bool IsDragging = false;
 
-        private string CanvasFilePath;
 
         public MainWindow()
         {
             InitializeComponent();
+
             previewPolygones.ItemsSource = Polygons;
             ResetCanvas();
             Closing += new System.ComponentModel.CancelEventHandler((object sender, System.ComponentModel.CancelEventArgs e) =>
@@ -45,11 +43,16 @@ namespace Task2
                     return;
                 }
 
-                MessageBoxResult result = System.Windows.MessageBox.Show("Save changes?", "Warning!", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
+                MessageBoxResult result = System.Windows.MessageBox.Show
+                (
+                    "Save changes?", "Warning!",
+                    MessageBoxButton.YesNoCancel, MessageBoxImage.Warning
+                );
+
                 switch (result)
                 {
                     case MessageBoxResult.Yes:
-                        SaveAll();
+                        SaveCanvas();
                         break;
                     case MessageBoxResult.No:
                         System.Windows.Application.Current.Shutdown();
@@ -61,35 +64,10 @@ namespace Task2
             });
         }
 
-        private void SaveCanvasWarning(Action action)
-        {
-            if (DrawCanvas.Children.Count > 0)
-            {
-                MessageBoxResult result = System.Windows.MessageBox.Show("Save changes?",
-                    "Warning!", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
-
-                switch (result)
-                {
-                    case MessageBoxResult.Yes:
-                        SaveAll();
-                        action();
-                        break;
-                    case MessageBoxResult.No:
-                        action();
-                        break;
-                    case MessageBoxResult.Cancel:
-                        break;
-                }
-            }
-            else
-            {
-                action();
-            }
-        }
-
         private void NewCanvas(object sender, RoutedEventArgs e)
         {
             SaveCanvasWarning(ResetCanvas);
+            SetCanvasFilePath(null);
         }
 
         private void OpenSavedCanvas(object sender, RoutedEventArgs e)
@@ -97,88 +75,43 @@ namespace Task2
             SaveCanvasWarning(OpenCanvas);
         }
 
-        private void OpenCanvas()
+        private void Save(object sender, ExecutedRoutedEventArgs e)
         {
-            try
-            {
-                OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Filter = "Text file (*.xml)|*.xml";
-                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    ResetCanvas();
-                    SetCanvasFilePath(System.IO.Path.GetFullPath(dialog.FileName));
-                    Canvas = CanvasService.Get(CanvasFilePath);
-                    foreach (Pentagon pentagon in Canvas.Pentagons)
-                    {
-                        DrawPentagon(pentagon);
-                    }
-                    UpdateShapesList();
-                }
-            }
-            catch (ServiceException)
-            {
-                System.Windows.MessageBox.Show("Failed to read canvas from file.", "Error!",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            SaveCanvas();
+        }
+
+        private void SaveAs(object sender, ExecutedRoutedEventArgs e)
+        {
+            SaveCanvasAs();
         }
 
         private void ResetCanvas()
         {
+            ResetCanvas(null);
+        }
+
+        private void ResetCanvas(Canvas canvas)
+        {
+            if (canvas == null)
+            {
+                Canvas = new Canvas();
+            }
+            else
+            {
+                Canvas = canvas;
+            }
+
             DrawCanvas.Children.Clear();
             DrawCanvas.Visibility = Visibility.Visible;
-            Canvas = new Canvas();
-            Title = "Pentagon Drawer";
             CurrentPentagon = new Pentagon();
             LastPoint = null;
             FollowLine = null;
             Polygons.Clear();
+            foreach (Pentagon pentagon in Canvas.Pentagons)
+            {
+                DrawPentagon(pentagon);
+            }
             UpdateShapesList();
-        }
-
-        private void SaveCanvas(object sender, ExecutedRoutedEventArgs e)
-        {
-            SaveAll();
-        }
-
-        private void SaveCanvasAs(object sender, ExecutedRoutedEventArgs e)
-        {
-            if (Canvas.Pentagons.Count == 0)
-            {
-                System.Windows.MessageBox.Show("Nothing to save", "Warning!", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Filter = "Text file (*.xml)|*.xml";
-            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                string filePath = System.IO.Path.GetFullPath(dialog.FileName);
-                CanvasService.Save(Canvas, filePath);
-            }
-        }
-
-        public void SaveAll()
-        {
-            if (Canvas.Pentagons.Count == 0)
-            {
-                System.Windows.MessageBox.Show("Nothing to save", "Warning!", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
-            if (CanvasFilePath == null)
-            {
-                SaveFileDialog dialog = new SaveFileDialog();
-                dialog.Filter = "Text file (*.xml)|*.xml";
-                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    SetCanvasFilePath(System.IO.Path.GetFullPath(dialog.FileName));
-                }
-                else
-                {
-                    return;
-                }
-            }
-            CanvasService.Save(Canvas, CanvasFilePath);
         }
 
         private void CanvasClick(object sender, MouseButtonEventArgs e)
@@ -351,14 +284,13 @@ namespace Task2
             var item = (System.Windows.Controls.MenuItem)e.OriginalSource;
             DragPolygon = (Polygon)item.DataContext;
             DragPolygon.Stroke = new SolidColorBrush(Colors.Red);
-            DragPolygon.MouseDown += new MouseButtonEventHandler(this.PolygonMouseDown);
-            DragPolygon.MouseRightButtonDown += new MouseButtonEventHandler(this.PolygonStopDrag);
+            DragPolygon.MouseDown += new MouseButtonEventHandler(PolygonMouseDown);
         }
 
         private void PolygonMouseDown(object sender, MouseButtonEventArgs e)
         {
             IsDragging = true;
-            StartDrag = e.GetPosition(this.DragPolygon);
+            StartDrag = e.GetPosition(DragPolygon);
         }
 
         private void PolygonStopDrag(object sender, MouseButtonEventArgs e)
@@ -391,10 +323,30 @@ namespace Task2
             previewPolygones.IsEnabled = Canvas.Pentagons.Count != 0;
         }
 
-        private void SetCanvasFilePath(string filePath)
+        private void SaveCanvasWarning(Action action)
         {
-            CanvasFilePath = filePath;
-            Title = "Pentagon Drawer - " + filePath;
+            if (DrawCanvas.Children.Count > 0)
+            {
+                MessageBoxResult result = System.Windows.MessageBox.Show("Save changes?",
+                    "Warning!", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
+
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        SaveCanvas();
+                        action();
+                        break;
+                    case MessageBoxResult.No:
+                        action();
+                        break;
+                    case MessageBoxResult.Cancel:
+                        break;
+                }
+            }
+            else
+            {
+                action();
+            }
         }
     }
 }
