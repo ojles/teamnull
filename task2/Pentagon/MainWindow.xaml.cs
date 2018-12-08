@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Shapes;
-using Task2.Service;
 using Task2.Domain;
 using System.Collections.ObjectModel;
 using System.Windows.Forms;
@@ -89,6 +88,8 @@ namespace Task2
 
         private void CanvasClick(object sender, MouseButtonEventArgs e)
         {
+            e.Handled = true;
+
             if (IsDragging)
             {
                 return;
@@ -96,7 +97,7 @@ namespace Task2
 
             if (DragPolygon != null)
             {
-                _PolygonStopDraggin();
+                PolygonStopDraggin();
                 return;
             }
 
@@ -117,7 +118,7 @@ namespace Task2
                     Y2 = LastPoint.Y,
                     Stroke = new SolidColorBrush(Colors.Gray)
                 };
-                line.MouseUp += CanvasClick;
+                line.MouseLeftButtonDown += CanvasClick;
                 DrawLines.Add(line);
                 DrawCanvas.Children.Add(line);
             }           
@@ -234,7 +235,7 @@ namespace Task2
                     Y2 = e.GetPosition(DrawCanvas).Y,
                     Stroke = new SolidColorBrush(Colors.Gray)
                 };
-                FollowLine.MouseUp += CanvasClick;
+                FollowLine.MouseLeftButtonDown += CanvasClick;
                 DrawCanvas.Children.Add(FollowLine);
             }
 
@@ -257,7 +258,7 @@ namespace Task2
             var item = (System.Windows.Controls.MenuItem)e.OriginalSource;
             DragPolygon = (Polygon)item.DataContext;
             DragPolygon.Stroke = new SolidColorBrush(Colors.Red);
-            DragPolygon.MouseDown += new MouseButtonEventHandler(PolygonMouseDown);
+            DragPolygon.MouseLeftButtonDown += PolygonMouseDown;
         }
 
         private void PolygonMouseDown(object sender, MouseButtonEventArgs e)
@@ -266,12 +267,7 @@ namespace Task2
             StartDrag = e.GetPosition(DragPolygon);
         }
 
-        private void PolygonStopDrag(object sender, MouseButtonEventArgs e)
-        {
-            _PolygonStopDraggin();
-        }
-
-        private void _PolygonStopDraggin()
+        private void PolygonStopDraggin()
         {
             int index = Polygons.IndexOf(DragPolygon);
             Pentagon pentagon = Canvas.Pentagons[index];
@@ -285,8 +281,7 @@ namespace Task2
                 });
             }
             DragPolygon.Stroke = new SolidColorBrush(Colors.Black);
-            DragPolygon.MouseDown -= PolygonMouseDown;
-            DragPolygon.MouseRightButtonDown -= PolygonStopDrag;
+            DragPolygon.MouseLeftButtonDown -= PolygonMouseDown;
             DragPolygon = null;
             IsDragging = false;
         }
