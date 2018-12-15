@@ -34,6 +34,6 @@
         {
             Meal = someMeal;
             Amount = amount;
-        }
+        }                                       
     }
 }
