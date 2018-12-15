@@ -28,6 +28,8 @@ namespace Task2
         private Polygon DragPolygon;
         private bool IsDragging = false;
 
+        private bool SavedChanges = true;
+
 
         public MainWindow()
         {
@@ -41,21 +43,25 @@ namespace Task2
         {
             SaveCanvasWarning(ResetCanvas);
             SetCanvasFilePath(null);
+            SavedChanges = true;
         }
 
         private void OpenSavedCanvas(object sender, RoutedEventArgs e)
         {
             SaveCanvasWarning(OpenCanvas);
+            SavedChanges = true;
         }
 
         private void Save(object sender, ExecutedRoutedEventArgs e)
         {
             SaveCanvas();
+            SavedChanges = true;
         }
 
         private void SaveAs(object sender, ExecutedRoutedEventArgs e)
         {
             SaveCanvasAs();
+            SavedChanges = true;
         }
 
         private void ResetCanvas()
@@ -85,6 +91,7 @@ namespace Task2
                 DrawPentagon(pentagon);
             }
             UpdateShapesList();
+            SavedChanges = true;
         }
 
         private void CanvasClick(object sender, MouseButtonEventArgs e)
@@ -180,6 +187,7 @@ namespace Task2
             Polygon polygon = ConvertPentagonToPolygon(pentagon);
             DrawCanvas.Children.Add(polygon);
             Polygons.Add(polygon);
+            SavedChanges = false;
         }
 
         private void ResetFollowLines()
@@ -227,13 +235,7 @@ namespace Task2
             {
                 double diffX = e.GetPosition(DrawCanvas).X - StartDrag.X;
                 double diffY = e.GetPosition(DrawCanvas).Y - StartDrag.Y;
-                for (int i = 0; i < DragPolygon.Points.Count; i++)
-                {
-                    System.Windows.Point point = DragPolygon.Points[i];
-                    point.X += diffX;
-                    point.Y += diffY;
-                    DragPolygon.Points[i] = point;
-                }
+                MovePentagon(DragPolygon, diffX, diffY);
                 StartDrag = e.GetPosition(DrawCanvas);
                 return;
             }
@@ -277,7 +279,7 @@ namespace Task2
         }
 
         private void PolygonMouseDown(object sender, MouseButtonEventArgs e)
-        {
+        {   
             IsDragging = true;
             StartDrag = e.GetPosition(DragPolygon);
         }
@@ -317,6 +319,12 @@ namespace Task2
 
         private void SaveCanvasWarning(Action action)
         {
+            if (SavedChanges == true)
+            {
+                action();
+                return;
+            }
+
             if (DrawCanvas.Children.Count > 0)
             {
                 MessageBoxResult result = System.Windows.MessageBox.Show("Save changes?",
@@ -343,6 +351,11 @@ namespace Task2
 
         private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            if (SavedChanges)
+            {
+                return;
+            }
+
             if (Canvas.Pentagons.Count == 0)
             {
                 return;
@@ -371,6 +384,47 @@ namespace Task2
         private void previewPolygones2_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
             previewPolygones2.IsOpen = false;
+        }
+
+        private void DrawCanvas_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (DragPolygon != null)
+            {
+                const double step = 20;
+                double diffX = 0;
+                double diffY = 0;
+
+                if (e.Key == Key.Left)
+                {
+                    diffX = -step;
+                }
+                else if (e.Key == Key.Right)
+                {
+                    diffX = step;
+                }
+                else if (e.Key == Key.Up)
+                {
+                    diffY = -step;
+                }
+                else if (e.Key == Key.Down)
+                {
+                    diffY = step;
+                }
+
+                MovePentagon(DragPolygon, diffX, diffY);
+            }
+        }
+
+        private void MovePentagon(Polygon polygon, double diffX, double diffY)
+        {
+            for (int i = 0; i < polygon.Points.Count; i++)
+            {
+                System.Windows.Point point = polygon.Points[i];
+                point.X += diffX;
+                point.Y += diffY;
+                DragPolygon.Points[i] = point;
+            }
+            SavedChanges = false;
         }
     }
 }

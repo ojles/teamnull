@@ -6,7 +6,7 @@
         Background="LightGray"
         xmlns:local="clr-namespace:Task2" mc:Ignorable="d"
         Title="Pentagon Drawer" Height="450" Width="800"
-        Closing="WindowClosing">
+        Closing="WindowClosing" PreviewKeyDown="DrawCanvas_KeyDown">
     <Window.CommandBindings>
         <CommandBinding Command="New" Executed="NewCanvas" />
         <CommandBinding Command="Open" Executed="OpenSavedCanvas" />
