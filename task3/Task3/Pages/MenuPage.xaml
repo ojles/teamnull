@@ -16,12 +16,13 @@
                         <ListBox ItemsSource="{Binding Meals}" HorizontalContentAlignment="Stretch">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Margin="7" HorizontalAlignment="Stretch">
+                                    <Grid Height="60" HorizontalAlignment="Stretch">
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="60"/>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
+
                                         <Image Source="{Binding ImagePath}" Height="50" Width="50"/>
                                         <TextBlock Grid.Column="1" Margin="18,0,0,0" Text="{Binding Name}"
                                                    FontSize="18" FontWeight="Medium" VerticalAlignment="Top"/>
@@ -35,6 +36,25 @@
                                                    FontSize="12" FontWeight="Medium" VerticalAlignment="Center"/>
                                         <TextBlock Grid.Column="3" Margin="135,0,0,0" Text="price * amount"
                                                    FontSize="14" FontWeight="Medium" VerticalAlignment="Center"/>
+                                        
+                                        <!--<Image Grid.Column="0" Source="{Binding ImagePath}" Height="60" Width="60"/>
+
+                                        <Grid Grid.Column="1" Margin="15,0,0,0" HorizontalAlignment="Stretch">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+
+                                            <TextBlock Grid.Row="0" Text="{Binding Name}"
+                                                       FontSize="16" FontWeight="Medium" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Row="1" Text="{Binding Description}" VerticalAlignment="Center"
+                                                       Foreground="Gray" TextWrapping="Wrap" HorizontalAlignment="Stretch"/>
+                                        </Grid>
+
+                                        <Grid Grid.Column="2">
+                                            <TextBlock Margin="15,0,0,0" Text="lskdflksdjflksjdsjdlfksjdf"/>
+                                        </Grid>-->
+
                                     </Grid>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
