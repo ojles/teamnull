@@ -1,10 +1,14 @@
-﻿namespace Task3
+﻿using System.ComponentModel;
+
+namespace Task3
 {
     /// <summary>
     /// Class to represent an OrderItem
     /// </summary>
-    public class OrderItem
+    public class OrderItem : INotifyPropertyChanged
     {
+        private int amount;
+
         /// <summary>
         /// Gets/Sets Meal
         /// </summary>
@@ -13,7 +17,21 @@
         /// <summary>
         /// Gets/Sets Meal amount
         /// </summary>
-        public int Amount { get; set; }
+        public int Amount
+        {
+            get
+            {
+                return amount;
+            }
+            set
+            {
+                amount = value;
+                OnChange("Amount");
+                OnChange("Price");
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// Calculates a price of the <see cref="OrderItem"/>
@@ -34,6 +52,11 @@
         {
             Meal = someMeal;
             Amount = amount;
+        }
+
+        protected void OnChange(string info)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(info));
         }
     }
 }

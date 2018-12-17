@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Task3
 {
     /// <summary>
     /// Class to represent an Order with order items
     /// </summary>
-    public class Order
+    public class Order : INotifyPropertyChanged
     {
         /// <summary>
         /// List of the <see cref="OrderItem"/>
@@ -23,16 +24,24 @@ namespace Task3
         /// <summary>
         /// Calculates a price of the <see cref="Order"/>
         /// </summary>
-        public double Price()
+        public double Price
         {
-            double price = 0;
-
-            foreach (var item in ListOfOrders)
+            get
             {
-                price += item.Price;
+                double price = 0;
+                foreach (var item in ListOfOrders)
+                {
+                    price += item.Price;
+                }
+                return price;
             }
-
-            return price;
         }
+
+        public void OrderItemsChanged()
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Price"));
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

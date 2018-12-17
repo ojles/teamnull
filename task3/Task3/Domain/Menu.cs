@@ -4,15 +4,15 @@ namespace Task3
 {
     public class Menu
     {
-        public List<MealGroup> MealGroups { get; set; } = new List<MealGroup>();
+        public List<Meal> Meals { get; set; } = new List<Meal>();
 
         public Menu()
         {
         }
 
-        public Menu(List<MealGroup> mealGroups)
+        public Menu(List<Meal> meals)
         {
-            MealGroups = mealGroups;
+            Meals = meals;
         }
     }
 }
