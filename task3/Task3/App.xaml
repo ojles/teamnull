@@ -2,13 +2,14 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Task3"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <local:Menu x:Key="SushiMenu">
             <local:Menu.MealGroups>
                 <local:MealGroup Name="NIGIRI">
                     <local:MealGroup.Meals>
-                        <local:Meal Name="Hamachi" Price="3.00" ImagePath="/Assets/Meals/hamachi.jpg" Description="...is a species of jack fish in the family Carangidae. It is native to the northwest Pacific Ocean, from Japan to Hawaii"/>
+                        <local:Meal Name="Hamachi" Price="3.00" ImagePath="/Assets/Meals/hamachi.jpg"/>
                         <local:Meal Name="Maguro" Price="2.75" ImagePath="/Assets/Meals/maguro.jpg"/>
                         <local:Meal Name="Sake" Price="2.50" ImagePath="/Assets/Meals/sake.jpg"/>
                         <local:Meal Name="Uni" Price="4.50" ImagePath="/Assets/Meals/uni.jpg"/>

@@ -16,5 +16,13 @@ namespace Task3.Pages
             Menu menu = (Menu)Application.Current.FindResource("SushiMenu");
             Menu.ItemsSource = menu.MealGroups;
         }
+
+        private void PlusButtonClick(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void MinusButtonClick(object sender, RoutedEventArgs e)
+        {
+        }
     }
 }
