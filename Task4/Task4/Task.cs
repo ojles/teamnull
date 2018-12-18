@@ -4,6 +4,7 @@ namespace Task4
 {
     class Task
     {
+
         private DataBase db;
 
         public Task()
@@ -13,20 +14,43 @@ namespace Task4
 
         private void ConnectToDatabase()
         {
-            db.Connect();          
+            if (!db.Connect())
+            {
+                throw new Exception("Can't connect to database!");
+            }
+
             Console.WriteLine("\n Successfully connected to the database \n\n");
         }
 
         private void DisconnectFromDatabase()
         {
-            db.Disconnect();          
+            if (!db.Disconnect())
+            {
+                throw new Exception("Can't disconnect from database!");
+            }
+
             Console.WriteLine("\n Successfully disconnected from the database \n\n");
         }
 
         public void ExecuteTask()
-        {           
-            ConnectToDatabase();                   
-            DisconnectFromDatabase();           
+        {
+            try
+            {
+                ConnectToDatabase();
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc.Message);
+            }
+    
+            try
+            {
+                DisconnectFromDatabase();
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc.Message);
+            }
         }
     }
 }
