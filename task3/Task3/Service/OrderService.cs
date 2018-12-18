@@ -6,7 +6,7 @@ namespace Task3
     /// <summary>
     /// Class to represent a serializer for an object of the <see cref="Order"/>
     /// </summary>
-    class OrderService
+    public class OrderService
     {
         /// <summary>
         /// Serializes an instance of the <see cref="Order"/>

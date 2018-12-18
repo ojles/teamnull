@@ -1,0 +1,239 @@
+<?xml version="1.0"?>
+<Menu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Meals>
+    <Meal>
+      <Name>Hamachi</Name>
+      <Price>3</Price>
+      <ImagePath>/Assets/Meals/hamachi.jpg</ImagePath>
+      <Group>
+        <Name>NIGIRI</Name>
+        <Meals />
+      </Group>
+    </Meal>
+    <Meal>
+      <Name>Maguro</Name>
+      <Price>2.75</Price>
+      <ImagePath>/Assets/Meals/maguro.jpg</ImagePath>
+      <Group>
+        <Name>NIGIRI</Name>
+        <Meals />
+      </Group>
+    </Meal>
+    <Meal>
+      <Name>Sake</Name>
+      <Price>2.5</Price>
+      <ImagePath>/Assets/Meals/sake.jpg</ImagePath>
+      <Group>
+        <Name>NIGIRI</Name>
+        <Meals />
+      </Group>
+    </Meal>
+    <Meal>
+      <Name>Uni</Name>
+      <Price>4.5</Price>
+      <ImagePath>/Assets/Meals/uni.jpg</ImagePath>
+      <Group>
+        <Name>NIGIRI</Name>
+        <Meals />
+      </Group>
+    </Meal>
+    <Meal>
+      <Name>Saba</Name>
+      <Price>2</Price>
+      <ImagePath>/Assets/Meals/saba.jpg</ImagePath>
+      <Group>
+        <Name>NIGIRI</Name>
+        <Meals />
+      </Group>
+    </Meal>
+    <Meal>
+      <Name>Tamago</Name>
+      <Price>1.5</Price>
+      <ImagePath>/Assets/Meals/tamago.jpg</ImagePath>
+      <Group>
+        <Name>NIGIRI</Name>
+        <Meals />
+      </Group>
+    </Meal>
+    <Meal>
+      <Name>Amaebi</Name>
+      <Price>3.5</Price>
+      <ImagePath>/Assets/Meals/amaebi.jpg</ImagePath>
+      <Group>
+        <Name>Frech Rolls</Name>
+        <Meals />
+      </Group>
+    </Meal>
+    <Meal>
+      <Name>Ikura</Name>
+      <Price>4</Price>
+      <ImagePath>/Assets/Meals/ikura.jpg</ImagePath>
+      <Group>
+        <Name>Frech Rolls</Name>
+        <Meals />
+      </Group>
+    </Meal>
+    <Meal>
+      <Name>Ika</Name>
+      <Price>2.25</Price>
+      <ImagePath>/Assets/Meals/ika.jpg</ImagePath>
+      <Group>
+        <Name>Frech Rolls</Name>
+        <Meals />
+      </Group>
+    </Meal>
+    <Meal>
+      <Name>Vegetable</Name>
+      <Price>6.95</Price>
+      <ImagePath>/Assets/Meals/vegetable.jpg</ImagePath>
+      <Group>
+        <Name>Frech Rolls</Name>
+        <Meals />
+      </Group>
+    </Meal>
+    <Meal>
+      <Name>Fire</Name>
+      <Price>11.95</Price>
+      <ImagePath>/Assets/Meals/fire.jpg</ImagePath>
+      <Group>
+        <Name>Tempura Rolls</Name>
+        <Meals />
+      </Group>
+    </Meal>
+    <Meal>
+      <Name>Lobster</Name>
+      <Price>10.95</Price>
+      <ImagePath>/Assets/Meals/lobster.jpg</ImagePath>
+      <Group>
+        <Name>Tempura Rolls</Name>
+        <Meals />
+      </Group>
+    </Meal>
+    <Meal>
+      <Name>Hurricane</Name>
+      <Price>10.95</Price>
+      <ImagePath>/Assets/Meals/hurricane.jpg</ImagePath>
+      <Group>
+        <Name>Tempura Rolls</Name>
+        <Meals />
+      </Group>
+    </Meal>
+    <Meal>
+      <Name>Cazy</Name>
+      <Price>7.95</Price>
+      <ImagePath>/Assets/Meals/cazy.jpg</ImagePath>
+      <Group>
+        <Name>Tempura Rolls</Name>
+        <Meals />
+      </Group>
+    </Meal>
+    <Meal>
+      <Name>Tiger</Name>
+      <Price>9.95</Price>
+      <ImagePath>/Assets/Meals/tiger.jpg</ImagePath>
+      <Group>
+        <Name>Cooked Rolls</Name>
+        <Meals />
+      </Group>
+    </Meal>
+    <Meal>
+      <Name>Rosell</Name>
+      <Price>9.5</Price>
+      <ImagePath>/Assets/Meals/rosell.jpg</ImagePath>
+      <Group>
+        <Name>Cooked Rolls</Name>
+        <Meals />
+      </Group>
+    </Meal>
+    <Meal>
+      <Name>Spider</Name>
+      <Price>11.95</Price>
+      <ImagePath>/Assets/Meals/spider.jpg</ImagePath>
+      <Group>
+        <Name>Cooked Rolls</Name>
+        <Meals />
+      </Group>
+    </Meal>
+    <Meal>
+      <Name>Paradise</Name>
+      <Price>9.95</Price>
+      <ImagePath>/Assets/Meals/paradise.jpg</ImagePath>
+      <Group>
+        <Name>Regular Rolls</Name>
+        <Meals />
+      </Group>
+    </Meal>
+    <Meal>
+      <Name>Chicago</Name>
+      <Price>13.95</Price>
+      <ImagePath>/Assets/Meals/chicago.jpg</ImagePath>
+      <Group>
+        <Name>Tempura Rolls</Name>
+        <Meals />
+      </Group>
+    </Meal>
+    <Meal>
+      <Name>Vocano</Name>
+      <Price>12.95</Price>
+      <ImagePath>/Assets/Meals/vocano.jpg</ImagePath>
+      <Group>
+        <Name>Tempura Rolls</Name>
+        <Meals />
+      </Group>
+    </Meal>
+    <Meal>
+      <Name>Baked Salmon</Name>
+      <Price>9.95</Price>
+      <ImagePath>/Assets/Meals/baked_salmon.jpg</ImagePath>
+      <Group>
+        <Name>Tempura Rolls</Name>
+        <Meals />
+      </Group>
+    </Meal>
+    <Meal>
+      <Name>Dynamite</Name>
+      <Price>12.95</Price>
+      <ImagePath>/Assets/Meals/dynamite.jpg</ImagePath>
+      <Group>
+        <Name>Tempura Rolls</Name>
+        <Meals />
+      </Group>
+    </Meal>
+    <Meal>
+      <Name>California</Name>
+      <Price>4</Price>
+      <ImagePath>/Assets/Meals/california.jpg</ImagePath>
+      <Group>
+        <Name>Tempura Rolls</Name>
+        <Meals />
+      </Group>
+    </Meal>
+    <Meal>
+      <Name>Spicy Tuna</Name>
+      <Price>5.5</Price>
+      <ImagePath>/Assets/Meals/spicy_tuna.jpg</ImagePath>
+      <Group>
+        <Name>Tempura Rolls</Name>
+        <Meals />
+      </Group>
+    </Meal>
+    <Meal>
+      <Name>Cucumber</Name>
+      <Price>3.5</Price>
+      <ImagePath>/Assets/Meals/cucumber.jpg</ImagePath>
+      <Group>
+        <Name>Tempura Rolls</Name>
+        <Meals />
+      </Group>
+    </Meal>
+    <Meal>
+      <Name>Salmon</Name>
+      <Price>5</Price>
+      <ImagePath>/Assets/Meals/salmon.jpg</ImagePath>
+      <Group>
+        <Name>Tempura Rolls</Name>
+        <Meals />
+      </Group>
+    </Meal>
+  </Meals>
+</Menu>

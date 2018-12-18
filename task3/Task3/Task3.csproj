@@ -93,7 +93,9 @@
     <Compile Include="Pages\OrdersPage.xaml.cs">
       <DependentUpon>OrdersPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Service\MenuService.cs" />
     <Compile Include="Service\OrderService.cs" />
+    <Compile Include="Service\ServiceVariables.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -185,6 +187,10 @@
   <ItemGroup>
     <Resource Include="Assets\Icons\minus.png" />
     <Resource Include="Assets\Icons\plus.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Data\Menu.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

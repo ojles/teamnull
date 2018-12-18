@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using Task3.Service;
 
 namespace Task3.Pages
 {
@@ -11,12 +12,15 @@ namespace Task3.Pages
     /// </summary>
     public partial class MenuPage : Page
     {
+        private MenuService menuService = new MenuService();
         private Order order = new Order();
-        private Menu menu = (Menu)Application.Current.FindResource("SushiMenu");
+        private Menu menu;
 
         public MenuPage()
         {
             InitializeComponent();
+
+            menu = menuService.Get();
 
             List<OrderItem> items = new List<OrderItem>();
             foreach (Meal meal in menu.Meals)
