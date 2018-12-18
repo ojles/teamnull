@@ -1,21 +1,29 @@
 ﻿using System.Xml.Serialization;
 using System.IO;
 
-namespace Task3
+namespace Task3.Service
 {
     /// <summary>
     /// Class to represent a serializer for an object of the <see cref="Order"/>
     /// </summary>
     public class OrderService
     {
+        public OrderService()
+        {
+            if (!Directory.Exists(ServiceVariables.OrdersFolderPath))
+            {
+                Directory.CreateDirectory(ServiceVariables.OrdersFolderPath);
+            }
+        }
+
         /// <summary>
         /// Serializes an instance of the <see cref="Order"/>
         /// </summary>
-        /// <param name="order">Object of the Order</param>
-        /// <param name="fileName">Name of the file</param>
-        public void Save(Order order, string fileName)
+        /// <param name="order">Object to save</param>
+        public void Save(Order order)
         {
-            using (var stream = File.Create(fileName))
+            string orderFilePath = Path.Combine(ServiceVariables.OrdersFolderPath, order.Name);
+            using (var stream = File.Create(orderFilePath))
             {
                 var serializer = new XmlSerializer(typeof(Order));
                 serializer.Serialize(stream, order);
@@ -23,14 +31,15 @@ namespace Task3
         }
 
         /// <summary>
-        /// Deserializes an instance of the <see cref="Order"/>
+        /// Load an instance of <see cref="Order"/> from file
         /// </summary>
-        /// <param name="fileName">Name of the file</param>
-        public Order Get(string fileName)
+        /// <param name="orderName">Name of the order</param>
+        public Order Get(string orderName)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Order));
 
-            using (var reader = new StreamReader(fileName))
+            string orderFilePath = Path.Combine(ServiceVariables.OrdersFolderPath, orderName);
+            using (var reader = new StreamReader(orderFilePath))
             {
                 return (Order)serializer.Deserialize(reader);
             }
