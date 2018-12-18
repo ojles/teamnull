@@ -30,7 +30,7 @@ namespace Task3
         /// <summary>
         /// Time when the <see cref="Order"/> is submitted
         /// </summary>
-        public DateTime SubmissionTime { get; private set; }
+        public DateTime SubmissionTime { get; set; }
 
         /// <summary>
         /// Order status
@@ -61,8 +61,13 @@ namespace Task3
                 return price;
             }
         }
+        public void Place()
+       {
+            SubmissionTime = DateTime.Now;
+          Name = string.Format("order-{0}", SubmissionTime.Ticks);
+        }
 
-        public void OrderItemsChanged()
+    public void OrderItemsChanged()
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Price"));
         }

@@ -8,6 +8,12 @@ namespace Task3
     public class OrderItem : INotifyPropertyChanged
     {
         private int amount;
+       /// <summary>
+       /// Parameterless constructor
+       /// </summary>
+       public OrderItem()
+        {
+        }
 
         /// <summary>
         /// Gets/Sets Meal

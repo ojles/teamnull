@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 using System.IO;
-
+using System.Collections.Generic;
 namespace Task3.Service
 {
     /// <summary>
@@ -10,6 +10,12 @@ namespace Task3.Service
     {
         public OrderService()
         {
+            if (!Directory.Exists(ServiceVariables.DataFolder))
+            {
+                Directory.CreateDirectory(ServiceVariables.DataFolder);
+            }
+
+
             if (!Directory.Exists(ServiceVariables.OrdersFolderPath))
             {
                 Directory.CreateDirectory(ServiceVariables.OrdersFolderPath);
@@ -42,7 +48,19 @@ namespace Task3.Service
             using (var reader = new StreamReader(orderFilePath))
             {
                 return (Order)serializer.Deserialize(reader);
+         /// <summary>
+         /// Loads all available orders
+         /// </summary>
+         /// <returns></returns>
+        public List<Order> GetAll()
+        {
+            string[] orderFiles = Directory.GetFiles(ServiceVariables.OrdersFolderPath);
+            List<Order> orders = new List<Order>();
+            foreach (string orderFile in orderFiles)
+            {
+                orders.Add(Get(orderFile));
             }
+            return orders;
         }
     }
 }
