@@ -30,5 +30,20 @@ namespace Task3
                 Name = name
             };
         }
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is MealGroup other))
+            {
+                return false;
+            }
+
+            return Equals(other);
+        }
+
+        public bool Equals(MealGroup other)
+        {
+            return Name.Equals(other.Name);
+        }
     }
 }
