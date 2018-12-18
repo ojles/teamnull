@@ -39,6 +39,9 @@ namespace Task2
             ResetCanvas();
         }
 
+        /// <summary>
+        /// This function creates new, clear canvas
+        /// </summary>
         private void NewCanvas(object sender, RoutedEventArgs e)
         {
             SaveCanvasWarning(ResetCanvas);
@@ -46,29 +49,45 @@ namespace Task2
             SavedChanges = true;
         }
 
+        /// <summary>
+        /// This function opens canvas that was saved earlier
+        /// </summary>
         private void OpenSavedCanvas(object sender, RoutedEventArgs e)
         {
             SaveCanvasWarning(OpenCanvas);
             SavedChanges = true;
         }
 
+        /// <summary>
+        /// This function saves canvas to .xml file
+        /// </summary>
         private void Save(object sender, ExecutedRoutedEventArgs e)
         {
             SaveCanvas();
             SavedChanges = true;
         }
 
+        /// <summary>
+        /// This function saves canvas where format can be chosen
+        /// </summary>
         private void SaveAs(object sender, ExecutedRoutedEventArgs e)
         {
             SaveCanvasAs();
             SavedChanges = true;
         }
 
+        /// <summary>
+        /// This function resets canvas
+        /// </summary>
         private void ResetCanvas()
         {
             ResetCanvas(null);
         }
 
+        /// <summary>
+        /// This function resets canvas
+        /// </summary>
+        /// <param name="canvas">Canvas that is reset</param>
         private void ResetCanvas(Canvas canvas)
         {
             if (canvas == null)
@@ -94,6 +113,9 @@ namespace Task2
             SavedChanges = true;
         }
 
+        /// <summary>
+        /// This function is called when there is a mouse click on the canvas
+        /// </summary>
         private void CanvasClick(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
@@ -128,10 +150,10 @@ namespace Task2
                 };
                 DrawLines.Add(line);
                 DrawCanvas.Children.Add(line);
-            }           
+            }
 
             CurrentPentagon.AddPoint(LastPoint);
-            
+
             if (CurrentPentagon.IsCompleted())
             {
                 CurrentPentagon.Color = AskPentagonColor();
@@ -145,6 +167,9 @@ namespace Task2
             UpdateShapesList();
         }
 
+        /// <summary>
+        /// THis function is called when there is a right mouse click on the canvas
+        /// </summary>
         private void CanvasRightClick(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
@@ -159,11 +184,18 @@ namespace Task2
             }
         }
 
+        /// <summary>
+        /// This function is called when mouse click is released
+        /// </summary>
         private void CanvasMouseUp(object sender, MouseButtonEventArgs e)
         {
             IsDragging = false;
         }
 
+        /// <summary>
+        /// This function asks about color of the drawn <see cref="Pentagon"/>
+        /// </summary>
+        /// <returns><see cref="Domain.Color"/></returns>
         private Domain.Color AskPentagonColor()
         {
             ColorDialog dialog = new ColorDialog();
@@ -182,6 +214,10 @@ namespace Task2
             }
         }
 
+        /// <summary>
+        /// This function draws <see cref="Pentagon"/> and adds it to <see cref="Polygon"/>
+        /// </summary>
+        /// <param name="pentagon"><see cref="Pentagon"/> that needs to be added</param>
         private void DrawPentagon(Pentagon pentagon)
         {
             Polygon polygon = ConvertPentagonToPolygon(pentagon);
@@ -190,6 +226,9 @@ namespace Task2
             SavedChanges = false;
         }
 
+        /// <summary>
+        /// This function removes all previously drawn lines
+        /// </summary>
         private void ResetFollowLines()
         {
             foreach (Line line in DrawLines)
@@ -201,6 +240,11 @@ namespace Task2
             CurrentPentagon = new Pentagon();
         }
 
+        /// <summary>
+        /// THis function converts <see cref="Pentagon"/> to <see cref="Polygon"/>
+        /// </summary>
+        /// <param name="pentagon"><see cref="Pentagon"/> that is coverted to <see cref="Polygon"/></param>
+        /// <returns>Converted <see cref="Polygon"/> from <see cref="Pentagon"/></returns>
         private Polygon ConvertPentagonToPolygon(Pentagon pentagon)
         {
             Polygon polygon = new Polygon
@@ -229,6 +273,9 @@ namespace Task2
             return polygon;
         }
 
+        /// <summary>
+        /// This function is called when polygon is dragged by mouse
+        /// </summary>
         private void CanvasMouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
             if (IsDragging && DragPolygon != null)
@@ -259,6 +306,9 @@ namespace Task2
             CursorPositionLabel.Text = $"X: {e.GetPosition(DrawCanvas).X}; y: {e.GetPosition(DrawCanvas).Y}";
         }
 
+        /// <summary>
+        /// This function selects <see cref="Polygon"/> from the existing ones
+        /// </summary>
         private void SelectPolygon(object sender, RoutedEventArgs e)
         {
             if (DragPolygon != null)
@@ -278,12 +328,18 @@ namespace Task2
             DragPolygon.MouseLeftButtonDown += PolygonMouseDown;
         }
 
+        /// <summary>
+        /// This function i called when there is a mouse click on the <see cref="Polygon"/>
+        /// </summary>
         private void PolygonMouseDown(object sender, MouseButtonEventArgs e)
-        {   
+        {
             IsDragging = true;
             StartDrag = e.GetPosition(DragPolygon);
         }
 
+        /// <summary>
+        /// This function is called when <see cref="Polygon"/> is stopped dragging
+        /// </summary>
         private void PolygonStopDraggin()
         {
             int index = Polygons.IndexOf(DragPolygon);
@@ -303,6 +359,9 @@ namespace Task2
             IsDragging = false;
         }
 
+        /// <summary>
+        /// This function updates ShapesList
+        /// </summary>
         private void UpdateShapesList()
         {
             previewPolygones.IsEnabled = Canvas.Pentagons.Count != 0;
@@ -317,6 +376,10 @@ namespace Task2
             previewPolygones2.IsOpen = false;
         }
 
+        /// <summary>
+        /// This function displays and acts when unsaved <see cref="Canvas"/> is about to be closed
+        /// </summary>
+        /// <param name="action"></param>
         private void SaveCanvasWarning(Action action)
         {
             if (SavedChanges == true)
@@ -349,6 +412,9 @@ namespace Task2
             }
         }
 
+        /// <summary>
+        /// This function is called when <see cref="Window"/> is about to be closed
+        /// </summary>
         private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (SavedChanges)
@@ -381,11 +447,17 @@ namespace Task2
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void previewPolygones2_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
             previewPolygones2.IsOpen = false;
         }
 
+        /// <summary>
+        /// This function is called when key on keyboard is pressed when <see cref="Polygon"/> is selected
+        /// </summary>
         private void DrawCanvas_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (DragPolygon != null)
@@ -415,6 +487,12 @@ namespace Task2
             }
         }
 
+        /// <summary>
+        /// This function moves <see cref="Polygon"/> on specified coordinates
+        /// </summary>
+        /// <param name="polygon"><see cref="Polygon"/> that is moved</param>
+        /// <param name="diffX">Number of difference in coordinates on OX</param>
+        /// <param name="diffY">Number of difference in coordinates on OY</param>
         private void MovePentagon(Polygon polygon, double diffX, double diffY)
         {
             for (int i = 0; i < polygon.Points.Count; i++)
