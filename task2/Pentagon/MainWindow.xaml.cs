@@ -40,7 +40,8 @@ namespace Task2
         }
 
         /// <summary>
-        /// This function creates new, clear canvas
+        /// Event handler for 'New' command
+        /// Creates new canvas, deletes old objects
         /// </summary>
         private void NewCanvas(object sender, RoutedEventArgs e)
         {
@@ -50,7 +51,8 @@ namespace Task2
         }
 
         /// <summary>
-        /// This function opens canvas that was saved earlier
+        /// Event handler for 'Open' command
+        /// Opens canvas that was saved earlier
         /// </summary>
         private void OpenSavedCanvas(object sender, RoutedEventArgs e)
         {
@@ -59,7 +61,8 @@ namespace Task2
         }
 
         /// <summary>
-        /// This function saves canvas to .xml file
+        /// Event handler for 'Save' command
+        /// Saves canvas to last specified .xml file
         /// </summary>
         private void Save(object sender, ExecutedRoutedEventArgs e)
         {
@@ -68,7 +71,8 @@ namespace Task2
         }
 
         /// <summary>
-        /// This function saves canvas where format can be chosen
+        /// Event handler for 'SaveAs' command
+        /// Saves canvas in specified file
         /// </summary>
         private void SaveAs(object sender, ExecutedRoutedEventArgs e)
         {
@@ -77,7 +81,7 @@ namespace Task2
         }
 
         /// <summary>
-        /// This function resets canvas
+        /// Resets the whole canvas, deteles all objects
         /// </summary>
         private void ResetCanvas()
         {
@@ -85,7 +89,8 @@ namespace Task2
         }
 
         /// <summary>
-        /// This function resets canvas
+        /// Resets the canvas to specified object of type <see cref="Canvas"/>
+        /// Removes previous objects
         /// </summary>
         /// <param name="canvas">Canvas that is reset</param>
         private void ResetCanvas(Canvas canvas)
@@ -114,7 +119,7 @@ namespace Task2
         }
 
         /// <summary>
-        /// This function is called when there is a mouse click on the canvas
+        /// Event handler for mouse click on the canvas
         /// </summary>
         private void CanvasClick(object sender, MouseButtonEventArgs e)
         {
@@ -168,7 +173,7 @@ namespace Task2
         }
 
         /// <summary>
-        /// THis function is called when there is a right mouse click on the canvas
+        /// Canvas mouse right click event handler
         /// </summary>
         private void CanvasRightClick(object sender, MouseButtonEventArgs e)
         {
@@ -185,7 +190,7 @@ namespace Task2
         }
 
         /// <summary>
-        /// This function is called when mouse click is released
+        /// Canvas mouse up event handler
         /// </summary>
         private void CanvasMouseUp(object sender, MouseButtonEventArgs e)
         {
@@ -227,7 +232,8 @@ namespace Task2
         }
 
         /// <summary>
-        /// This function removes all previously drawn lines
+        /// Removes all previously drawn lines
+        /// Usually executed when finished drawing pentagon or canceled drawing
         /// </summary>
         private void ResetFollowLines()
         {
@@ -241,7 +247,7 @@ namespace Task2
         }
 
         /// <summary>
-        /// THis function converts <see cref="Pentagon"/> to <see cref="Polygon"/>
+        /// Converts <see cref="Pentagon"/> to <see cref="Polygon"/>
         /// </summary>
         /// <param name="pentagon"><see cref="Pentagon"/> that is coverted to <see cref="Polygon"/></param>
         /// <returns>Converted <see cref="Polygon"/> from <see cref="Pentagon"/></returns>
@@ -448,7 +454,7 @@ namespace Task2
         }
 
         /// <summary>
-        /// 
+        /// Event handler for polygones preview mouse leave
         /// </summary>
         private void previewPolygones2_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {

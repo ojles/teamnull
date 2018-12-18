@@ -8,45 +8,21 @@
       Title="My Orders">
 
     <Grid>
-        
         <ListBox  Name="Orders" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid Height="70">
                         <Grid.ColumnDefinitions>
-                            <!--<ColumnDefinition Width="70"/>-->
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
-                            <!--<ColumnDefinition Width="200"/>-->
                         </Grid.ColumnDefinitions>
-
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="100" />
-                            
-                        </Grid.RowDefinitions>
-                        <!--<Image HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Source="{Binding Meal.ImagePath}" Height="70" Width="70"/>-->
 
                         <TextBlock FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Foreground="Black" Text="{Binding Name}"/>
                         <TextBlock FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Foreground="Gray" Text="{Binding Submission_time}"/>
                         <TextBlock FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Text="{Binding OrderStatus}"/>
                         <Button Content="Cancel" FontSize="19" HorizontalAlignment="Center" VerticalAlignment="Center" Background="AliceBlue" Grid.Column="3" Name="Cancel" Width="100" Height="25"></Button>
-                        <!--<TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" Text="{Binding }"/>
-                        <CheckBox Grid.Column="5" VerticalContentAlignment="Center" HorizontalAlignment="Center"/>-->
-                        <!--<Image HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Source="{Binding Meal.ImagePath}" Height="70" Width="70"/>
-
-
-
-                        <TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Text="{Binding Meal.Name}"/>
-
-                        <TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Text="{Binding Amount}"/>
-
-                        <TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Text="{Binding Meal.Price}"/>
-
-                        <TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" Text="{Binding Price}"/>
-
-                        <CheckBox Grid.Column="5" VerticalContentAlignment="Center" HorizontalAlignment="Center"/>-->
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

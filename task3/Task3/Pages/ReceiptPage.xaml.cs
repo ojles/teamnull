@@ -23,13 +23,13 @@ namespace Task3.Pages
                 oi2
             };
 
-            Order order1 = new Order(menu, "My Order 1", DateTime.Now, "In Progress");
-            Order order2 = new Order(menu, "My Order 2", DateTime.Now, "Delivered");
+            Order order1 = Order.Place(menu, "My Order 1");
+            Order order2 = Order.Place(menu, "My Order 2");
             List<Order> list_orders = new List<Order>
             {
                 order1,
                 order2
-                };
+            };
             Orders.ItemsSource = list_orders;
         }
     }
