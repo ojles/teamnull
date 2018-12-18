@@ -43,6 +43,7 @@ namespace Task3
                 return Meal.Price * Amount;
             }
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="OrderItem"/>
         /// </summary>

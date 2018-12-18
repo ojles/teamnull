@@ -23,7 +23,7 @@ namespace Task3.Pages
             {
                 items.Add(new OrderItem(meal, 0));
             }
-            order.ListOfOrders = items;
+            order.OrderItems = items;
 
             Menu.ItemsSource = items;
             DataContext = order;
