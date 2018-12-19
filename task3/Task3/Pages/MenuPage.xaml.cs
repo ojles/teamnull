@@ -49,8 +49,12 @@ namespace Task3.Pages
         private void MinusButtonClick(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            OrderItem orderItem = button.DataContext as OrderItem;
-            orderItem.Amount--;
+            OrderItem orderItem = button.DataContext as OrderItem;  
+            
+            if (orderItem.Amount!=0)
+            {
+                orderItem.Amount--;
+            }
             order.OrderItemsChanged();
         }
 

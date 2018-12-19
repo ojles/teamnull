@@ -66,7 +66,16 @@ namespace Task3
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Price"));
         }
-
+        public override string ToString()
+        {
+            string result = "";
+            result += string.Format("\n{0} \n {1} {2} \n\n", Name,SubmissionTime,Status);
+            foreach(var i in OrderItems)
+            {
+                result += string.Format("{0} {1} {2} \n",i.Meal.Name, i.Amount, i.Price);
+            }
+            return result;
+        }
         public static Order Place(List<OrderItem> orderItems, string name)
         {
             return new Order
