@@ -63,7 +63,7 @@ namespace Task3
         }
         public void Place()
        {
-            SubmissionTime = DateTime.Now;
+          SubmissionTime = DateTime.Now;
           Name = string.Format("order-{0}", SubmissionTime.Ticks);
         }
 

@@ -49,11 +49,22 @@ namespace Task3.Service
                 return (Order)serializer.Deserialize(reader);
             }
         }
+        public void Delete(string orderName)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(Order));
 
-         /// <summary>
-         /// Loads all available orders
-         /// </summary>
-         /// <returns></returns>
+            string orderFilePath = Path.Combine(ServiceVariables.OrdersFolderPath, orderName);
+            if (File.Exists(orderFilePath))
+            {
+                File.Delete(orderFilePath);
+            }
+
+        }
+
+        /// <summary>
+        /// Loads all available orders
+        /// </summary>
+        /// <returns></returns>
         public List<Order> GetAll()
         {
             string[] orderFiles = Directory.GetFiles(ServiceVariables.OrdersFolderPath);

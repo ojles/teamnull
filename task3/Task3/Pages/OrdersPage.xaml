@@ -38,7 +38,7 @@
         </Style>-->
     </Page.Resources>
     <Grid>
-        <ListBox  Name="Orders" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" MouseDoubleClick="OrderDoubleClick">
+        <ListBox  Name="Orders" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" MouseDoubleClick="OrderDoubleClick" ItemsSource="{Binding orders}">
             <ListBox.ItemTemplate >
                 <DataTemplate>
                     <Grid Height="70">
@@ -52,7 +52,7 @@
                         <TextBlock FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Foreground="Black" Text="{Binding Name}"/>
                         <TextBlock FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Foreground="Gray" Text="{Binding SubmissionTime}"/>
                         <TextBlock FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Text="{Binding Status}"/>
-                        <Button Content="Cancel" FontSize="19" HorizontalAlignment="Center" VerticalAlignment="Center" Background="AliceBlue" Grid.Column="3" Name="Cancel" Width="100" Height="25"/>
+                        <Button Content="Cancel" FontSize="19"  Click="DeleteButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Background="AliceBlue" Grid.Column="3" Name="Cancel" Width="100" Height="25"/>
                         
                     </Grid>
                 </DataTemplate>
