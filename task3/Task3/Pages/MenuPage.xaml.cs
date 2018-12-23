@@ -13,6 +13,7 @@ namespace Task3.Pages
     public partial class MenuPage : Page
     {
         private MenuService menuService = new MenuService();
+        private OrderService orderService = new OrderService();
         private Order order = new Order();
         private Menu menu;
 
@@ -60,8 +61,8 @@ namespace Task3.Pages
 
         private void SubmitOrderClick(object sender, RoutedEventArgs e)
         {
-            // TODO: implement submit
-            // use OrderService to do that
+            order.Place();
+            orderService.Save(order);
         }
     }
 }
