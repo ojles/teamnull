@@ -22,7 +22,7 @@ namespace Task3.Pages
             orders = new ObservableCollection<Order>(orderService.GetAll());
             Orders.ItemsSource = orders;
         }
-        
+
         public override string ToString()
         {
             string result = "";
