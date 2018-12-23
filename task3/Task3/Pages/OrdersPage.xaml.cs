@@ -4,6 +4,8 @@ using System;
 using System.Windows.Input;
 using System.Windows;
 using Task3.Service;
+using System.Collections.ObjectModel;
+
 namespace Task3.Pages
 {
     /// <summary>
@@ -12,13 +14,12 @@ namespace Task3.Pages
     public partial class ReceiptPage : Page
     {
         private OrderService orderService = new OrderService();
-
-        private List<Order> orders;
+        private ObservableCollection<Order> orders;
 
         public ReceiptPage()
         {
             InitializeComponent();
-            orders = orderService.GetAll();
+            orders = new ObservableCollection<Order>(orderService.GetAll());
             Orders.ItemsSource = orders;
         }
 
@@ -40,7 +41,22 @@ namespace Task3.Pages
             MessageBoxButton button = MessageBoxButton.OK;
             MessageBoxImage icon = MessageBoxImage.Information;
             MessageBox.Show(messageBoxText, caption, button, icon);
+        }
 
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            if (button != null)
+            {
+                var order = button.DataContext as Order;
+
+                ((ObservableCollection<Order>)Orders.ItemsSource).Remove(order);
+                orderService.Delete(order.Name);               
+            }
+            else
+            {
+                return;
+            }
         }
     }
 }
