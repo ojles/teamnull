@@ -14,14 +14,12 @@ namespace Task3.Pages
     public partial class ReceiptPage : Page
     {
         private OrderService orderService = new OrderService();
-
         private ObservableCollection<Order> orders;
-       // private ObservableCollection<Order> orders;
 
         public ReceiptPage()
         {
             InitializeComponent();
-            orders = new ObservableCollection<Order>(orderService.GetAll());           
+            orders = new ObservableCollection<Order>(orderService.GetAll());
             Orders.ItemsSource = orders;
         }
         
@@ -43,10 +41,9 @@ namespace Task3.Pages
             MessageBoxButton button = MessageBoxButton.OK;
             MessageBoxImage icon = MessageBoxImage.Information;
             MessageBox.Show(messageBoxText, caption, button, icon);
-
         }
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
 
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
             if (button != null)

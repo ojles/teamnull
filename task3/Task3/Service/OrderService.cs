@@ -51,14 +51,11 @@ namespace Task3.Service
         }
         public void Delete(string orderName)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(Order));
-
             string orderFilePath = Path.Combine(ServiceVariables.OrdersFolderPath, orderName);
             if (File.Exists(orderFilePath))
             {
                 File.Delete(orderFilePath);
             }
-
         }
 
         /// <summary>

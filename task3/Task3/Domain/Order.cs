@@ -61,8 +61,9 @@ namespace Task3
                 return price;
             }
         }
+
         public void Place()
-       {
+        {
           SubmissionTime = DateTime.Now;
           Name = string.Format("order-{0}", SubmissionTime.Ticks);
         }
