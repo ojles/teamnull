@@ -64,14 +64,15 @@ namespace Task3
 
         public void Place()
         {
-          SubmissionTime = DateTime.Now;
-          Name = string.Format("order-{0}", SubmissionTime.Ticks);
+            SubmissionTime = DateTime.Now;
+            Name = string.Format("order-{0}", SubmissionTime.Ticks);
         }
 
-    public void OrderItemsChanged()
+        public void OrderItemsChanged()
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Price"));
         }
+
         public override string ToString()
         {
             string result = "";
@@ -82,6 +83,7 @@ namespace Task3
             }
             return result;
         }
+
         public static Order Place(List<OrderItem> orderItems, string name)
         {
             return new Order
