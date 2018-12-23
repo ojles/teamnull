@@ -1,11 +1,18 @@
-﻿namespace Task4
+﻿using System;
+
+namespace Task4
 {
-    class Program
+    static class Program
     {
         static void Main(string[] args)
-        {           
-            Task task = new Task();
-            task.ExecuteTask();
+        {
+            // todo: implement
+            // iterate over Query.Q strings and print results
+        }
+
+        static void RunQuery(string query)
+        {
+            // todo: implement
         }
     }
 }
