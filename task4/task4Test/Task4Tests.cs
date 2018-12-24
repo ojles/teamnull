@@ -9,11 +9,11 @@ namespace task4Test
     [TestClass]
     public class Task4Tests
     {
+        MySqlConnection connection = Database.GetConnection();
+
         [TestMethod]
         public void Select10Test()
-        {
-            MySqlConnection connection = Database.GetConnection();
-
+        {           
             using (MySqlCommand command = new MySqlCommand(Task4.Query.Q[9], connection))
             {
                 command.Parameters.AddWithValue("@LIMIT_AMOUNT", 8);
