@@ -8,8 +8,11 @@ namespace Task4
             "select e.FirstName, e.LastName from Employees as e where e.City=@CityName",
             "query 3",
             "query 4",
-            "query 5",
-            "query 6",
+            "SELECT COUNT(*) FROM `Employees` WHERE `City`=`London`;",
+            "SELECT MAX((YEAR(CURRENT_TIMESTAMP)-YEAR(`BirthDate`))) AS MaxAge, " +
+                "MIN((YEAR(CURRENT_TIMESTAMP)-YEAR(`BirthDate`))) AS MinAge, " +
+                "AVG((YEAR(CURRENT_TIMESTAMP)-YEAR(`BirthDate`))) AS AverageAge " +
+                "FROM `Employees` WHERE `City`=`London`;",
             "select City, MAX((YEAR(CURRENT_TIMESTAMP)-YEAR(BirthDate))) as MaxAge, " +
                 "MIN((YEAR(CURRENT_TIMESTAMP)-YEAR(BirthDate))) as MinAge, " +
                 "AVG((YEAR(CURRENT_TIMESTAMP)-YEAR(BirthDate))) as AverageAge " +
