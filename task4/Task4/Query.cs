@@ -13,7 +13,7 @@ namespace Task4
             "query 7",
             "query 8",
             "SELECT `FirstName`, `LastName` FROM `Employees` WHERE `BirthDate`=(SELECT MIN(`BirthDate`) FROM `Employees`)",
-            "SELECT `FirstName`, `LastName` FROM `Employees` ORDER BY `BirthDate` LIMIT 3",
+            "SELECT `FirstName`, `LastName` FROM `Employees` ORDER BY `BirthDate` LIMIT @LIMIT_AMOUNT",
             "query 11",
             "query 12",
             "query 13",

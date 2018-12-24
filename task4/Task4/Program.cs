@@ -3,7 +3,6 @@ using System.Data;
 using MySql.Data.MySqlClient;
 
 
-
 namespace Task4
 {
     static class Program
@@ -11,17 +10,18 @@ namespace Task4
         static void Main(string[] args)
         {
             string connectionString = "server=localhost;user id=root;database=northwind; password=smart" ;
-            MySqlConnection connection = new MySqlConnection(connectionString);                
-            string command = @"SELECT `FirstName`, `LastName` FROM `Employees` ORDER BY `BirthDate` LIMIT 3";
 
+            MySqlConnection connection = new MySqlConnection(connectionString);                
             connection.Open();
 
+            string query = Query.Q[9];
+
             using (connection)
-            {           
-                MySqlCommand mySqlCommand = new MySqlCommand(command, connection);
+            {
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@LIMIT_AMOUNT", 2);
 
-                MySqlDataReader reader = mySqlCommand.ExecuteReader();
-
+                MySqlDataReader reader = command.ExecuteReader();
 
                 if (reader.HasRows)
                 {
@@ -47,9 +47,6 @@ namespace Task4
 
         static void RunQuery(string query)
         {
-           
-
         }
-        
     }
 }
