@@ -9,13 +9,11 @@ namespace task4Test
     [TestClass]
     public class Task4Tests
     {
-        private readonly string ConnectionString = "server=localhost;user id=root;database=northwind; password=smart";
-        [TestMethod()]
-        public void Select10Test()
-        {
-            MySqlConnection connection = new MySqlConnection(ConnectionString);
-            connection.Open();
+        MySqlConnection connection = Database.GetConnection();
 
+        [TestMethod]
+        public void Select10Test()
+        {           
             using (MySqlCommand command = new MySqlCommand(Task4.Query.Q[9], connection))
             {
                 command.Parameters.AddWithValue("@LIMIT_AMOUNT", 8);
