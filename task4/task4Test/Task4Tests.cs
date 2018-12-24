@@ -64,7 +64,7 @@ namespace task4Test
                     Assert.AreEqual(dataReader.GetName(2), "Orders made");
                     Assert.AreEqual(dataReader.GetValue(0), "Nancy");
                     Assert.AreEqual(dataReader.GetValue(1), "Davolio");
-                    Assert.AreEqual(dataReader.GetValue(2), "55");
+                    Assert.AreEqual(dataReader.GetValue(2), (Int64)55);
 
                     /*
                      * TODO: iterate over DataReader
