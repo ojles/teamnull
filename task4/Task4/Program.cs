@@ -10,7 +10,6 @@ namespace Task4
     {
         public static void Main()
         {
-
         }
     }
 }
