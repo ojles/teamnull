@@ -11,10 +11,10 @@ namespace Task4
         static void Main(string[] args)
         {
             string connectionString = "server=localhost;user id=root;database=northwind; password=smart" ;
-            MySqlConnection connection = new MySqlConnection(connectionString);                
-            string command = @"SELECT `FirstName`, `LastName` FROM `Employees` ORDER BY `BirthDate` LIMIT 3";
-
+            MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
+            System.Console.WriteLine(connection.State);
+            string command = @"SELECT `FirstName`, `LastName` FROM `Employees` ORDER BY `BirthDate` LIMIT 3";
 
             using (connection)
             {           
