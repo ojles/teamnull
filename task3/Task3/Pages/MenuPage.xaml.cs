@@ -61,8 +61,31 @@ namespace Task3.Pages
 
         private void SubmitOrderClick(object sender, RoutedEventArgs e)
         {
+            order.OrderItems.RemoveAll(x => x.Amount == 0);
+            MenuPage menuPage = new MenuPage();
+
             order.Place();
-            orderService.Save(order);
+
+            string messageBoxText = "Your Order - " + order.Name.Substring(6) + "\n\n";
+            foreach (var i in order.OrderItems)
+            {
+                messageBoxText += string.Format("{0}. {1} {2} - ${3}/item\n", order.OrderItems.IndexOf(i)+1,
+                    i.Meal.Name, i.Amount, i.Price);
+            }
+            //for(int i = 0; i < order.OrderItems.Count; i++)
+            //{
+            //    messageBoxText += string.Format("{0}. {1} {2} {3} \n", i, order.OrderItems..Meal.Name, i.Amount, i.Price);
+            //}
+            messageBoxText += "\nTotal - $" + order.Price;
+            string caption = "Order";
+            MessageBoxButton buttons = MessageBoxButton.OKCancel;
+            //MessageBoxButton buttonCancel = MessageBoxButton.OK;
+            MessageBoxImage icon = MessageBoxImage.Information;
+            MessageBoxResult messageBoxResult = MessageBox.Show(messageBoxText, caption, buttons, icon);
+            if(messageBoxResult == MessageBoxResult.OK)
+            {
+                orderService.Save(order);
+            }
         }
     }
 }

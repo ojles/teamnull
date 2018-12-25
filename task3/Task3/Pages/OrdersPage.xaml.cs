@@ -36,6 +36,7 @@ namespace Task3.Pages
         private void OrderDoubleClick(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
+            
             string messageBoxText = ToString();
             string caption = "Orders";
             MessageBoxButton button = MessageBoxButton.OK;
