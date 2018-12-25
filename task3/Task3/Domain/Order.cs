@@ -15,29 +15,39 @@ namespace Task3
     /// <summary>
     /// Class to represent an Order with order items
     /// </summary>
+    [Table("order")]
     public class Order : INotifyPropertyChanged
     {
+        [Key]
+        [Column("id")]
+        public int Id { get; set; }
+
         /// <summary>
         /// List of the <see cref="OrderItem"/>
         /// </summary>
+        [InverseProperty("Order")]
         public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 
         /// <summary>
         /// Name of the <see cref="Order"/>
         /// </summary>
+        [Required]
+        [Column("name")]
         public string Name { get; set; }
 
         /// <summary>
         /// Time when the <see cref="Order"/> is submitted
         /// </summary>
+        [Required]
+        [Column("submission_time")]
         public DateTime SubmissionTime { get; set; }
 
         /// <summary>
         /// Order status
         /// </summary>
+        [Required]
+        [Column(Name = "status", TypeName = "varchar(100)")]
         public Status Status { get; set; } = Status.None;
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Order"/>
@@ -68,6 +78,9 @@ namespace Task3
             Name = string.Format("order-{0}", SubmissionTime.Ticks);
         }
 
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public void OrderItemsChanged()
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Price"));
@@ -82,17 +95,6 @@ namespace Task3
                 result += string.Format("{0} {1} {2} \n",i.Meal.Name, i.Amount, i.Price);
             }
             return result;
-        }
-
-        public static Order Place(List<OrderItem> orderItems, string name)
-        {
-            return new Order
-            {
-                OrderItems = orderItems,
-                Name = name,
-                Status = Status.Processing,
-                SubmissionTime = DateTime.Now
-            };
         }
     }
 }

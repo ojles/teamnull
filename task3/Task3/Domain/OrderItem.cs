@@ -5,24 +5,27 @@ namespace Task3
     /// <summary>
     /// Class to represent an OrderItem
     /// </summary>
+    [Table("order_item")]
     public class OrderItem : INotifyPropertyChanged
     {
-        private int amount;
-       /// <summary>
-       /// Parameterless constructor
-       /// </summary>
-       public OrderItem()
-       {
-       }
+        [Key]
+        [Column("id")]
+        public int Id { get; set; }
 
         /// <summary>
         /// Gets/Sets Meal
         /// </summary>
+        [Required]
+        [ForeignKey("meal_id")]
         public Meal Meal { get; set; }
+
+        private int amount;
 
         /// <summary>
         /// Gets/Sets Meal amount
         /// </summary>
+        [Required]
+        [Column("amount")]
         public int Amount
         {
             get
@@ -37,17 +40,17 @@ namespace Task3
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// Gets/Sets Order to which this item belongs
+        /// </summary>
+        [ForeighKey("order_id")]
+        public Order Order { get; set; }
 
         /// <summary>
-        /// Calculates a price of the <see cref="OrderItem"/>
+        /// Parameterless constructor
         /// </summary>
-        public double Price
+        public OrderItem()
         {
-            get
-            {
-                return Meal.Price * Amount;
-            }
         }
 
         /// <summary>
@@ -59,6 +62,20 @@ namespace Task3
         {
             Meal = someMeal;
             Amount = amount;
+        }
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Calculates a price of the <see cref="OrderItem"/>
+        /// </summary>
+        public double Price
+        {
+            get
+            {
+                return Meal.Price * Amount;
+            }
         }
 
         protected void OnChange(string info)

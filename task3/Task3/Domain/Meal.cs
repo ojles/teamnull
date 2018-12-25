@@ -6,14 +6,22 @@ namespace Task3
     [Table("meal")]
     public class Meal
     {
+        [Key]
         [Column("id")]
         public int Id { get; set; }
+
+        [Required]
         [Column("name")]
         public string Name { get; set; }
+
+        [Required]
         [Column("price")]
         public double Price { get; set; }
+
         [Column("image_path")]
         public string ImagePath { get; set; }
+
+        [Required]
         [ForeignKey("meal_group_id")]
         public MealGroup Group { get; set; }
 

@@ -7,10 +7,14 @@ namespace Task3
     [Table("meal_group")]
     public class MealGroup
     {
+        [Key]
         [Column("id")]
         public int Id { get; set; }
+
+        [Required]
         [Column("name")]
         public string Name { get; set; }
+
         public List<Meal> Meals { get; set; } = new List<Meal>();
 
         public MealGroup()
