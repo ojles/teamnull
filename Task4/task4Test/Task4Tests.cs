@@ -55,7 +55,7 @@ namespace task4Test
         [TestMethod]
         public void Query5Test()
         {
-            using (MySqlCommand command = new MySqlCommand(Task4.Query.Q[1], connection))
+            using (MySqlCommand command = new MySqlCommand(Task4.Query.Q[4], connection))
             {
                 command.Parameters.AddWithValue("@CityName", "London");
                 using (MySqlDataReader dataReader = command.ExecuteReader())
@@ -70,7 +70,7 @@ namespace task4Test
         [TestMethod]
         public void Query6Test()
         {
-            using (MySqlCommand command = new MySqlCommand(Task4.Query.Q[1], connection))
+            using (MySqlCommand command = new MySqlCommand(Task4.Query.Q[5], connection))
             {
                 command.Parameters.AddWithValue("@CityName", "London");
                 using (MySqlDataReader dataReader = command.ExecuteReader())
@@ -147,7 +147,7 @@ namespace task4Test
         [TestMethod]
         public void Query13Test()
         {
-            using (MySqlCommand command = new MySqlCommand(Task4.Query.Q[1], connection))
+            using (MySqlCommand command = new MySqlCommand(Task4.Query.Q[12], connection))
             {
                 command.Parameters.AddWithValue("@CityName", "Madrid");
                 using (MySqlDataReader dataReader = command.ExecuteReader())
@@ -211,7 +211,7 @@ namespace task4Test
         [TestMethod]
         public void Query18Test()
         {
-            using (MySqlCommand command = new MySqlCommand(Task4.Query.Q[1], connection))
+            using (MySqlCommand command = new MySqlCommand(Task4.Query.Q[17], connection))
             {
                 command.Parameters.AddWithValue("@CountryName", "France");
                 using (MySqlDataReader dataReader = command.ExecuteReader())
