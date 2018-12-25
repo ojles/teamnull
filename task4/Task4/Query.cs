@@ -41,7 +41,13 @@ namespace Task4
                 + "GROUP BY `e`.`EmployeeID`",
             "query 16",
             "query 17",
-            "query 18",
+            "SELECT `Customers`.`CustomerID`, `Customers`.`Country`, " +
+                "COUNT(`Orders`.`OrderID`) AS `Orders` " +
+                "FROM `Customers` " +
+                "JOIN `Orders` ON `Customers`.`CustomerID` = `Orders`.`CustomerID` " +
+                "WHERE `Customers`.`Country`='France' " +
+                "GROUP BY(`Customers`.`CustomerID`) WITH ROLLUP " +
+                "HAVING COUNT(`Orders`.`OrderID`) > 1;",
             "select Customers.CustomerID, Customers.Country, " +
                 "count(Orders.OrderID) as Ords " +
                 "from Customers join Orders on Customers.CustomerID = Orders.CustomerID " +
