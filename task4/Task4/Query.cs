@@ -27,7 +27,7 @@ namespace Task4
             "query 11",
             "query 12",
             "SELECT `Employees`.`FirstName`, `Employees`.`LastName` FROM `Employees` " +
-                "JOIN `Orders` WHERE `Orders`.`ShipCity`='Madrid' AND `Orders`.`EmployeeID`=`Employees`.`EmployeeID` " +
+                "JOIN `Orders` WHERE `Orders`.`ShipCity`='@CityName' AND `Orders`.`EmployeeID`=`Employees`.`EmployeeID` " +
                 "GROUP BY `Employees`.`EmployeeID`;",
             "select  Employees.EmployeeID, Employees.FirstName, Employees.LastName, " +
                 "(select count(*) from Orders where year(Orders.OrderDate) = 1997 " +
@@ -45,7 +45,7 @@ namespace Task4
                 "COUNT(`Orders`.`OrderID`) AS `Orders` " +
                 "FROM `Customers` " +
                 "JOIN `Orders` ON `Customers`.`CustomerID` = `Orders`.`CustomerID` " +
-                "WHERE `Customers`.`Country`='France' " +
+                "WHERE `Customers`.`Country`='@CountryName' " +
                 "GROUP BY(`Customers`.`CustomerID`) WITH ROLLUP " +
                 "HAVING COUNT(`Orders`.`OrderID`) > 1;",
             "select Customers.CustomerID, Customers.Country, " +
