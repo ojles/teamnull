@@ -45,5 +45,10 @@ namespace Task3
         {
             return Name.Equals(other.Name);
         }
+
+        public override int GetHashCode()
+        {
+            return 539060726 + EqualityComparer<string>.Default.GetHashCode(Name);
+        }
     }
 }
