@@ -124,6 +124,30 @@ namespace task4Test
                     Assert.AreEqual(dataReader.GetName(2), "Orders made");
                     Assert.AreEqual(dataReader.GetValue(0), "Nancy");
                     Assert.AreEqual(dataReader.GetValue(1), "Davolio");
+                    Assert.AreEqual(dataReader.GetValue(2), (Int64)55);
+
+                    /*
+                     * TODO: iterate over DataReader
+                     *       check multiple employees
+                     * */
+                }
+            }
+        }
+
+        public void Query16Test()
+        {
+            using (MySqlCommand command = new MySqlCommand(Task4.Query.Q[13], connection))
+            {
+                command.Parameters.AddWithValue("@OrderDate", 1997);
+                using (MySqlDataReader dataReader = command.ExecuteReader())
+                {
+                    dataReader.Read();
+                    Assert.AreEqual(dataReader.GetName(0), "FirstName");
+                    Assert.AreEqual(dataReader.GetName(1), "LastName");
+                    Assert.AreEqual(dataReader.GetName(2), "Orders amount");
+                    Assert.AreEqual(dataReader.GetValue(0), "Nancy");
+                    Assert.AreEqual(dataReader.GetValue(1), "Davolio");
+                    Assert.AreEqual(dataReader.GetValue(2), (Int64)1);
 
                     /*
                      * TODO: iterate over DataReader
