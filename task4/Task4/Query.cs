@@ -26,7 +26,9 @@ namespace Task4
             "SELECT `FirstName`, `LastName` FROM `Employees` ORDER BY `BirthDate` LIMIT @LimitAmount",
             "select City from Employees group by City",
             "query 12",
-            "query 13",
+            "SELECT `Employees`.`FirstName`, `Employees`.`LastName` FROM `Employees` " +
+                "JOIN `Orders` WHERE `Orders`.`ShipCity`='Madrid' AND `Orders`.`EmployeeID`=`Employees`.`EmployeeID` " +
+                "GROUP BY `Employees`.`EmployeeID`;",
             "select  Employees.EmployeeID, Employees.FirstName, Employees.LastName, " +
                 "(select count(*) from Orders where year(Orders.OrderDate) = 1997 " +
                 "and Employees.EmployeeID = Orders.EmployeeID) as Ords " +
