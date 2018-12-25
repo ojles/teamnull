@@ -12,6 +12,47 @@ namespace task4Test
         private MySqlConnection connection = Database.GetConnection();
 
         [TestMethod]
+        public void Query1Test()
+        {
+            using (MySqlCommand command = new MySqlCommand(Task4.Query.Q[0], connection))
+            {
+                command.Parameters.AddWithValue("@EmployeeID", 8);
+                using (MySqlDataReader dataReader = command.ExecuteReader())
+                {
+                    dataReader.Read();
+                    Assert.AreEqual(dataReader.GetName(0), "EmployeeID");
+                    Assert.AreEqual(dataReader.GetName(2), "FirstName");
+                    Assert.AreEqual(dataReader.GetName(1), "LastName");
+                    Assert.AreEqual(dataReader.GetValue(0), (Int32)8);
+                    Assert.AreEqual(dataReader.GetValue(2), "Laura");
+                    Assert.AreEqual(dataReader.GetValue(1), "Callahan");
+                }
+            }
+        }
+
+        [TestMethod]
+        public void Query2Test()
+        {
+            using (MySqlCommand command = new MySqlCommand(Task4.Query.Q[1], connection))
+            {
+                command.Parameters.AddWithValue("@CityName", "London");
+                using (MySqlDataReader dataReader = command.ExecuteReader())
+                {
+                    dataReader.Read();
+                    Assert.AreEqual(dataReader.GetName(0), "FirstName");
+                    Assert.AreEqual(dataReader.GetName(1), "LastName");
+                    Assert.AreEqual(dataReader.GetValue(0), "Steven");
+                    Assert.AreEqual(dataReader.GetValue(1), "Buchanan");
+
+                    /*
+                     * TODO: iterate over DataReader
+                     *       check multiple employees
+                     * */
+                }
+            }
+        }
+
+        [TestMethod]
         public void Query9Test()
         {
             using (MySqlCommand command = new MySqlCommand(Task4.Query.Q[8], connection))
@@ -51,6 +92,25 @@ namespace task4Test
         }
 
         [TestMethod]
+        public void Query11Test()
+        {
+            using (MySqlCommand command = new MySqlCommand(Task4.Query.Q[10], connection))
+            {                
+                using (MySqlDataReader dataReader = command.ExecuteReader())
+                {
+                    dataReader.Read();
+                    Assert.AreEqual(dataReader.GetName(0), "City");
+                    Assert.AreEqual(dataReader.GetValue(0), "Seattle");
+
+                    /*                                                                                                                                                                                                                                                    
+                     * TODO: iterate over DataReader                                                                                                                                                                                                                      
+                     *       check multiple employees                                                                                                                                                                                                                     
+                     * */
+                }
+            }
+        }
+
+        [TestMethod]
         public void Query15Test()
         {
             using (MySqlCommand command = new MySqlCommand(Task4.Query.Q[14], connection))
@@ -64,7 +124,6 @@ namespace task4Test
                     Assert.AreEqual(dataReader.GetName(2), "Orders made");
                     Assert.AreEqual(dataReader.GetValue(0), "Nancy");
                     Assert.AreEqual(dataReader.GetValue(1), "Davolio");
-                    Assert.AreEqual(dataReader.GetValue(2), (Int64)55);
 
                     /*
                      * TODO: iterate over DataReader

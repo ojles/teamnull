@@ -4,8 +4,8 @@ namespace Task4
     {
         public static readonly string[] Q =
         {
-            "query 1",
-            "query 2",
+            "select * from Employees as e where e.EmployeeID=@EmployeeID",
+            "select e.FirstName, e.LastName from Employees as e where e.City=@CityName;",
             "query 3",
             "query 4",
             "query 5",
@@ -21,7 +21,7 @@ namespace Task4
                 "having AVG(YEAR(CURRENT_TIMESTAMP)-YEAR(BirthDate)) > 60;",
             "SELECT `FirstName`, `LastName` FROM `Employees` WHERE `BirthDate`=(SELECT MIN(`BirthDate`) FROM `Employees`)",
             "SELECT `FirstName`, `LastName` FROM `Employees` ORDER BY `BirthDate` LIMIT @LimitAmount",
-            "query 11",
+            "select City from Employees group by City;",
             "query 12",
             "query 13",
             "select  Employees.EmployeeID, Employees.FirstName, Employees.LastName, " +
@@ -34,7 +34,10 @@ namespace Task4
                 + "ON `e`.`EmployeeID`=`o`.`EmployeeID` "
                 + "WHERE YEAR(`o`.`OrderDate`)=@OrderDate "
                 + "GROUP BY `e`.`EmployeeID`",
-            "query 16",
+            "select e.FirstName, e.LastName, COUNT(o.OrderId) as 'Orders amount' " +
+                "from Employees as e left join Orders as o on e.EmployeeID = o.EmployeeID " +
+                "where YEAR(o.OrderDate)=@OrderDate and o.RequiredDate<o.ShippedDate " +
+                "group by e.EmployeeID;",
             "query 17",
             "query 18",
             "select Customers.CustomerID, Customers.Country, " +
