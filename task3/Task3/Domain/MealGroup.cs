@@ -1,9 +1,15 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Task3
 {
+    [Table("meal_group")]
     public class MealGroup
     {
+        [Column("id")]
+        public int Id { get; set; }
+        [Column("name")]
         public string Name { get; set; }
         public List<Meal> Meals { get; set; } = new List<Meal>();
 
