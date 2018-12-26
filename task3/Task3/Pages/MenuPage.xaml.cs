@@ -59,10 +59,40 @@ namespace Task3.Pages
             order.OrderItemsChanged();
         }
 
+        private string createCheck()
+        {
+            string messageBoxText = "Your Order - " + order.Name.Substring(6) + "\n\n";
+            foreach (var i in order.OrderItems)
+            {
+                messageBoxText += string.Format("{0}. {1} {2} - ${3}\n", order.OrderItems.IndexOf(i) + 1,
+                    i.Meal.Name, i.Amount, i.Price);
+            }
+            messageBoxText += "\nTotal - $" + order.Price;
+            return messageBoxText;
+        }
+
+        private MessageBoxResult showOrderInfo()
+        {
+            string caption = "Order";
+            MessageBoxButton buttons = MessageBoxButton.OKCancel;
+            MessageBoxImage icon = MessageBoxImage.Information;
+            return MessageBox.Show(createCheck(), caption, buttons, icon);
+        }
+
         private void SubmitOrderClick(object sender, RoutedEventArgs e)
         {
+            order.OrderItems.RemoveAll(x => x.Amount == 0);
+            MenuPage menuPage = new MenuPage();
+
             order.Place();
-            orderService.Save(order);
+
+            MessageBoxResult messageBoxResult = showOrderInfo();
+
+
+            if (messageBoxResult == MessageBoxResult.OK)
+            {
+                orderService.Save(order);
+            }
         }
     }
 }

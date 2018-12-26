@@ -33,14 +33,27 @@ namespace Task3.Pages
             return result;
         }
 
+        private void createOrderInfo(Order order)
+        {
+            string messageBoxText = "Your Order - " + order.Name.Substring(6) + "\n\n";
+            foreach (var i in order.OrderItems)
+            {
+                messageBoxText += string.Format("{0}. {1} {2} - ${3}\n", order.OrderItems.IndexOf(i) + 1,
+                    i.Meal.Name, i.Amount, i.Price);
+            }
+            messageBoxText += "\nTotal - $" + order.Price;
+            string caption = "Order";
+            MessageBoxButton buttons = MessageBoxButton.OK;
+            MessageBoxImage icon = MessageBoxImage.Information;
+            MessageBox.Show(messageBoxText, caption, buttons, icon);
+        }
+
         private void OrderDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            e.Handled = true;
-            string messageBoxText = ToString();
-            string caption = "Orders";
-            MessageBoxButton button = MessageBoxButton.OK;
-            MessageBoxImage icon = MessageBoxImage.Information;
-            MessageBox.Show(messageBoxText, caption, button, icon);
+            if(Orders.SelectedItem != null)
+            {
+                createOrderInfo((Order)Orders.SelectedItem);                
+            }
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
