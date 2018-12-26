@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
-namespace Task3
+namespace Task3.Domain
 {
     public enum Status {
         None,
@@ -46,7 +48,7 @@ namespace Task3
         /// Order status
         /// </summary>
         [Required]
-        [Column(Name = "status", TypeName = "varchar(100)")]
+        [Column("status", TypeName = "varchar(100)")]
         public Status Status { get; set; } = Status.None;
 
         /// <summary>

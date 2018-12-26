@@ -1,7 +1,8 @@
 ﻿
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Task3
+namespace Task3.Domain
 {
     [Table("meal")]
     public class Meal
