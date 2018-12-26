@@ -5,6 +5,7 @@ using System.Windows.Input;
 using System.Windows;
 using Task3.Service;
 using System.Collections.ObjectModel;
+using Task3.Domain;
 
 namespace Task3.Pages
 {

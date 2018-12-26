@@ -1,6 +1,8 @@
 ﻿using System.Xml.Serialization;
 using System.IO;
 using System.Collections.Generic;
+using Task3.Domain;
+
 namespace Task3.Service
 {
     /// <summary>

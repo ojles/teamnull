@@ -4,6 +4,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using Task3.Service;
+using Task3.Domain;
+using Task3.DataAccess;
 
 namespace Task3.Pages
 {
@@ -15,16 +17,15 @@ namespace Task3.Pages
         private MenuService menuService = new MenuService();
         private OrderService orderService = new OrderService();
         private Order order = new Order();
-        private Menu menu;
+        private Domain.Menu menu;
+        private UnitOfWork unitOfWork = new UnitOfWork();
 
         public MenuPage()
         {
             InitializeComponent();
 
-            menu = menuService.Get();
-
             List<OrderItem> items = new List<OrderItem>();
-            foreach (Meal meal in menu.Meals)
+            foreach (Meal meal in unitOfWork.GetMeals())
             {
                 items.Add(new OrderItem(meal, 0));
             }

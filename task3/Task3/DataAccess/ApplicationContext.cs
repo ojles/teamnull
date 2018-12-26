@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-
+using System.Configuration;
 using Task3.Domain;
 
 namespace Task3.DataAccess
@@ -24,6 +24,11 @@ namespace Task3.DataAccess
         /// </summary>
         public ApplicationContext()
         {
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseMySQL(ConfigurationManager.ConnectionStrings["SushiOrderingDatabase"].ConnectionString);
         }
     }
 }

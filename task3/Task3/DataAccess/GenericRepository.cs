@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
-using System.Collections.Generic;
-
+using MySql.Data.EntityFrameworkCore;
 using Task3.DataAccess.Interfaces;
 
 namespace Task3.DataAccess

@@ -33,7 +33,7 @@ namespace Task3.DataAccess
         /// </summary>
         private bool _disposed;
 
-        /// <summary>
+        /// <summary> 
         /// Default constructor
         /// </summary>
         public UnitOfWork()

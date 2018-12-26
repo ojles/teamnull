@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Xml.Serialization;
+using Task3.Domain;
 
 namespace Task3.Service
 {
