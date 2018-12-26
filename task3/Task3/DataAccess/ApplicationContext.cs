@@ -1,29 +1,28 @@
-﻿using System.Data.Entity;
+﻿using Microsoft.EntityFrameworkCore;
 
 using Task3.Domain;
 
-namespace Task3.DataAccess;
+namespace Task3.DataAccess
 {
-    /// <inheritdoc />
     /// <summary>
-    /// Represents an order.
+    /// Application database context
     /// </summary>
     public class ApplicationContext : DbContext
     {   /// <summary>
-        /// Holds orders.
+        /// Holds user orders
         /// </summary>
         public DbSet<Order> Orders { get; set; }
 
         /// <summary>
-        /// Contains client personal information.
+        /// Holds available meals
         /// </summary>
         public DbSet<Meal> Meals { get; set; }
 
         /// <inheritdoc />
         /// <summary>
-        /// Parameterless OrderContext constructor.
+        /// Parameterless ApplicationContext constructor.
         /// </summary>
-        public OrderContext() : base("CargoDeliveryDb")
+        public ApplicationContext()
         {
         }
     }

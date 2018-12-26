@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Task3
+namespace Task3.Domain
 {
     /// <summary>
     /// Class to represent an OrderItem
@@ -43,7 +45,7 @@ namespace Task3
         /// <summary>
         /// Gets/Sets Order to which this item belongs
         /// </summary>
-        [ForeighKey("order_id")]
+        [ForeignKey("order_id")]
         public Order Order { get; set; }
 
         /// <summary>

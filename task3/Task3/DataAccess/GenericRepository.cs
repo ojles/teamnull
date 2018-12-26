@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using System.Collections.Generic;
 
@@ -9,25 +9,25 @@ using Task3.DataAccess.Interfaces;
 namespace Task3.DataAccess
 {
     /// <summary>
-    /// Used for managing the database with databse context.
+    /// Used for managing the database with database context
     /// </summary>
-    /// <typeparam name="TEntity">Template entity.</typeparam>
+    /// <typeparam name="TEntity">Template entity</typeparam>
     public sealed class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
         /// <summary>
-        /// Holds Ddatabase content.
+        /// Holds database content
         /// </summary>
         internal readonly DbContext Context;
 
         /// <summary>
-        /// Holds specific database entity object.
+        /// Holds specific database entity object
         /// </summary>
         internal readonly DbSet<TEntity> DbSet;
 
         /// <summary>
-        /// Creates GenericRepository object.
+        /// Creates GenericRepository object
         /// </summary>
-        /// <param name="context">Database context to manage db table.</param>
+        /// <param name="context">Database context to manage db table</param>
         public GenericRepository(DbContext context)
         {
             Context = context;
@@ -35,28 +35,28 @@ namespace Task3.DataAccess
         }
 
         /// <summary>
-        /// Search data in database using id of the object.
+        /// Find entity by id
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns>Returns data of specific database entity by its id.</returns>
+        /// <param name="id">Id of entity</param>
+        /// <returns>Returns entity with specified id</returns>
         public TEntity GetById(object id)
         {
             return DbSet.Find(id);
         }
 
         /// <summary>
-        /// Inserts new data to a table.
+        /// Saves entity to table
         /// </summary>
-        /// <param name="entity">Specific entity object.</param>
+        /// <param name="entity">Specific entity object</param>
         public void Insert(TEntity entity)
         {
             DbSet.Add(entity);
         }
 
         /// <summary>
-        /// Removes data from the database by id.
+        /// Remove entity from database by id
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id of entity</param>
         public void Delete(object id)
         {
             var entityToDelete = DbSet.Find(id);
@@ -66,29 +66,29 @@ namespace Task3.DataAccess
         /// <summary>
         /// Removes data from the database by entity object.
         /// </summary>
-        /// <param name="entityToDelete">Specific entity.</param>
-        public void Delete(TEntity entityToDelete)
+        /// <param name="entity">Specific entity.</param>
+        public void Delete(TEntity entity)
         {
-            if (Context.Entry(entityToDelete).State == EntityState.Detached)
+            if (Context.Entry(entity).State == EntityState.Detached)
             {
-                DbSet.Attach(entityToDelete);
+                DbSet.Attach(entity);
             }
 
-            DbSet.Remove(entityToDelete);
+            DbSet.Remove(entity);
         }
 
         /// <summary>
-        /// Updates entity in database by given entity object.
+        /// Updates given entity in database
         /// </summary>
-        /// <param name="entityToUpdate">Specific entity.</param>
-        public void Update(TEntity entityToUpdate)
+        /// <param name="entity">Entity to update</param>
+        public void Update(TEntity entity)
         {
-            DbSet.Attach(entityToUpdate);
-            Context.Entry(entityToUpdate).State = EntityState.Modified;
+            DbSet.Attach(entity);
+            Context.Entry(entity).State = EntityState.Modified;
         }
 
         /// <summary>
-        /// Saves context changes.
+        /// Saves context changes
         /// </summary>
         public void Save()
         {

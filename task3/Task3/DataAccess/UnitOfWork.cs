@@ -1,72 +1,64 @@
 ﻿using System;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 
-using Task3.DataAccess.Interface;
+using Task3.DataAccess.Interfaces;
 using Task3.Domain;
 
-namespace Task3.DataAccess;
+namespace Task3.DataAccess
 {
     /// <summary>
-    /// Is used to manage repositories. 
+    /// Manages repositories of Orders and Meals
     /// </summary>
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
         /// <summary>
-        /// Contains order context instance.
+        /// Application context instance
         /// </summary>
         private readonly ApplicationContext _context;
 
         /// <summary>
-        /// Orders field is used to manage table 'Orders' in the database.
+        /// Repository to manage Order entity
         /// </summary>
         public GenericRepository<Order> Orders { get; }
 
         /// <summary>
-        /// Clients field is used to manage table 'Clients' in the database.
+        /// Repository to manage Meal entity
         /// </summary>
         public GenericRepository<Meal> Meals { get; }
 
         /// <summary>
-        /// A variable which shows whether context is disposed or not.
+        /// Variable which shows whether context is disposed or not
         /// </summary>
         private bool _disposed;
 
         /// <summary>
-        /// Default constructor that instantiates UnitOfWork object. 
+        /// Default constructor
         /// </summary>
         public UnitOfWork()
         {
-            _context = new OrderContext();
+            _context = new ApplicationContext();
             Orders = new GenericRepository<Order>(_context);
             Meals = new GenericRepository<Meal>(_context);
         }
 
         /// <summary>
-        /// Retrieves all orders from database.
+        /// Retrieves all available meals
         /// </summary>
-        /// <returns>Orders list.</returns>
-        public IEnumerable<Order> GetOrders()
+        /// <returns>Meal list</returns>
+        public IEnumerable<Meal> GetMeals()
         {
-            return _context.Orders
-                .Include(g => g.GoodsData)
-                .Include(s => s.ShopData).Include(shop => shop.ShopData.Address)
-                .Include(c => c.ClientData).Include(client => client.ClientData.Address);
+            return _context.Meals.ToList();
         }
 
         /// <summary>
-        /// Deletes order from database completely.
+        /// Deletes order by id
         /// </summary>
-        /// <param name="id">Order id.</param>
-        public void DeleteOrder(int id)
+        /// <param name="id">Order id</param>
+        public void DeleteOrder(int orderId)
         {
-            var order = Orders.GetById(id);
-            Addresses.Delete(order.ClientData.Address);
-            Addresses.Delete(order.ShopData.Address);
-            Goods.Delete(order.GoodsData);
-            Clients.Delete(order.ClientData);
-            Shops.Delete(order.ShopData);
-            Orders.Delete(order);
+            Orders.Delete(orderId);
         }
 
         /// <summary>
