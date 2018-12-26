@@ -283,13 +283,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataAccess\ApplicationContext.cs" />
+    <Compile Include="DataAccess\GenericRepository.cs" />
+    <Compile Include="DataAccess\Interfaces\IGenericRepository.cs" />
+    <Compile Include="DataAccess\Interfaces\IUnitOfWork.cs" />
+    <Compile Include="DataAccess\UnitOfWork.cs" />
     <Compile Include="Pages\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\OrdersPage.xaml.cs">
       <DependentUpon>OrdersPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Repository\ApplicationContext.cs" />
     <Compile Include="Service\MenuService.cs" />
     <Compile Include="Service\OrderService.cs" />
     <Compile Include="Service\ServiceVariables.cs" />
